@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://cangulo.github.io/cheatsheets</id>
+    <title>Carlos Angulo Blog</title>
+    <updated>2021-11-03T20:33:58.497Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://cangulo.github.io/cheatsheets"/>
+    <subtitle>Carlos Angulo Blog</subtitle>
+    <icon>https://cangulo.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Git Cheatsheet]]></title>
+        <id>cheatsheets/git-cheatsheet</id>
+        <link href="https://cangulo.github.io/cheatsheets/cheatsheets/git-cheatsheet"/>
+        <updated>2021-11-03T20:33:58.497Z</updated>
+        <summary type="html"><![CDATA[Git Commands]]></summary>
+        <content type="html"><![CDATA[<h2>Git Commands</h2><table><thead><tr><th align="left">Command</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left"><code>git checkout --track origin/NAME</code></td><td align="left">Create a local branch that tracks the remote one</td></tr><tr><td align="left"><code>git checkout -</code></td><td align="left">Checkout the previous branch, this can be useful if you go from your feature branch to dev, you update it, and you want to come back to your feature branch to rebase dev</td></tr><tr><td align="left"><code>git branch --list [&lt;pattern&gt;]</code></td><td align="left">List all the branches that match the <code>&lt;pattern&gt;</code>. e.g. <code>*-1234</code> list all the branches that end <code>1234</code></td></tr><tr><td align="left"><code>gitk</code></td><td align="left">Check Last commits using a GUI</td></tr><tr><td align="left"><code>gitk &lt;filePath&gt;</code></td><td align="left">Check <code>&lt;fielPath&gt;</code> last commits using a GUI</td></tr><tr><td align="left"><code>git gui blame &lt;filePath&gt;</code></td><td align="left">Check <code>&lt;fielPath&gt;</code> last commits using a GUI</td></tr><tr><td align="left"><code>gitk</code></td><td align="left">Check Last commits using a GUI</td></tr><tr><td align="left"><code>git switch</code></td><td align="left">New git command to change between branches to avoid using checkout. Currently is in status experimental. Check this <a href="https://git-scm.com/docs/git-switch/2.23.0">link</a> and this <a href="https://bluecast.tech/blog/git-switch-branch/">one</a></td></tr><tr><td align="left"><code>git cherry-pick -n &lt;commit&gt;</code></td><td align="left">Let&#x27;s you inspect the files modified in the commit before cherry pick them. <a href="https://stackoverflow.com/questions/5717026/how-to-git-cherry-pick-only-changes-to-certain-files">Reference</a></td></tr><tr><td align="left"><code>git diff [target-branch] -name-status</code></td><td align="left">List the files modified and what kind of modification (Added, Deleted, Modified) in your branch using the target branch as reference</td></tr><tr><td align="left"><code>git diff [target-branch] -name-only</code></td><td align="left">List the files modified in your branch using the target branch as reference</td></tr><tr><td align="left"><code>git checkout tags/&lt;tag&gt; -b &lt;branch&gt;</code></td><td align="left">Checkout a branch starting from the tag provided</td></tr></tbody></table><h2>How to configure an Alias</h2><h3>Using Command Line:</h3><p>using Command line: </p><table><thead><tr><th>Command</th><th>Example</th></tr></thead><tbody><tr><td><code>git config --global alias.[AliasName] [AliasValue]</code></td><td><code>git config --global alias.co checkout</code></td></tr></tbody></table><h3>Configuring the git config file</h3><ol><li>Open your <code>.gitconfig</code> file, it is located at your home folder</li><li>In a new line, add the tag <code>[alias]</code></li><li>In the next lines add your alias following the format <code>[TAB space]AliasName = AliasValue</code>.</li></ol><p>Please note this config file is space/tab sensitive so be sure no spaces are added at the end of each line</p><pre><code class="language-bash">[alias]
+    b = branch
+</code></pre><p>Next are my personal alias:</p><h2>Alias configured</h2><pre><code class="language-bash">[alias]
+  b = branch
+  bl = branch --list
+  bd = branch -D
+  co = checkout
+  cob = checkout -b
+  cor = checkout --track
+  cp = cherry-pick
+  cp-c = cherry-pick --continue
+  cp-a = cherry-pick --abort
+  re = rebase -i
+  re-c = rebase --continue
+  re-a = rebase --abort
+  re-m = rebase -i --rebase-merges
+  pushf = push --force
+  st = status
+  l = &quot;!f() { git log --oneline -n ${1-15}; }; f&quot;
+  lg = &quot;!f() { git log --oneline --grep=${1-No Argument Provided}; }; f&quot;
+  pushr = &quot;!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch; }; f&quot;
+  settings = config --global --edit
+[fetch]
+  prune = true
+</code></pre><div label="Check the file here" link="posts/cheatsheets/resources/git/git-alias"></div><p>The <code>l</code> and <code>lg</code> are alias with input parameters defined as Bash functions</p><h2>Githooks</h2><h3>Problem</h3><p>Perform actions before or after any commit, let&#x27;s say, automatize actions following the git workflow. \
+In my case, I want to make sure that all my markdown files has any code reference updated. For that, I execute a bash file called <code>update_sh_code_in_md_files.sh</code>.</p><h3>Solution</h3><p>Create a githook that is executed before doing a commit.</p><p>By default, git create the next set of samples in  <code>.git/hooks</code>.</p><pre><code class="language-bash">applypatch-msg.sample
+commit-msg.sample
+fsmonitor-watchman.sample
+post-update.sample
+pre-applypatch.sample
+pre-commit.sample
+prepare-commit-msg.sample
+pre-push.sample
+pre-rebase.sample
+pre-receive.sample
+update.sample
+</code></pre><p>If a common policy for pre-commit needs to be updated to the repository the <code>pre-commit</code> should be located outside the <code>.git</code> folder, this will ensure the folder will be tracked in git. Then, we have to configure git to use that path as the source for hooks, this could be done as next:</p><pre><code class="language-bash">git config --local core.hooksPath ./githooks
+</code></pre><p>In case we want to set a global policy, it could be done with the same command but adding <code>--global</code> as parameter. In my case, all my repositories contains markdown files with reference to code that I want to update </p><pre><code class="language-bash">git config --global core.hooksPath ./githooks
+</code></pre><p>If the hook is set as <em>global</em> the configuration file modified will be  <code>.gitconfig </code>, at the home user directory. \
+On the other hand, if it is <em>local</em>, the file modified will be <code>.config</code> in  the <code>.git</code> folder of the repository.</p><p>Next are the lines to be added in the file:</p><pre><code class="language-bash">[core]
+    hooksPath = /home/carlos/Documents/github_repositories/cheatsheet/GitCheatsheet/resources/githooks/
+</code></pre><h3>Example Pre Commit file example</h3><pre><code class="language-bash">#!/bin/sh
+
+echo &quot;### PRE-COMMIT GLOBAL PROCESS&quot;
+
+/home/carlos/Documents/github_repositories/bashScripts/markdown_helpers/update_code_in_docs/update_sh_code_in_md_files.sh
+executionResult=$?
+
+if [ $executionResult -eq 0 ]; then
+    echo &quot;###      RESULT OK&quot;
+else
+    echo &quot;###      RESULT NOT OK&quot;
+fi
+
+echo &quot;### PRE-COMMIT GLOBAL PROCESS END&quot;
+exit $executionResult
+</code></pre>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+</feed>
