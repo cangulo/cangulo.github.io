@@ -16,29 +16,47 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
-  tagline: 'Dinosaurs are cool',
 
-  presets: [
+  plugins: [
+    '@docusaurus/plugin-content-docs',
     [
-      '@docusaurus/preset-classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-        },
-        blog: {
-          path: 'blog/posts',
-          showReadingTime: true,
-        },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
+      '@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      {
+        id: 'posts',
+        path: 'blog/posts',
+        showReadingTime: true,
+        authorsMapPath: '../authors.yml'
+      }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      {
+        id: 'cheatsheets',
+        path: 'blog/cheatsheets',
+        showReadingTime: true,
+        routeBasePath: 'cheatsheets',
+        authorsMapPath: '../authors.yml'
+      }
+    ],
+    '@docusaurus/plugin-content-pages',
+    '@docusaurus/plugin-debug',
+    // '@docusaurus/plugin-google-analytics',
+    // '@docusaurus/plugin-google-gtag',
+    '@docusaurus/plugin-sitemap',
+  ],
+
+  themes: [
+    [
+      '@docusaurus/theme-classic',
+      {
+        customCss: require.resolve('./src/css/custom.css')
+      }
     ]
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
         title: 'Home',
@@ -46,9 +64,10 @@ const config = {
           // { type: 'doc', docId: 'intro', position: 'left', label: 'Tutorial' },
           { to: '/blog', label: 'Blog', position: 'left' },
           { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
-          { to: '/meetups', label: 'Meetups ', position: 'left' },
-          { to: '/about', label: 'About ', position: 'left' },
-          { to: '/contact', label: 'Contact ', position: 'left' },
+          { to: '/about', label: 'About', position: 'left' },
+          // { to: '/meetups', label: 'Meetups ', position: 'left' },
+          // { to: '/about', label: 'About ', position: 'left' },
+          // { to: '/contact', label: 'Contact ', position: 'left' },
           {
             href: 'https://github.com/cangulo',
             label: 'GitHub',
@@ -59,16 +78,15 @@ const config = {
       footer: {
         style: 'dark',
         links: [
+          // {
+          //   items: [
+          //     {
+          //       label: 'Home',
+          //       to: '/home',
+          //     }
+          //   ],
+          // },
           {
-            items: [
-              {
-                label: 'Home',
-                to: '/home',
-              }
-            ],
-          },
-          {
-            title: 'Posts',
             items: [
               {
                 label: 'Blog',

@@ -1,7 +1,7 @@
 ---
 slug: posts/welcome
 title: Welcome
-authors: [slorber, yangshun]
+authors: cangulo
 tags: [facebook, hello, docusaurus]
 ---
 
