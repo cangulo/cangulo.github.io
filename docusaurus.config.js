@@ -45,21 +45,16 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
-        },
+        title: 'Home',
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
-          },
+          // { type: 'doc', docId: 'intro', position: 'left', label: 'Tutorial' },
           { to: '/blog', label: 'Blog', position: 'left' },
+          { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
+          { to: '/meetups', label: 'Meetups ', position: 'left' },
+          { to: '/about', label: 'About ', position: 'left' },
+          { to: '/contact', label: 'Contact ', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/cangulo',
             label: 'GitHub',
             position: 'right',
           },
@@ -69,46 +64,40 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
+                label: 'Home',
+                to: '/home',
+              }
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
+            title: 'Posts',
             items: [
               {
                 label: 'Blog',
                 to: '/blog',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Cheatsheets',
+                to: '/cheatsheets',
               },
             ],
           },
+          {
+            items: [
+              {
+                label: 'LinkedIn',
+                href: 'https://www.linkedin.com/in/angulomascarell/',
+              },
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/angulomascarell',
+              },
+            ],
+          }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
