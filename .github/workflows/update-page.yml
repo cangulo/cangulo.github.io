@@ -1,0 +1,79 @@
+name: Update Page
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  create-artifact:
+    name: Create Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out main branch
+        uses: actions/checkout@v2
+      - name: preparing npm
+        run: npm install
+      - name: building page
+        run: npm run build
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: build
+          retention-days: 5
+  update-gh-page:
+    name: Updating GH Page
+    needs: create-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - name: Removing previous files
+        run: |
+          echo "::group::ls before cleaning"
+          ls
+          echo "::endgroup::"
+
+          rm -rf ./**
+
+          echo "::group::ls after cleaning"
+          ls
+          echo "::endgroup::"
+      - name: "Download Artifact"
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+          path: ./
+      - name: list new artifact
+        run: ls
+      - name: Commit Changes
+        run: |
+          git config user.name cangulo_gh_action
+          git config user.email cangulo_gh_action@github.com
+
+          echo "::group::git status --short"
+          git status --short
+          echo "::endgroup::"
+
+          somethingToCommit=$(git status --short)
+
+          if [[ -z "$somethingToCommit" ]]; then
+              echo "nothing to commit."
+          else
+              echo "::group::git add ."
+
+              git add .
+
+              echo "::endgroup::"
+
+              echo "::group::git commit"
+
+              git commit -m "fix: updated gh page"
+
+              echo "::endgroup::"
+
+              git push --set-upstream origin gh-pages
+          fi
