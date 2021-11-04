@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[2431],{538:function(s){s.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/docusaurus","name":"docusaurus","count":1,"permalink":"/cheatsheets/tags/docusaurus"}')}}]);

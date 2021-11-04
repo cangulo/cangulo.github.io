@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[4050],{1565:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Git Cheatsheet","permalink":"/cheatsheets/cheatsheets/git-cheatsheet"}]}')}}]);
