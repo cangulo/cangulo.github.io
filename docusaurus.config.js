@@ -37,6 +37,17 @@ const config = {
         path: 'blog/cheatsheets',
         showReadingTime: true,
         routeBasePath: 'cheatsheets',
+        authorsMapPath: '../authors.yml',
+      }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      {
+        id: 'meetups',
+        path: 'blog/meetups',
+        showReadingTime: true,
+        routeBasePath: 'meetups',
         authorsMapPath: '../authors.yml'
       }
     ],
@@ -64,9 +75,8 @@ const config = {
           // { type: 'doc', docId: 'intro', position: 'left', label: 'Tutorial' },
           { to: '/blog', label: 'Blog', position: 'left' },
           { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
+          { to: '/meetups', label: 'Meetups ', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
-          // { to: '/meetups', label: 'Meetups ', position: 'left' },
-          // { to: '/about', label: 'About ', position: 'left' },
           // { to: '/contact', label: 'Contact ', position: 'left' },
           {
             href: 'https://github.com/cangulo',

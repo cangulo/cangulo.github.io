@@ -1,7 +1,6 @@
 ---
 slug: long-blog-post
 title: Long Blog Post
-authors: cangulo
 tags: [hello, docusaurus]
 ---
 
