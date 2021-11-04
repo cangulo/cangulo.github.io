@@ -1,6 +1,7 @@
 ---
 slug: first-blog-post
 title: First Blog Post
+authors: cangulo
 tags: [hola, docusaurus]
 ---
 

@@ -1,6 +1,7 @@
 ---
 slug: posts/welcome
 title: Welcome
+authors: cangulo
 tags: [facebook, hello, docusaurus]
 ---
 

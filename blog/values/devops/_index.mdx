@@ -1,0 +1,63 @@
+---
+slug: devops
+title: What I have learn as DevOps
+authors: cangulo
+tags: [devops, deployment, deliver, cicd]
+---
+
+import ShareCard from '/src/components/blog/share.js'
+import Caption from '/src/components/blog/caption.js'
+import Comments from '/src/components/blog/comments.js'
+import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+
+<!--truncate-->
+
+## Infrastructure as Code
+
+Let me quote the next explanation from [stackify](https://stackify.com/what-is-infrastructure-as-code-how-it-works-best-practices-tutorials/):
+
+> In the past, managing IT infrastructure was a hard job. System administrators had to manually manage and configure all of the hardware and software that was needed for the applications to run.
+
+Then the Infrastructure as Code (IaC) arrives and allow us to describe the cloud resources we need in configuration files. Those are read in the deployment process, depending on the changes introduces, resources could be added, created or modified. Simple, right? Let me provide a quick example, we need a new server (e.g. AWS EC2 instance), then we only add it in the configuration file, when the config is applied the new server will be created. No need for manual intervention. 
+
+Also, we can deploy the configuration file to different environments (envs), this means the same resources will be created in all the envs.
+
+## Pipelines and Artifacts
+
+* [Pipeline](https://www.bmc.com/blogs/deployment-pipeline/): Customizable process that execute a set of steps as build, test or deploy a solution.
+* Artifact: solution snapshot ready to be deployed.
+* [Terraform](https://www.terraform.io):  open-source infrastructure as code software
+
+You know how happy I was when I discovered Terraform (TF) and deployment pipelines? A lot, but why ? simple, from my experience, before IaC developers should provide the executable file to sys admins, then they open a remote server, stop the application, replace the executable and start it again. Some of them might do it with scripts but it is still a process not owned by the dev. 
+
+Then the IaC appears, developers create configuration files with the resources they need, they also program the Pipelines which will release a new version of the solution in a artifact. 
+
+The deployment process start, the first environment is TST, the resources are created, testers verify all works as expected and then, **we can promote** the same (yes the exact same!) code to ACC, again, once it has been tested, it can be promoted to PRD. 
+
+In all the process, we are sure all the Infrastructure and the solution is the same for all the environments. Any resource that is created in TST, will also be created in all the other envs, in other words, we trust IaC framework to make sure the infrastructure is the same for all the envs.
+This simplifies the deployment process making developers own the features in all the environments, ensuring the same solution will be deployed to different envs without requiring manual intervention. 
+
+## What have I learned using TF?
+
+* Create modules to organize all the 
+
+## References
+
+https://stackify.com/what-is-infrastructure-as-code-how-it-works-best-practices-tutorials/
+https://www.bmc.com/blogs/deployment-pipeline/
+
+https://searchitoperations.techtarget.com/definition/Terraform
+
+https://devops.com/infrastructure-as-code/
+
+<AboutMePostArea/>
+
+## Did you like it? Share it
+
+<ShareCard 
+  slug="values/devops" 
+  title="What I have learn as DevOps" 
+  tags={["devops", "experience"]} />
+
+<Comments
+  slug="values/devops"  />

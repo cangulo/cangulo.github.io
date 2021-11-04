@@ -11,7 +11,6 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Hi, I'm Carlos</h1>
-        <p className="hero__subtitle">welcome to my blog</p>
       </div>
     </header>
   );
@@ -21,6 +20,7 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
+      title={`Carlos Angulo Blog`}
       description="Welcome to my blog <head />">
       <HomepageHeader />
       <main>

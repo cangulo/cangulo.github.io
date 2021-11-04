@@ -18,17 +18,16 @@ const config = {
 
 
   plugins: [
-    '@docusaurus/plugin-content-docs',
-    [
-      '@docusaurus/plugin-content-blog',
-      /** @type {import('@docusaurus/plugin-content-blog').Options} */
-      {
-        id: 'posts',
-        path: 'blog/posts',
-        showReadingTime: true,
-        authorsMapPath: '../authors.yml'
-      }
-    ],
+    // [
+    //   '@docusaurus/plugin-content-blog',
+    //   /** @type {import('@docusaurus/plugin-content-blog').Options} */
+    //   {
+    //     id: 'posts',
+    //     path: 'blog/posts',
+    //     showReadingTime: true,
+    //     authorsMapPath: '../authors.yml'
+    //   }
+    // ],
     [
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
@@ -51,20 +50,40 @@ const config = {
         authorsMapPath: '../authors.yml'
       }
     ],
-    '@docusaurus/plugin-content-pages',
-    '@docusaurus/plugin-debug',
-    // '@docusaurus/plugin-google-analytics',
-    // '@docusaurus/plugin-google-gtag',
-    '@docusaurus/plugin-sitemap',
+    [
+      '@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      {
+        id: 'values',
+        path: 'blog/values',
+        showReadingTime: true,
+        routeBasePath: 'values',
+        authorsMapPath: '../authors.yml'
+      }
+    ],
   ],
 
-  themes: [
+  presets: [
     [
-      '@docusaurus/theme-classic',
-      {
-        customCss: require.resolve('./src/css/custom.css')
-      }
-    ]
+      '@docusaurus/preset-classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
+        docs: {
+          sidebarPath: require.resolve('./sidebars.js'),
+          // Please change this to your repo.
+
+        },
+        blog: {
+          id: 'posts',
+          path: 'blog/posts',
+          showReadingTime: true,
+          authorsMapPath: '../authors.yml'
+        },
+        theme: {
+          customCss: require.resolve('./src/css/custom.css'),
+        },
+      }),
+    ],
   ],
 
   themeConfig:
@@ -88,36 +107,17 @@ const config = {
       footer: {
         style: 'dark',
         links: [
-          // {
-          //   items: [
-          //     {
-          //       label: 'Home',
-          //       to: '/home',
-          //     }
-          //   ],
-          // },
+          { items: [{ label: 'Home', to: '/index.html' }], },
           {
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'Cheatsheets',
-                to: '/cheatsheets',
-              },
+              { label: 'Blog', to: '/blog' },
+              { label: 'Cheatsheets', to: '/cheatsheets' },
             ],
           },
           {
             items: [
-              {
-                label: 'LinkedIn',
-                href: 'https://www.linkedin.com/in/angulomascarell/',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/angulomascarell',
-              },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/angulomascarell/' },
+              { label: 'Twitter', href: 'https://twitter.com/angulomascarell' },
             ],
           }
         ],
