@@ -8,6 +8,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum 
 
 <!--truncate-->
 
-import AboutMePostArea from '../_aboutme_area.mdx';
+import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx';
 
 <AboutMePostArea/>
