@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cangulo.github.io/values</id>
     <title>Carlos Angulo Blog</title>
-    <updated>2021-11-05T20:21:05.821Z</updated>
+    <updated>2021-11-05T22:56:28.901Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cangulo.github.io/values"/>
     <subtitle>Carlos Angulo Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Challenge Seeker]]></title>
         <id>challenge-seeker</id>
         <link href="https://cangulo.github.io/values/challenge-seeker"/>
-        <updated>2021-11-05T20:21:05.821Z</updated>
+        <updated>2021-11-05T22:56:28.901Z</updated>
         <summary type="html"><![CDATA[To document - Definition]]></summary>
         <content type="html"><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
 <!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
@@ -24,13 +24,13 @@ Always document as if the guy who will fix a bug in productions is YOU one year 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[What I have learn as Developer?]]></title>
+        <title type="html"><![CDATA[What have I learnt as Developer?]]></title>
         <id>developer</id>
         <link href="https://cangulo.github.io/values/developer"/>
-        <updated>2021-11-05T20:21:05.821Z</updated>
+        <updated>2021-11-05T22:56:28.901Z</updated>
         <summary type="html"><![CDATA[What does it means to be a developer?]]></summary>
-        <content type="html"><![CDATA[<h2>What does it means to be a developer?</h2><p>First, the definition should include &quot;code&quot;.</p><h2>Quality vs Deadline?</h2><p>Quality vs Deadline? that is a big question, and the answer, for me, is compose by two words:
-balance and circumstances. Read my examples here</p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="values/developer" title="What I have learn as Developer" tags="git,githooks,alias"></div><div slug="values/developer"></div>]]></content>
+        <content type="html"><![CDATA[<h2>What does it means to be a developer?</h2><p>First, the definition should include &quot;code&quot;, if you don&#x27;t know how to code, you can&#x27;t implement solutions. Okey, but what else? Let&#x27;s focus on the <code>implement</code> word, a developer should implement the best solution, in <strong>quality</strong> terms, but given some <strong>circumstances</strong>. It is not the same develop a hot fix for production than to develop a feature in the normal weekly basis.</p><p>Nice, so a developer implements solutions given some circumstances. That is my definition. Then, can a developer propose solution? yes, but if your work is more to propose than to implement, maybe you are an <code>architect</code> 😜.</p><h2>Quality vs Deadline?</h2><p>Quality vs Deadline? yeah, that is a big question, and the answer, for me, is compose by two words: <strong>balance </strong>and <strong>circumstances</strong>.
+A developer should always aim for the best quality, without over engineering the solution, but also taking into account the deadlines. When you have an issue that requires a quick fix, you should work on solving the issue, not into improving the software, the main goal is  fixing the area that is failing. Any improvement should be included as a normal feature. </p><div></div><h2>Did you like it? Share it</h2><div slug="values/developer" title="What I have learn as Developer" tags="developer,experience,thoughts"></div><div slug="values/developer"></div>]]></content>
         <author>
             <name>Carlos Angulo Mascarell</name>
             <uri>https://github.com/cangulo</uri>
@@ -40,10 +40,10 @@ balance and circumstances. Read my examples here</p><h2>References</h2><ul><li><
         <title type="html"><![CDATA[What I have learn as DevOps]]></title>
         <id>devops</id>
         <link href="https://cangulo.github.io/values/devops"/>
-        <updated>2021-11-05T20:21:05.821Z</updated>
-        <summary type="html"><![CDATA[To document - Definition]]></summary>
-        <content type="html"><![CDATA[<h2>To document - Definition</h2><p>You know how happy I was when I discovered TF and deployment pipelines?
-The simple concept of Infrastructure as Code is so beautiful yet powerful. </p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="values/devops" title="What I have learn as DevOps" tags="devops,experience"></div><div slug="values/devops"></div>]]></content>
+        <updated>2021-11-05T22:56:28.901Z</updated>
+        <summary type="html"><![CDATA[Devops - definition]]></summary>
+        <content type="html"><![CDATA[<h2>Devops - definition</h2><p>You know how happy I was when I discovered Terraform (TF) and deployment pipelines? A lot, but why? simple, before the Infrastructure as Code (IaC) concept, developers should provide the executable file to sys admins, then, they deploy it into the servers for each environment.  This was quite a manual process. </p><p>Then the IaC concept appears, developers code the infrastructure they need (Lambdas, EC2 instance, etc) and link the solution code to those. When a feature was delivered, a pipeline to deploy the IaC and the solution code is executed. The first environment to be deployed is TST, once it has been fully tested, we can promote the same code to ACC, again, once it has been tested, it can be promoted to PRD. In all the process, we are sure all the Infrastructure and the solution is the same for all the environments. Any resource that is created in TST, will also be created in all the other envs, in other words, we trust IaC framework to make sure the infrastructure is the same for all the envs.
+This simplifies the deployment process making developers own the features in all the environments, ensuring the same solution will be deployed to different envs without requiring manual intervention. </p><div></div><h2>Did you like it? Share it</h2><div slug="values/devops" title="What I have learn as DevOps" tags="devops,experience"></div><div slug="values/devops"></div>]]></content>
         <author>
             <name>Carlos Angulo Mascarell</name>
             <uri>https://github.com/cangulo</uri>
@@ -53,7 +53,7 @@ The simple concept of Infrastructure as Code is so beautiful yet powerful. </p><
         <title type="html"><![CDATA[What is documentation ?]]></title>
         <id>documentation</id>
         <link href="https://cangulo.github.io/values/documentation"/>
-        <updated>2021-11-05T20:21:05.821Z</updated>
+        <updated>2021-11-05T22:56:28.901Z</updated>
         <summary type="html"><![CDATA[To document - Definition]]></summary>
         <content type="html"><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
 <!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
@@ -69,7 +69,7 @@ Always document as if the guy who will fix a bug in productions is YOU one year 
         <title type="html"><![CDATA[Learner]]></title>
         <id>learner</id>
         <link href="https://cangulo.github.io/values/learner"/>
-        <updated>2021-11-05T20:21:05.821Z</updated>
+        <updated>2021-11-05T22:56:28.901Z</updated>
         <summary type="html"><![CDATA[To document - Definition]]></summary>
         <content type="html"><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
 <!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
@@ -85,7 +85,7 @@ Always document as if the guy who will fix a bug in productions is YOU one year 
         <title type="html"><![CDATA[Team Player Notes]]></title>
         <id>team-player</id>
         <link href="https://cangulo.github.io/values/team-player"/>
-        <updated>2021-11-05T20:21:05.821Z</updated>
+        <updated>2021-11-05T22:56:28.901Z</updated>
         <summary type="html"><![CDATA[To document - Definition]]></summary>
         <content type="html"><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
 <!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
