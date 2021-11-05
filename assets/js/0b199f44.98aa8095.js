@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[9657],{9779:function(a){a.exports=JSON.parse('{"allTagsPath":"/values/tags","slug":"/values/tags/team","name":"team","count":1,"permalink":"/values/tags/team"}')}}]);

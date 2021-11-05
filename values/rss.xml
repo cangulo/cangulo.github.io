@@ -4,14 +4,68 @@
         <title>Carlos Angulo Blog</title>
         <link>https://cangulo.github.io/values</link>
         <description>Carlos Angulo Blog</description>
-        <lastBuildDate>Fri, 05 Nov 2021 19:22:51 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 05 Nov 2021 20:21:05 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Challenge Seeker]]></title>
+            <link>https://cangulo.github.io/values/challenge-seeker</link>
+            <guid>challenge-seeker</guid>
+            <pubDate>Fri, 05 Nov 2021 20:21:05 GMT</pubDate>
+            <description><![CDATA[To document - Definition]]></description>
+            <content:encoded><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
+<!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+:::</p><p>Regarding documentation, I prefer to adapt it as next:</p><p>:::tip
+Always document as if the guy who will fix a bug in productions is YOU one year later. Try to make your life easier!
+:::</p><h2>Team Player</h2><p>keyword here are:</p><ul><li>Timebox</li><li>Team situation</li><li>previous experience</li></ul><p>but when someone in the team is totally lost, we should help.</p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="cheatsheets/git" title="Git Cheatsheet" tags="git,githooks,alias"></div><div slug="cheatsheets/git"></div>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[What I have learn as Developer?]]></title>
+            <link>https://cangulo.github.io/values/developer</link>
+            <guid>developer</guid>
+            <pubDate>Fri, 05 Nov 2021 20:21:05 GMT</pubDate>
+            <description><![CDATA[What does it means to be a developer?]]></description>
+            <content:encoded><![CDATA[<h2>What does it means to be a developer?</h2><p>First, the definition should include &quot;code&quot;.</p><h2>Quality vs Deadline?</h2><p>Quality vs Deadline? that is a big question, and the answer, for me, is compose by two words:
+balance and circumstances. Read my examples here</p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="values/developer" title="What I have learn as Developer" tags="git,githooks,alias"></div><div slug="values/developer"></div>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[What I have learn as DevOps]]></title>
+            <link>https://cangulo.github.io/values/devops</link>
+            <guid>devops</guid>
+            <pubDate>Fri, 05 Nov 2021 20:21:05 GMT</pubDate>
+            <description><![CDATA[To document - Definition]]></description>
+            <content:encoded><![CDATA[<h2>To document - Definition</h2><p>You know how happy I was when I discovered TF and deployment pipelines?
+The simple concept of Infrastructure as Code is so beautiful yet powerful. </p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="values/devops" title="What I have learn as DevOps" tags="devops,experience"></div><div slug="values/devops"></div>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[What is documentation ?]]></title>
             <link>https://cangulo.github.io/values/documentation</link>
             <guid>documentation</guid>
-            <pubDate>Fri, 05 Nov 2021 19:22:51 GMT</pubDate>
+            <pubDate>Fri, 05 Nov 2021 20:21:05 GMT</pubDate>
+            <description><![CDATA[To document - Definition]]></description>
+            <content:encoded><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
+<!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+:::</p><p>Regarding documentation, I prefer to adapt it as next:</p><p>:::tip
+Always document as if the guy who will fix a bug in productions is YOU one year later. Try to make your life easier!
+:::</p><h2>Team Player</h2><p>keyword here are:</p><ul><li>Timebox</li><li>Team situation</li><li>previous experience</li></ul><p>but when someone in the team is totally lost, we should help.</p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="cheatsheets/git" title="Git Cheatsheet" tags="git,githooks,alias"></div><div slug="cheatsheets/git"></div>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Learner]]></title>
+            <link>https://cangulo.github.io/values/learner</link>
+            <guid>learner</guid>
+            <pubDate>Fri, 05 Nov 2021 20:21:05 GMT</pubDate>
+            <description><![CDATA[To document - Definition]]></description>
+            <content:encoded><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
+<!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+:::</p><p>Regarding documentation, I prefer to adapt it as next:</p><p>:::tip
+Always document as if the guy who will fix a bug in productions is YOU one year later. Try to make your life easier!
+:::</p><h2>Team Player</h2><p>keyword here are:</p><ul><li>Timebox</li><li>Team situation</li><li>previous experience</li></ul><p>but when someone in the team is totally lost, we should help.</p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="cheatsheets/git" title="Git Cheatsheet" tags="git,githooks,alias"></div><div slug="cheatsheets/git"></div>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Team Player Notes]]></title>
+            <link>https://cangulo.github.io/values/team-player</link>
+            <guid>team-player</guid>
+            <pubDate>Fri, 05 Nov 2021 20:21:05 GMT</pubDate>
             <description><![CDATA[To document - Definition]]></description>
             <content:encoded><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
 <!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
