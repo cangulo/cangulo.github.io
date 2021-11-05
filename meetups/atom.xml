@@ -14,5 +14,9 @@
         <updated>2020-05-22T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Hi all,]]></summary>
         <content type="html"><![CDATA[<p>Hi all,</p><p>Visual Studio Code is one of the top IDEs, but did you know you can use it for simple documentation? You only need to learn some Markdown basics!</p><p>In this meetup, I explained some basic for that:</p><ol><li>Markdown, when to use it? When not to use it?</li><li>VS Code, out of the box features</li><li>VS Code extensions for Markdown</li><li>VS Code snippets: How to increase your productivity with templates</li></ol><p>The content is ideal for quick instructions/step by step guides.</p><h2>Video and Slides</h2><ul><li><a href="https://www.dropbox.com/s/ktcrtvg56j6ddhk/visualstudiocodefordocumentation%20on%202020-05-22%2016%3A17.mp4?dl=0">Meetup recording</a></li><li><a href="https://github.com/cangulo/meetups/raw/master/vs_code_for_docs/2020_05_22_write_bcn/vs_code_for_docs_20200522.pptx">Presentation</a></li><li><a href="https://github.com/cangulo/meetups/tree/master/vs_code_for_docs/2020_05_22_write_bcn">Code</a></li><li><a href="https://www.meetup.com/Write-the-Docs-Barcelona/events/270480043/">Meetup Event</a></li></ul>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
     </entry>
 </feed>

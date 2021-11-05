@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://cangulo.github.io/values</id>
+    <title>Carlos Angulo Blog</title>
+    <updated>2021-11-05T19:22:51.425Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://cangulo.github.io/values"/>
+    <subtitle>Carlos Angulo Blog</subtitle>
+    <icon>https://cangulo.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[What is documentation ?]]></title>
+        <id>documentation</id>
+        <link href="https://cangulo.github.io/values/documentation"/>
+        <updated>2021-11-05T19:22:51.425Z</updated>
+        <summary type="html"><![CDATA[To document - Definition]]></summary>
+        <content type="html"><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining </p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins your time could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Did you know this phrase?</strong><br/>
+<!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+:::</p><p>Regarding documentation, I prefer to adapt it as next:</p><p>:::tip
+Always document as if the guy who will fix a bug in productions is YOU one year later. Try to make your life easier!
+:::</p><h2>Team Player</h2><p>keyword here are:</p><ul><li>Timebox</li><li>Team situation</li><li>previous experience</li></ul><p>but when someone in the team is totally lost, we should help.</p><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul><div></div><h2>Did you like it? Share it</h2><div slug="cheatsheets/git" title="Git Cheatsheet" tags="git,githooks,alias"></div><div slug="cheatsheets/git"></div>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+</feed>
