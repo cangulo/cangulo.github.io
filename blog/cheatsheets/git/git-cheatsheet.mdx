@@ -12,8 +12,8 @@ import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
 
 This post explains the next topics:
-* git commands
-* git alias -> avoid typing long commands😁👌
+* the git commands I use the most
+* some git _alias_ to avoid typing long commands😁👌
 
 <!--truncate-->
 
@@ -29,7 +29,7 @@ This post explains the next topics:
 | `git gui blame <filePath>`              | Check `<fielPath>` last commits using a GUI                                                                                                                                                                                          |
 | `gitk`                                  | Check Last commits using a GUI                                                                                                                                                                                                       |
 | `git switch`                            | New git command to change between branches to avoid using checkout. Currently is in status experimental. Check this [link](https://git-scm.com/docs/git-switch/2.23.0) and this [one](https://bluecast.tech/blog/git-switch-branch/) |
-| `git cherry-pick -n <commit>`           | Let's you inspect the files modified in the commit before cherry pick them. [Reference](https://stackoverflow.com/questions/5717026/how-to-git-cherry-pick-only-changes-to-certain-files)                                            |
+| `git cherry-pick -n <commit>`           | Let's you inspect the files modified in the commit before cherry-pick them. [Reference](https://stackoverflow.com/questions/5717026/how-to-git-cherry-pick-only-changes-to-certain-files)                                            |
 | `git diff [target-branch] -name-status` | List the files modified and what kind of modification (Added, Deleted, Modified) in your branch using the target branch as reference                                                                                                 |
 | `git diff [target-branch] -name-only`   | List the files modified in your branch using the target branch as reference                                                                                                                                                          |
 | `git checkout tags/<tag> -b <branch>`   | Checkout a branch starting from the tag provided                                                                                                                                                                                     |
@@ -38,15 +38,13 @@ This post explains the next topics:
 
 ### Using Command Line
 
-using Command line: 
-
 | Command                                              | Example                                 |
 | ---------------------------------------------------- | --------------------------------------- |
 | `git config --global alias.[AliasName] [AliasValue]` | `git config --global alias.co checkout` |
 
 ### Editing the git config file
 
-1. Open your `.gitconfig` file, it is located at your home folder
+1. Open your `.gitconfig` file, it is located in your home folder
 2. In a new line, add the tag `[alias]`
 3. In the next lines add your alias following the format `[TAB space]AliasName = AliasValue`.
 

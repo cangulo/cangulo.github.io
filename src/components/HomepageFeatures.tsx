@@ -62,7 +62,7 @@ const FeatureList: FeatureItem[] = [
     image: '/img/undraw_docusaurus_react.svg',
     description: (
       <>
-        Do you know the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a> ?
+        Do you know the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a>?
         I try to avoid it, as much as I can, by documenting the most important features I do.
         <a href="./values/documentation"> Here are my thoughts. </a>
       </>
