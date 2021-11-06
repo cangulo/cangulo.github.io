@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[6095],{6353:function(a){a.exports=JSON.parse('{"allTagsPath":"/values/tags","slug":"/values/tags/cicd","name":"cicd","count":1,"permalink":"/values/tags/cicd"}')}}]);

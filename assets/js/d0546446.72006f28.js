@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[6753],{8100:function(a){a.exports=JSON.parse('{"allTagsPath":"/values/tags","slug":"/values/tags/challenge","name":"challenge","count":1,"permalink":"/values/tags/challenge"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[2293],{6756:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"What have I learnt as Developer?","permalink":"/values/developer"},{"title":"What is documentation ?","permalink":"/values/documentation"}]}')}}]);
