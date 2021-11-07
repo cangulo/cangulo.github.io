@@ -16,18 +16,20 @@ function LinkedInBadge() {
     };
   }, []);
 
-  return (<div>
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+  return (
     <div
       className="badge-base LI-profile-badge"
       data-locale="en_US"
       data-size="large"
-      data-theme="LIGHT"
-      data-type="HORIZONTAL"
+      data-theme="light"
+      data-type="VERTICAL"
       data-vanity="angulomascarell"
       data-version="v1">
-    </div>
-  </div>)
+      <a
+        className="badge-base__link LI-simple-link"
+        href="https://es.linkedin.com/in/angulomascarell?trk=profile-badge"
+      />
+    </div>)
 }
 
 export default LinkedInBadge
