@@ -33,6 +33,17 @@ const config = {
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
       {
+        id: 'projects',
+        path: 'blog/projects',
+        showReadingTime: true,
+        routeBasePath: 'projects',
+        authorsMapPath: '../authors.yml',
+      }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      {
         id: 'meetups',
         path: 'blog/meetups',
         showReadingTime: true,
@@ -84,6 +95,7 @@ const config = {
           // { type: 'doc', docId: 'intro', position: 'left', label: 'Tutorial' },
           { to: '/blog', label: 'Blog', position: 'left' },
           { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
+          { to: '/projects', label: 'Projects', position: 'left' },
           { to: '/meetups', label: 'Meetups ', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {
