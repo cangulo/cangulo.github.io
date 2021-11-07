@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function LinkedInBadge() {
+const LinkedInBadge = () => {
 
   useEffect(() => {
     const script = document.createElement('script');
