@@ -8,9 +8,11 @@ tags: [terraform,cheatsheets]
 ---
 
 import ShareCard from '/src/components/blog/share.js'
-import Caption from '/src/components/blog/caption.js'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+import BrowserWindow from '/src/components/BrowserWindow'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
 This post explains the next topics:
 * How to set up a shortcut for Terraform in the Terminal
@@ -22,17 +24,24 @@ This post explains the next topics:
 
 Please add the next code to your profile depending if you are using PowerShell or bash:
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
+<BrowserWindow>
 <Tabs>
   <TabItem value="ps" label="PowerShell" default>
-    <code>New-Alias -Name tf -Value terraform -Force</code>
+
+```
+New-Alias -Name tf -Value terraform -Force
+```
+
   </TabItem>
   <TabItem value="sh" label="Bash">
-    <code>alias tf=terraform</code>
+
+```
+alias tf=terraform
+```
+
   </TabItem>
 </Tabs>
+</BrowserWindow>
 
 ## TF Commands
 

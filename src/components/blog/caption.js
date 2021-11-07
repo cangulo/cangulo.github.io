@@ -11,11 +11,11 @@ const Caption = ({ label, relativeLink }) => {
 
         return (
             <a href={urlToFile}>
-                <p className="caption">{label ?? `Link to the file`}</p>
+                <p className="text--center">{label ?? `Link to the file`}</p>
             </a>
         )
     } else {
-        return <p className="caption" >{label ?? `Link to the file`}</p>
+        return <p className="text--center" >{label ?? `Link to the file`}</p>
     }
 };
 

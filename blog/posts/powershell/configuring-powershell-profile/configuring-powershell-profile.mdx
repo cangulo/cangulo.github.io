@@ -7,7 +7,6 @@ tags: [windows10,productivity,hack,powershell]
 ---
 
 import ShareCard from '/src/components/blog/share.js'
-import Caption from '/src/components/blog/caption.js'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
@@ -65,7 +64,7 @@ But, as both commands share the `$HOME\source\repos` path, we could define a var
 
 Please note the `$localrepo` variable will be available in the PS session so that you can use it anytime as the variable `$HOME`. Paste the next code in your profile and save it.
 
-```shell
+```powershell
 # Variables
 
 $localRepo = $HOME + '\source\repos'
