@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[6672],{3344:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"How to use the PowerShell Profile to be more productive","permalink":"/blog/mdx-blog-post"}]}')}}]);
