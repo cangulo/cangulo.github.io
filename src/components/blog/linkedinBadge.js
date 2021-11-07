@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
 
+// References:
+// https://stackoverflow.com/a/67679563/17349462
+// https://stackblitz.com/edit/react-bukvrx?file=src%2FApp.js
+// How to create a badge ?
+// https://www.linkedin.com/badges/profile/create?vanityname=angulomascarell&preferredlocale=en_US&trk=public_profile-settings_badge
+
 const LinkedInBadge = () => {
 
   useEffect(() => {
