@@ -8,6 +8,7 @@ const LinkedInBadge = () => {
     script.src = 'https://platform.linkedin.com/badges/js/profile.js';
     script.async = true;
     script.defer = true;
+    script.type = "text/javascript"
 
     document.body.appendChild(script);
 
@@ -25,10 +26,10 @@ const LinkedInBadge = () => {
       data-type="VERTICAL"
       data-vanity="angulomascarell"
       data-version="v1">
-      <a
+      {/* <a
         className="badge-base__link LI-simple-link"
         href="https://es.linkedin.com/in/angulomascarell?trk=profile-badge"
-      />
+      /> */}
     </div>)
 }
 
