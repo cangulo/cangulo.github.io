@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://cangulo.github.io/projects</id>
+    <title>Carlos Angulo Blog</title>
+    <updated>2021-11-08T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://cangulo.github.io/projects"/>
+    <subtitle>Carlos Angulo Blog</subtitle>
+    <icon>https://cangulo.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[cangulo.nuke.prcommitsvalidation]]></title>
+        <id>cangulo.nuke.prcommitsvalidations</id>
+        <link href="https://cangulo.github.io/projects/cangulo.nuke.prcommitsvalidations"/>
+        <updated>2021-11-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Not ready yet 😉]]></summary>
+        <content type="html"><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations">solution cangulo.nuke.prcommitsvalidations</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
+There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.prcommitsvalidations" title="cangulo.nuke.prcommitsvalidations" tags="nuke,cicd,conventional_commits"></div><div slug="projects/cangulo.nuke.prcommitsvalidations"></div>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[cangulo.nuke.releasecreator]]></title>
+        <id>cangulo.nuke.releasecreator</id>
+        <link href="https://cangulo.github.io/projects/cangulo.nuke.releasecreator"/>
+        <updated>2021-11-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Not ready yet 😉]]></summary>
+        <content type="html"><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">solution cangulo.nuke.releasecreator</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.releasecreator">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
+There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.releasecreator" title="cangulo.nuke.releasecreator" tags="nuke,cicd,releases"></div><div slug="projects/cangulo.nuke.releasecreator"></div>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+</feed>
