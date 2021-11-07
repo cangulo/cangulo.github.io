@@ -96,7 +96,7 @@ const config = {
       footer: {
         style: 'dark',
         links: [
-          { items: [{ label: 'Home', to: '/index.html' }], },
+          { items: [{ label: 'Home', to: '/' }], },
           {
             items: [
               { label: 'Blog', to: '/blog' },
