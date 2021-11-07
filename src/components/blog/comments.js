@@ -9,22 +9,20 @@ export default class Comments extends React.Component {
     this.state = {
       slug: this.props.slug,
     }
-
-
   }
 
   render() {
 
-    // const darkPalette = {
-    //   accent: "#ffffff",
-    //   accentText: "#000000",
-    //   footerHeader: "#1b1818",
-    //   footerHeaderText: "#cac7c7",
-    //   box: "#232121",
-    //   boxText: "#ffffff",
-    //   boxLightText: "#aaaaaa",
-    //   backgroundText: "#ffffff"
-    // }
+    const darkPalette = {
+      accent: "#ffffff",
+      accentText: "#000000",
+      footerHeader: "#1b1818",
+      footerHeaderText: "#cac7c7",
+      box: "#232121",
+      boxText: "#ffffff",
+      boxLightText: "#aaaaaa",
+      backgroundText: "#ffffff"
+    }
 
     return (
       <div ref={this.myRef}>
@@ -34,7 +32,7 @@ export default class Comments extends React.Component {
             loadMode="scroll"
             websiteId={1142}
             id={this.state.slug}
-          // palette={theme == 'dark' ? darkPalette : {}}
+            palette={theme == 'dark' ? darkPalette : {}}
           />
         </section>
       </div>
