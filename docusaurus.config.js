@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Carlos Angulo',
-  url: 'https://cangulo.github.io/',
+  url: 'https://cangulo.github.io',
   baseUrl: '/',
   organizationName: 'cangulo',
   projectName: 'cangulo.github.io',
