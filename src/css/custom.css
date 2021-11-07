@@ -31,7 +31,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   justify-content: center;
 }
 
-p{
+div.markdown > p{
   text-align: justify;
 }
 

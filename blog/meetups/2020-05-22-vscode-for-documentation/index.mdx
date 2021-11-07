@@ -5,6 +5,10 @@ authors: cangulo
 tags: [vscode, markdown, documentation]
 ---
 
+import ShareCard from '/src/components/blog/share.js'
+import Comments from '/src/components/blog/comments.js'
+import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+
 Hi all,
 
 Visual Studio Code is one of the top IDEs, but did you know you can use it for simple documentation? You only need to learn some Markdown basics!
@@ -26,3 +30,13 @@ The content is ideal for quick instructions/step by step guides.
 * [Presentation](https://github.com/cangulo/meetups/raw/master/vs_code_for_docs/2020_05_22_write_bcn/vs_code_for_docs_20200522.pptx)
 * [Code](https://github.com/cangulo/meetups/tree/master/vs_code_for_docs/2020_05_22_write_bcn)
 * [Meetup Event](https://www.meetup.com/Write-the-Docs-Barcelona/events/270480043/)
+
+<AboutMePostArea/>
+
+<ShareCard 
+  slug="cheatsheets/git" 
+  title="Git Cheatsheet" 
+  tags={["git", "githooks", "alias"]} />
+
+<Comments
+  slug="cheatsheets/git"  />

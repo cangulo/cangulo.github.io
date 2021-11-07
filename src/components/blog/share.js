@@ -20,6 +20,7 @@ const ShareCard = ({ slug, title, tags }) => {
     const fullUrl = `https://cangulo.github.io/${slug}`
 
     return <div>
+        <h2>Did you like it? Share It!</h2>
         <LinkedinShareButton url={fullUrl} title={title} >
             <LinkedinIcon size={32} round={true} />
         </LinkedinShareButton>
@@ -47,6 +48,7 @@ const ShareCard = ({ slug, title, tags }) => {
         <TelegramShareButton title={title} url={fullUrl}>
             <TelegramIcon size={32} round={true} />
         </TelegramShareButton>
+        <br style={{ marginBottom: `15px` }} />
     </div>;
 };
 

@@ -25,17 +25,15 @@ export default class Comments extends React.Component {
     // }
 
     return (
-      <div >
-        <section id="post-comments" >
-          <h2>Comments</h2>
-          <HyvorTalk.Embed
-            loadMode="scroll"
-            websiteId={1142}
-            id={this.state.slug}
-          // palette={theme == 'dark' ? darkPalette : {}}
-          />
-        </section>
-      </div>
+      <section id="post-comments">
+        <h2>Comments</h2>
+        <HyvorTalk.Embed
+          loadMode="scroll"
+          websiteId={1142}
+          id={this.state.slug}
+        // palette={theme == 'dark' ? darkPalette : {}}
+        />
+      </section>
     )
   }
 }

@@ -51,12 +51,10 @@ import TabItem from '@theme/TabItem';
 
 <AboutMePostArea/>
 
-## Did you like it? Share it
-
 <ShareCard 
-  slug="cheatsheets/terraform" 
-  title="Terraform Cheatsheet" 
-  tags={["terraform", "cheatsheets"]} />
-
+  slug="cheatsheets/git" 
+  title="Git Cheatsheet" 
+  tags={["git", "githooks", "alias"]} />
+  
 <Comments
-  slug="cheatsheets/terraform"  />
+  slug="cheatsheets/git"  />
