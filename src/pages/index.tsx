@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Carlos Angulo Blog`}
-      description="Welcome to my blog <head />">
+      description="Welcome to my blog :)">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

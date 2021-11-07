@@ -18,16 +18,6 @@ const config = {
 
 
   plugins: [
-    // [
-    //   '@docusaurus/plugin-content-blog',
-    //   /** @type {import('@docusaurus/plugin-content-blog').Options} */
-    //   {
-    //     id: 'posts',
-    //     path: 'blog/posts',
-    //     showReadingTime: true,
-    //     authorsMapPath: '../authors.yml'
-    //   }
-    // ],
     [
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
@@ -96,7 +86,6 @@ const config = {
           { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
           { to: '/meetups', label: 'Meetups ', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
-          // { to: '/contact', label: 'Contact ', position: 'left' },
           {
             href: 'https://github.com/cangulo',
             label: 'GitHub',
