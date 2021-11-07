@@ -1,6 +1,6 @@
 ---
 slug: mdx-blog-post
-title: How to use the PowerShell Profile to be more 
+title: How to use the PowerShell Profile to be more productive
 date: 2020-08-24
 authors: cangulo
 tags: [windows10,productivity,hack,powershell]
@@ -24,11 +24,7 @@ If you are a PowerShell (a.k.a. PS) user, I'm sure at some point you repeat oper
 
 ## What is the PS Profile?
 
-The PS Profile is a script that is run when the console starts, and it is used to set custom user settings as variables, alias or functions. We can also use it to execute custom commands to prepare our local environment.
-
-There are different profiles levels, each one with one file and a different combination of user (current or all) and host (current or all) to be applied. To keep this post simple, we are only going to focus on the profile for the _Current User_ and _Current Host_. Please check the [reference](#post-references) section at the end for more details.
-
-Check your `$Profile` variable to know where your profile is stored.
+The PS Profile is a script that is run when the console starts, setting custom user settings as variables, aliases or functions. We can also use it to execute custom commands to prepare our local environment. Check your `$Profile` variable to know where your profile is stored.
 
 ![Profile variables](./2020-08-26-configuring-powershell-profile/Profile-variable.png)
 
@@ -82,7 +78,7 @@ Open a new PS window. Maybe the next error will show up:
 
 ![Problem Signature Profile](./2020-08-26-configuring-powershell-profile/digitally-signed-problem.png)
 
-That is because PS has an execution policy which only to accept signed scripts (`AllSigned`). We need to change it to `RemoteSigned` to verify the signature for remote scripts, but not locals. We have to do it using the next command:
+That is because PS has an execution policy that only accepts signed scripts (`AllSigned`). We need to change it to `RemoteSigned` to verify the signature for remote scripts, but not locals. We have to do it using the following command:
 
 `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`. Now we are good to go, open a new PS and try to execute the shortcuts we defined.
 
