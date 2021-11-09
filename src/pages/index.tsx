@@ -1,12 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -18,11 +16,18 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
+  const profileImg = `https://github.com/cangulo/cangulo/raw/main/profile-picture-preview-link.jpg`;
+  const description = `Welcome to my blog :)`;
   return (
     <Layout
       title={`Carlos Angulo Blog`}
-      description="Welcome to my blog :)">
+      description={description}>
+      <head>
+        <meta name="image" content={profileImg} />
+        <meta name="og:image" content={profileImg} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={profileImg} />
+      </head>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
