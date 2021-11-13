@@ -31,7 +31,7 @@ const config = {
         blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
         feedOptions: {
           title: 'Carlos Angulo Cheatsheets',
-          language: 'EN',
+          language: 'en',
           description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
         }
       })
@@ -49,7 +49,7 @@ const config = {
         blogDescription: 'Publications related to the personal projects I do 💻️',
         feedOptions: {
           title: 'Carlos Angulo Projects',
-          language: 'EN',
+          language: 'en',
           description: 'Here you can find posts related to the personal projects I do 💻️'
         }
       })
@@ -67,7 +67,7 @@ const config = {
         blogDescription: 'Publications related to the meetups I do 🧑‍🏫',
         feedOptions: {
           title: 'Carlos Angulo Cheatsheets',
-          language: 'EN',
+          language: 'en',
           description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
         }
       })
@@ -85,6 +85,23 @@ const config = {
         blogDescription: 'Publications related to the values I follow as a developer🧾',
       })
     ],
+    [
+      '@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      ({
+        id: 'posts',
+        path: 'blog/posts',
+        showReadingTime: true,
+        authorsMapPath: '../authors.yml',
+        blogTitle: 'Carlos Angulo Posts',
+        blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
+        feedOptions: {
+          title: 'Carlos Angulo Posts',
+          language: 'en',
+          description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
+        }
+      })
+    ]
   ],
 
   presets: [
@@ -94,19 +111,6 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-        },
-        blog: {
-          id: 'posts',
-          path: 'blog/posts',
-          showReadingTime: true,
-          authorsMapPath: '../authors.yml',
-          blogTitle: 'Carlos Angulo Posts',
-          blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
-          feedOptions: {
-            title: 'Carlos Angulo Posts',
-            language: 'EN',
-            description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
-          }
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
