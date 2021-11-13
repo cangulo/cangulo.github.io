@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const aboutMeAppend = require('./src/plugin/about-me-append.js');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -34,7 +35,8 @@ const config = {
           title: 'Carlos Angulo Cheatsheets',
           language: 'en',
           description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
-        }
+        },
+        beforeDefaultRemarkPlugins: [aboutMeAppend]
       })
     ],
     [
