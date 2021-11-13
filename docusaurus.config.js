@@ -29,6 +29,7 @@ const config = {
         authorsMapPath: '../authors.yml',
         blogTitle: 'Carlos Angulo Posts',
         blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
+        editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
         feedOptions: {
           title: 'Carlos Angulo Cheatsheets',
           language: 'en',
@@ -47,6 +48,7 @@ const config = {
         authorsMapPath: '../authors.yml',
         blogTitle: 'Carlos Angulo Projects',
         blogDescription: 'Publications related to the personal projects I do 💻️',
+        editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
         feedOptions: {
           title: 'Carlos Angulo Projects',
           language: 'en',
@@ -65,6 +67,7 @@ const config = {
         authorsMapPath: '../authors.yml',
         blogTitle: 'Carlos Angulo Meetups',
         blogDescription: 'Publications related to the meetups I do 🧑‍🏫',
+        editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
         feedOptions: {
           title: 'Carlos Angulo Cheatsheets',
           language: 'en',
@@ -83,6 +86,7 @@ const config = {
         authorsMapPath: '../authors.yml',
         blogTitle: 'Values',
         blogDescription: 'Publications related to the values I follow as a developer🧾',
+        editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
       })
     ],
     [
@@ -95,6 +99,7 @@ const config = {
         authorsMapPath: '../authors.yml',
         blogTitle: 'Carlos Angulo Posts',
         blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
+        editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
         feedOptions: {
           title: 'Carlos Angulo Posts',
           language: 'en',
@@ -109,9 +114,8 @@ const config = {
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-        },
+        docs: false,
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -124,7 +128,6 @@ const config = {
       navbar: {
         title: 'Home',
         items: [
-          // { type: 'doc', docId: 'intro', position: 'left', label: 'Tutorial' },
           { to: '/blog', label: 'Blog', position: 'left' },
           { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
           { to: '/projects', label: 'Projects', position: 'left' },
@@ -145,6 +148,7 @@ const config = {
             items: [
               { label: 'Blog', to: '/blog' },
               { label: 'Cheatsheets', to: '/cheatsheets' },
+              { label: 'Projects', to: '/projects' },
             ],
           },
           {
