@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cangulo.github.io/projects</id>
-    <title>Carlos Angulo Blog</title>
+    <title>Carlos Angulo Projects</title>
     <updated>2021-11-08T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cangulo.github.io/projects"/>
-    <subtitle>Carlos Angulo Blog</subtitle>
+    <subtitle>Here you can find posts related to the personal projects I do 💻️</subtitle>
     <icon>https://cangulo.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[cangulo.nuke.prcommitsvalidation]]></title>

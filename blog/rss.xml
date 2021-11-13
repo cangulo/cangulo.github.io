@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Carlos Angulo Blog</title>
+        <title>Carlos Angulo Posts</title>
         <link>https://cangulo.github.io/blog</link>
-        <description>Carlos Angulo Blog</description>
+        <description>Here you can the general publications I do regarding different subjects as devops or programming 🙂</description>
         <lastBuildDate>Mon, 24 Aug 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
         <item>
             <title><![CDATA[How to use the PowerShell Profile to be more productive]]></title>
             <link>https://cangulo.github.io/blog/ps-profile-productive</link>

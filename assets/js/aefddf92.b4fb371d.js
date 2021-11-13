@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[2114],{7326:function(e){e.exports=JSON.parse('{"permalink":"/values","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"previousPage":null,"nextPage":null,"blogDescription":"Publications related to the values I follow as a developer\ud83e\uddfe","blogTitle":"Values"}')}}]);
