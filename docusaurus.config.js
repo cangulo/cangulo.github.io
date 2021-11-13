@@ -21,46 +21,69 @@ const config = {
     [
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
-      {
+      ({
         id: 'cheatsheets',
         path: 'blog/cheatsheets',
         showReadingTime: true,
         routeBasePath: 'cheatsheets',
         authorsMapPath: '../authors.yml',
-      }
+        blogTitle: 'Carlos Angulo Posts',
+        blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
+        feedOptions: {
+          title: 'Carlos Angulo Cheatsheets',
+          language: 'EN',
+          description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
+        }
+      })
     ],
     [
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
-      {
+      ({
         id: 'projects',
         path: 'blog/projects',
         showReadingTime: true,
         routeBasePath: 'projects',
         authorsMapPath: '../authors.yml',
-      }
+        blogTitle: 'Carlos Angulo Projects',
+        blogDescription: 'Publications related to the personal projects I do 💻️',
+        feedOptions: {
+          title: 'Carlos Angulo Projects',
+          language: 'EN',
+          description: 'Here you can find posts related to the personal projects I do 💻️'
+        }
+      })
     ],
     [
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
-      {
+      ({
         id: 'meetups',
         path: 'blog/meetups',
         showReadingTime: true,
         routeBasePath: 'meetups',
-        authorsMapPath: '../authors.yml'
-      }
+        authorsMapPath: '../authors.yml',
+        blogTitle: 'Carlos Angulo Meetups',
+        blogDescription: 'Publications related to the meetups I do 🧑‍🏫',
+        feedOptions: {
+          title: 'Carlos Angulo Cheatsheets',
+          language: 'EN',
+          description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
+        }
+      })
     ],
     [
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
-      {
+      ({
         id: 'values',
         path: 'blog/values',
         showReadingTime: true,
         routeBasePath: 'values',
-        authorsMapPath: '../authors.yml'
-      }
+        authorsMapPath: '../authors.yml',
+        blogTitle: 'Values',
+        blogDescription: 'Publications related to the values I follow as a developer🧾',
+      })
     ],
   ],
 
@@ -71,14 +94,19 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-
         },
         blog: {
           id: 'posts',
           path: 'blog/posts',
           showReadingTime: true,
-          authorsMapPath: '../authors.yml'
+          authorsMapPath: '../authors.yml',
+          blogTitle: 'Carlos Angulo Posts',
+          blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
+          feedOptions: {
+            title: 'Carlos Angulo Posts',
+            language: 'EN',
+            description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
+          }
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
