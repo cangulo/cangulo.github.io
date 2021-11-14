@@ -4,14 +4,14 @@
         <title>Carlos Angulo Blog</title>
         <link>https://cangulo.github.io/values</link>
         <description>Carlos Angulo Blog</description>
-        <lastBuildDate>Sun, 14 Nov 2021 12:40:04 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 14 Nov 2021 12:43:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[some points about being developer]]></title>
             <link>https://cangulo.github.io/values/developer</link>
             <guid>developer</guid>
-            <pubDate>Sun, 14 Nov 2021 12:40:04 GMT</pubDate>
+            <pubDate>Sun, 14 Nov 2021 12:43:45 GMT</pubDate>
             <description><![CDATA[What does it mean to be a developer?]]></description>
             <content:encoded><![CDATA[<h2>What does it mean to be a developer?</h2><p>First, the definition should include &quot;code&quot;, if you don&#x27;t know how to code, you can&#x27;t implement solutions. Clear, but what else? Let&#x27;s focus on the <code>implement</code> word, a developer should implement the best solution, in <strong>quality</strong> terms, but given some <strong>circumstances</strong>. It is not the same develop a hotfix for production than a feature on a normal weekly basis.</p><p>Nice, so a developer implements solutions given some circumstances. Wait, what about the solution consumer? it will be delivered to someone, let&#x27;s say it is a client, so, this solution should have some <strong>value</strong> for them. Okay, in summary:</p><p>:::info my definition of a Developer
 A person that creates value for a client by implementing a solution, taking into account the requirements and the circumstances.
@@ -22,7 +22,7 @@ A developer should always aim for the best quality, without over-engineering the
             <title><![CDATA[What is documentation ?]]></title>
             <link>https://cangulo.github.io/values/documentation</link>
             <guid>documentation</guid>
-            <pubDate>Sun, 14 Nov 2021 12:40:04 GMT</pubDate>
+            <pubDate>Sun, 14 Nov 2021 12:43:45 GMT</pubDate>
             <description><![CDATA[To document - Definition]]></description>
             <content:encoded><![CDATA[<h3>To document - Definition</h3><p>Let&#x27;s make something clear, <strong>to document is not to add comments to your code</strong>. It means, explaining the next point regarding any important development you have done:</p><ul><li>Input -&gt; what we expect</li><li>Output -&gt; what we should return</li><li>Middle steps -&gt; what we do with the input in order to produce an output</li><li>Different scenarios -&gt; The different paths we took when producing the output</li><li>Technical approach decided and the reasons for it -&gt; answer to a future developer which is reading your code or checking the solution, why you took that approach.</li></ul><p>It seems a lot but it isn&#x27;t, you don&#x27;t to have to write the bible but you have to write the essential to ensure anyone that joins could understand the feature. You want more arguments? Good documentation saves you calls and reduce person dependencies.</p><p>:::note <strong>Do you know this programming saying?</strong><br/>
 <!-- -->Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
