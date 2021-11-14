@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cangulo.github.io/meetups</id>
-    <title>Carlos Angulo Cheatsheets</title>
+    <title>Carlos Angulo Meetups</title>
     <updated>2020-05-22T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cangulo.github.io/meetups"/>
-    <subtitle>Here you can find useful cheatsheets about how to do the daily operations a developer does</subtitle>
+    <subtitle>Here you can find information or resources about the meetups I have participated 🧑‍🏫</subtitle>
     <icon>https://cangulo.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Visual Studio Code for Documentation]]></title>
