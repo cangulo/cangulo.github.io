@@ -69,9 +69,9 @@ const config = {
         blogDescription: 'Publications related to the meetups I do 🧑‍🏫',
         editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
         feedOptions: {
-          title: 'Carlos Angulo Cheatsheets',
+          title: 'Carlos Angulo Meetups',
           language: 'en',
-          description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
+          description: 'Here you can find information or resources about the meetups I have participated 🧑‍🏫'
         }
       })
     ],
@@ -87,6 +87,9 @@ const config = {
         blogTitle: 'Values',
         blogDescription: 'Publications related to the values I follow as a developer🧾',
         editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
+        feedOptions: {
+          type: null
+        }
       })
     ],
     [
