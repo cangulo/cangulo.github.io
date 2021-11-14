@@ -7,10 +7,13 @@ tags: [terraform,cheatsheets]
 
 ---
 
-import ShareCard from '/src/components/blog/share.js'
-import Caption from '/src/components/blog/caption.js'
-import Comments from '/src/components/blog/comments.js'
+# Common per page
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+import ShareCard from '/src/components/blog/share.js'
+import Comments from '/src/components/blog/comments.js'
+
+# if there is anything that needs a caption
+import Caption from '/src/components/blog/caption.js'
 
 This post explains the next topics:
 * How to set up a shortcut for Terraform in the Terminal
