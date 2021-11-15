@@ -9,15 +9,6 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[cangulo.nuke.prcommitsvalidation]]></title>
-            <link>https://cangulo.github.io/projects/cangulo.nuke.prcommitsvalidations</link>
-            <guid>cangulo.nuke.prcommitsvalidations</guid>
-            <pubDate>Mon, 08 Nov 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Not ready yet 😉]]></description>
-            <content:encoded><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations">solution cangulo.nuke.prcommitsvalidations</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
-There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.prcommitsvalidations" title="cangulo.nuke.prcommitsvalidations" tags="nuke,cicd,conventional_commits"></div><div slug="projects/cangulo.nuke.prcommitsvalidations"></div>]]></content:encoded>
-        </item>
-        <item>
             <title><![CDATA[cangulo.nuke.releasecreator]]></title>
             <link>https://cangulo.github.io/projects/cangulo.nuke.releasecreator</link>
             <guid>cangulo.nuke.releasecreator</guid>
@@ -25,6 +16,15 @@ There are other approaches, as using bash scripts for example, but those are out
             <description><![CDATA[Not ready yet 😉]]></description>
             <content:encoded><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">solution cangulo.nuke.releasecreator</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.releasecreator">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
 There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.releasecreator" title="cangulo.nuke.releasecreator" tags="nuke,cicd,releases"></div><div slug="projects/cangulo.nuke.releasecreator"></div>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[cangulo.nuke.prcommitsvalidation]]></title>
+            <link>https://cangulo.github.io/projects/cangulo.nuke.prcommitsvalidations</link>
+            <guid>cangulo.nuke.prcommitsvalidations</guid>
+            <pubDate>Mon, 08 Nov 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Not ready yet 😉]]></description>
+            <content:encoded><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations">solution cangulo.nuke.prcommitsvalidations</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
+There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.prcommitsvalidations" title="cangulo.nuke.prcommitsvalidations" tags="nuke,cicd,conventional_commits"></div><div slug="projects/cangulo.nuke.prcommitsvalidations"></div>]]></content:encoded>
         </item>
     </channel>
 </rss>
