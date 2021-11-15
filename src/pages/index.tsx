@@ -9,7 +9,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Hi, I'm Carlos</h1>
-        <p className="hero__subtitle">Here are somethings that define me:</p>
+        <p className="hero__subtitle">Here are some things that define me:</p>
       </div>
     </header>
   );
