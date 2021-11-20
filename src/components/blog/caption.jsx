@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Caption = ({ label, relativeLink }) => {
-    if (relativeLink) {
+const Caption = ({ label, linkIsRelative, link }) => {
+    if (link) {
         const baseGitUrl =
             "https://raw.githubusercontent.com/cangulo/cangulo.github.io/main/blog/"
 
-        const urlToFile = relativeLink.includes("http") ?
-            relativeLink :
-            baseGitUrl.concat(relativeLink)
+        const urlToFile = linkIsRelative ?
+            baseGitUrl.concat(link) :
+            link
 
         return (
             <a href={urlToFile}>

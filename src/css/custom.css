@@ -31,17 +31,21 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   justify-content: center;
 }
 
-div.markdown > p{
+div.markdown > p {
   text-align: justify;
 }
 
-div.markdown > p > img{
+div.markdown > p > img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-div.gif-iframe > iframe{
+div.markdown > div.mermaid {
+  text-align: center;
+}
+
+div.gif-iframe > iframe {
   display: block;
   margin-left: auto;
   margin-right: auto;
