@@ -5,7 +5,7 @@ const Caption = ({ label, linkIsRelative, link }) => {
         const baseGitUrl =
             "https://raw.githubusercontent.com/cangulo/cangulo.github.io/main/blog/"
 
-        const urlToFile = linkIsRelative ?
+        const urlToFile = linkIsRelative === "true" ?
             baseGitUrl.concat(link) :
             link
 
