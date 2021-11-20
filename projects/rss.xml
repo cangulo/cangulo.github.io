@@ -9,9 +9,9 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[cangulo.changelog - idea and usage]]></title>
-            <link>https://cangulo.github.io/projects/cangulo.changelog</link>
-            <guid>cangulo.changelog</guid>
+            <title><![CDATA[cangulo.changelog - Idea and how I use it]]></title>
+            <link>https://cangulo.github.io/projects/cangulo.changelog-idea-and-how-to-use</link>
+            <guid>cangulo.changelog-idea-and-how-to-use</guid>
             <pubDate>Fri, 26 Nov 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[This is my second post explaining my CICD tools. In this case I'm going to explain how I use my cangulo.changelog nuget package to update my repos changelog. You can use it in any C# console project. I am going to refer to the cangulo.nuke.releasecreator project explained in the previous post.]]></description>
             <content:encoded><![CDATA[<p>This is my second post explaining my CICD tools. In this case I&#x27;m going to explain how I use my cangulo.changelog nuget package to update my repos changelog. You can use it in any C# console project. I am going to refer to the <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a> project explained in the previous <a href="../../nuke/cangulo.nuke.releasecreator/index.mdx">post</a>.</p><h2>The problem I want to solve</h2><p>I am using the dotnet project <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a> to add the next features to my GitHub repos:</p><ul><li>A new version is released in GitHub every time I merge a PR to the main branch.</li><li>The App follows <a href="https://semver.org">Semantic Versioning.</a></li><li>All PR contain <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> which set the release to be created (<em>major</em>, <em>minor</em> or <em>fix</em>).</li></ul><p>At this point, I have a release process but I&#x27;m not documenting the changes. There are two places where I should post them:</p><ol><li>The release notes</li><li>The changelog</li></ol><p>I created <strong><em>cangulo.changelog</em></strong> to help me adding the changes to both.</p><p>:::info
@@ -78,7 +78,7 @@ changelogBuilder.Build(nextVersion, commitMsgs, changelogPath);
  {
      void Build(string version, string[] changes, string path);
  }
-</code></pre><div label="Definiton at cangulo.changelog" linkIsRelative="false" link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs"></div></details><div></div><div slug="projects/cangulo.changelog" title="cangulo.changelog" tags="nuke,cicd,conventional_commits,changelog"></div><div slug="projects/cangulo.changelog"></div>]]></content:encoded>
+</code></pre><div label="Definiton at cangulo.changelog" linkIsRelative="false" link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs"></div></details><div></div><div slug="projects/cangulo.changelog-idea-and-how-to-use" title="cangulo.changelog - Idea and how I use it" tags="nuke,cicd,cangulo.changelog,conventional_commits,changelog"></div><div slug="projects/cangulo.changelog-idea-and-how-to-use"></div>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[cangulo.nuke.releasecreator]]></title>
