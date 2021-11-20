@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[1955],{266:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"cangulo.nuke.prcommitsvalidation","permalink":"/projects/cangulo.nuke.prcommitsvalidations"},{"title":"cangulo.nuke.releasecreator","permalink":"/projects/cangulo.nuke.releasecreator"}]}')}}]);

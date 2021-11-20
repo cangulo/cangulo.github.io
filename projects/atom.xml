@@ -8,13 +8,31 @@
     <subtitle>Here you can find posts related to the personal projects I do 💻️</subtitle>
     <icon>https://cangulo.github.io/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[cangulo.nuke.releasecreator]]></title>
-        <id>cangulo.nuke.releasecreator</id>
-        <link href="https://cangulo.github.io/projects/cangulo.nuke.releasecreator"/>
+        <title type="html"><![CDATA[cangulo.changelog]]></title>
+        <id>cangulo.changelog</id>
+        <link href="https://cangulo.github.io/projects/cangulo.changelog"/>
         <updated>2021-11-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Not ready yet 😉]]></summary>
-        <content type="html"><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">solution cangulo.nuke.releasecreator</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.releasecreator">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
-There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.releasecreator" title="cangulo.nuke.releasecreator" tags="nuke,cicd,releases"></div><div slug="projects/cangulo.nuke.releasecreator"></div>]]></content>
+        <content type="html"><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nugets/cangulo.changelog">solution cangulo.changelog</a></li></ul><h2>The problem I want to solve</h2><p>Let&#x27;s consider the next scenario:</p><ul><li>Every time you merge a PR a new release (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">GitHub Release</a>) will be created.</li><li>The repo is following <a href="https://semver.org">Semantic Versioning</a> and the PR contains <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> that set the release to be created (<em>major</em>, <em>minor</em> or <em>fix</em>).</li><li>We would like to have a Changelog that is updated with the new changes (i.e. commit msgs) added on every release.</li></ul><p>I have the dotnet project <strong><em>cangulo.nuke.releasecreator</em></strong> which solves the first two points. The <strong><em>cangulo.changelog</em></strong> project is my solution for the third one.</p><p>Let me set my main goal:
+:::info Goal
+<em>I would like to have a solution that adds new release changes to the changelog.</em>
+:::</p><p>Maybe you would say, okay, why do you need a custom solution? Why don&#x27;t you do it in the GH Action or in the same <em>cangulo.nuke.releasecreator</em>? Well, when I started working on this I realize it was not so simple, here is what I took into account for that decision:</p><ul><li>The Changelog is a Markdown (MD) file, so adding the changes is not directly appending text, we should format the text to the MD language.</li><li>To make the Changelog more formal we should add other elements as:<ul><li>Header containing the version number</li><li>A Date to know when that release was created (okay, this is a <em>nice to have</em> 😁)</li><li>Future elements as contributors, PR link, Link to the tests reports executed. Yes, I&#x27;m going too far that is why I keep those for future versions 😄</li></ul></li></ul><p>Although MD is easy to write, there is still some formatting logic that I decided to keep isolated in a separate solution which you can check here.</p><h2>Example</h2><h3>Input: Commit from a merged PR</h3><p>The release 0.0.2 is created after merging a PR with the next commits list:</p><ul><li><em>fix: Solved bug in the TransactionsController that makes transaction fail</em></li><li>refactor: Simplified Transactions Repository</li><li>docs: Updated docs/examples</li><li>feat: Implemented new DocumentsController</li><li>refactor: It&#x27;s possible! you can turn a 50-line code chunk into just 3 lines. Here&#x27;s how -&gt; Please never wrote a commit message like this 😜, this is an example I found <a href="http://whatthecommit.com/85835a6ce3edb747ec06e42f6313d0a2">here</a>.</li></ul><h3>Output: Changelog Updated</h3><p><strong>Next is the changelog section I would like to have for version 0.0.2</strong></p><div><div><div value="markdown" label="Markdown Code" default=""><pre><code class="language-markdown"># 0.0.2
+
+2021-11-20
+
+fix:
+-   Solved bug in the TransactionsController that makes transaction fail
+
+refactor:
+-   Simplified Transactions Repository
+-   It&#x27;s possible! you can turn a 50-line code chunk into just 3 lines. Here&#x27;s how
+
+docs:
+-   Updated docs/examples
+
+features:
+-   Implemented new DocumentsController
+</code></pre></div><div value="html" label="Changelog Visualization" default=""><h1>0.0.2</h1><p>2021-11-20</p><p>fix:</p><ul><li>Solved bug in the TransactionsController that makes transaction fail</li></ul><p>refactor:</p><ul><li>Simplified Transactions Repository</li><li>It&#x27;s possible! you can turn a 50-line code chunk into just 3 lines. Here&#x27;s how</li></ul><p>docs:</p><ul><li>Updated docs/examples</li></ul><p>features:</p><ul><li>Implemented new DocumentsController</li></ul></div></div></div><div></div><div slug="projects/cangulo.changelog" title="cangulo.changelog" tags="nuke,cicd,conventional_commits,changelog"></div><div slug="projects/cangulo.changelog"></div>]]></content>
         <author>
             <name>Carlos Angulo Mascarell</name>
             <uri>https://github.com/cangulo</uri>
@@ -28,6 +46,19 @@ There are other approaches, as using bash scripts for example, but those are out
         <summary type="html"><![CDATA[Not ready yet 😉]]></summary>
         <content type="html"><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations">solution cangulo.nuke.prcommitsvalidations</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
 There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.prcommitsvalidations" title="cangulo.nuke.prcommitsvalidations" tags="nuke,cicd,conventional_commits"></div><div slug="projects/cangulo.nuke.prcommitsvalidations"></div>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[cangulo.nuke.releasecreator]]></title>
+        <id>cangulo.nuke.releasecreator</id>
+        <link href="https://cangulo.github.io/projects/cangulo.nuke.releasecreator"/>
+        <updated>2021-11-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Not ready yet 😉]]></summary>
+        <content type="html"><![CDATA[<p>Not ready yet 😉</p><p>But you can check the repo this post will talk about:</p><ul><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">solution cangulo.nuke.releasecreator</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.releasecreator">github action to execute in ANY repository</a></li></ul><p>:::caution README</p><p>Please note this project aims to solve the next problem using NUKE.
+There are other approaches, as using bash scripts for example, but those are out of the scope...for now 😉.</p><p>:::</p><div></div><div slug="projects/cangulo.nuke.releasecreator" title="cangulo.nuke.releasecreator" tags="nuke,cicd,releases"></div><div slug="projects/cangulo.nuke.releasecreator"></div>]]></content>
         <author>
             <name>Carlos Angulo Mascarell</name>
             <uri>https://github.com/cangulo</uri>
