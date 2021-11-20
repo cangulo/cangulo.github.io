@@ -51,13 +51,13 @@ Although MD is easy to write, there is still some formatting logic that I decide
 
 ## Example
 
-### Input: Commit from a merged PR
+### Input: Commits from a merged PR
 The release 0.0.2 is created after merging a PR with the next commits list:
--   _fix: Solved bug in the TransactionsController that makes transaction fail_
+-   _fix: Solved bug in the TransactionsController that makes transactions fail_
 -   refactor: Simplified Transactions Repository
 -   docs: Updated docs/examples
 -   feat: Implemented new DocumentsController
--   refactor: It's possible! you can turn a 50-line code chunk into just 3 lines. Here's how -> Please never wrote a commit message like this 😜, this is an example I found [here](http://whatthecommit.com/85835a6ce3edb747ec06e42f6313d0a2).
+-   refactor: It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how -> Please never write a commit message like this 😜, this is an example I found [here](http://whatthecommit.com/85835a6ce3edb747ec06e42f6313d0a2).
 
 ### Output: Changelog Updated
 
@@ -73,11 +73,11 @@ The release 0.0.2 is created after merging a PR with the next commits list:
 2021-11-20
 
 fix:
--   Solved bug in the TransactionsController that makes transaction fail
+-   Solved bug in the TransactionsController that makes transactions fail
 
 refactor:
 -   Simplified Transactions Repository
--   It's possible! you can turn a 50-line code chunk into just 3 lines. Here's how
+-   It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
 
 docs:
 -   Updated docs/examples
@@ -94,11 +94,11 @@ features:
 2021-11-20
 
 fix:
--   Solved bug in the TransactionsController that makes transaction fail
+-   Solved bug in the TransactionsController that makes transactions fail
 
 refactor:
 -   Simplified Transactions Repository
--   It's possible! you can turn a 50-line code chunk into just 3 lines. Here's how
+-   It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
 
 docs:
 -   Updated docs/examples
