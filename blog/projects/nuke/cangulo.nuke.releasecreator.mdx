@@ -1,0 +1,107 @@
+---
+slug: cangulo.nuke.releasecreator
+title: cangulo.nuke.releasecreator
+date: 2021-11-26
+authors: cangulo
+tags: [nuke,cicd,releases]
+
+---
+
+import ShareCard from '/src/components/blog/share.js'
+import Caption from '/src/components/blog/caption.jsx'
+import Comments from '/src/components/blog/comments.js'
+import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+
+## Problem I want to solve
+
+Every time I want to release a new version in my C# projects, I have to do it manually or define a custom GH action for every repo. I would like to have a general solution that makes this automatically every time I merge a PR. Also, as I have been playing with [NUKE](https://nuke.build/index.html) lately, I want to include it in the solution. 
+
+<!--truncate-->
+
+:::info
+[NUKE](https://nuke.build/index.html) is a build automation framework where you define operations as build, test or push NuGets, in a C# project. I found good reviews and some videos in [Channel9](https://channel9.msdn.com/Shows/On-NET/Build-Automation-with-NUKE) about it. So, for instance, dotnet commands are predefined methods, and its arguments are extension methods, check the next example:
+
+
+<details>
+  <summary>How a NUKE project looks like?</summary>
+
+```csharp
+Target Pack => _ => _
+    .DependsOn(Clean)
+    .Executes(() => 
+    {
+      DotNetTasks
+          .DotNetPack(s => s
+              .SetProject(project.Path)
+              .SetOutputDirectory(outputFolderAbsolutePath)
+              .SetConfiguration(configuration)
+              .SetVersionPrefix(currentPackageVersion)
+              .SetVersionSuffix(versionSuffix)
+              .EnableNoRestore());
+    });
+```
+
+</details>
+:::
+
+
+## Goals
+
+* Build a solution that releases a new version every time a PR is merged.
+* The Solution should be based on NUKE.
+* Any repository should be able to use it.
+
+## Approach
+
+cangulo.nuke.releasecreator will execute the following operations sequentially:
+
+1. Calculate the next version based on the commits merged
+2. Release a new version through the GH API client (provided by NUKE). 
+
+Next are the requirements for calculating the release number:
+
+* The repository app follows [Semantic Versioning.](https://semver.org)
+* All PR contain [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) which set the release to be created (_major_, _minor_ or _fix_).
+
+So, if an app has the version `0.0.2` and a PR with a _fix_ commit as  `fix: solved error in the controller` is merged, the version released will be `0.0.3`.
+
+## Remarks
+
+* I'm not saying NUKE is the best solution, I just want to give it a try 😊. In the future, I will create another solution based on scripts.
+* As I started coding this, I realize that I can define more tasks as:
+  * To update the version in `.csproj` files. I did this as optional.
+  * To update the changelog using [cangulo.changelog](https://github.com/cangulo-nugets/cangulo.changelog)
+  * To push custom Assets to the release,  like a JSON schema that we updated
+
+## How to use it?
+
+Please check the examples given [here](https://github.com/cangulo-actions/cangulo.nuke.releasecreator#examples).
+
+## Where do I use it?
+
+I call this solution through a specific [GH Action](https://github.com/cangulo-actions/cangulo.nuke.releasecreator) in the next projects:
+
+* [cangulo-nugets/cangulo.changelog](https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/.github/workflows/4-Release-New-Version.yml)
+* [cangulo-nugets/cangulo.common.testing](https://github.com/cangulo-nugets/cangulo.common.testing/blob/v0.0.2/.github/workflows/4-Release-New-Version.yml)
+* [cangulo-nuke/cangulo.nuke.prcommitsvalidations](https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations/blob/v0.0.1/.github/workflows/3-Release_New_Version.yml)
+* [cangulo-actions/cangulo.nuke.prcommitsvalidations](https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations/blob/v0.0.1/.github/workflows/2-release_new_version.yml)
+* [cangulo-tf/basic-iac](https://github.com/cangulo-tf/basic-iac/blob/v0.0.2/.github/workflows/3-Release_New_Version.yml)
+
+
+## Repository
+
+[solution cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator)
+
+## GitHub Action
+
+[github action to execute in ANY repository](https://github.com/cangulo-actions/cangulo.nuke.releasecreator)
+
+<AboutMePostArea/>
+
+<ShareCard 
+  slug="projects/cangulo.nuke.releasecreator" 
+  title="TITLE" 
+  tags={["nuke","cicd","releases"]} />
+  
+<Comments
+  slug="projects/cangulo.nuke.releasecreator"  />

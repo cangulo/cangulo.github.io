@@ -1,0 +1,69 @@
+---
+slug: cangulo.changelog
+title: cangulo.changelog
+date: 2021-11-26
+authors: cangulo
+tags: ["cicd", "cangulo.changelog", "personal-nuget-packages","changelog"]
+
+---
+
+import ShareCard from '/src/components/blog/share.js'
+import Caption from '/src/components/blog/caption.jsx'
+import Comments from '/src/components/blog/comments.js'
+import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+
+## Problem I want to solve
+
+I have the solution [cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator) to handle releases in my GH repos. However, this doesn't document the changes, for that, I need a solution that updates the Changelog and create release notes, all, having as input the commit messages of the last PR merged.
+
+<!--truncate-->
+
+## Goal
+
+Have a custom solution to update changelogs and create release notes.
+
+## Approach
+
+Create a NuGet package that can be imported in any C# project. In my case, I will import it in [cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator). 
+
+The main interface to call is:
+
+```csharp
+public interface IChangelogBuilder
+{
+    void Build(string version, string[] changes, string path);
+}
+```
+<Caption label="Definiton at cangulo.changelog" linkIsRelative="false"  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs" />
+
+Please, read the next link page about all the requirements and how to use:
+
+## Remarks
+
+Please check the requirements I set here.
+
+## Where do I use it?
+
+[cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator)
+
+
+## Repository
+
+[cangulo.changelog repository](https://github.com/cangulo-nugets/cangulo.changelog)
+
+## NuGet Package
+
+[cangulo.changelog](https://www.nuget.org/packages/cangulo.changelog/)
+
+<!-- ## GitHub Action -->
+
+
+<AboutMePostArea/>
+
+<ShareCard 
+  slug="projects/cangulo.changelog" 
+  title="cangulo.changelog" 
+  tags={["cicd", "cangulo.changelog", "personal-nuget-packages","changelog"]} />
+  
+<Comments
+  slug="projects/cangulo.changelog"  />

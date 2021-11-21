@@ -1,0 +1,109 @@
+---
+slug: cangulo.nuke.prcommitsvalidations
+title: cangulo.nuke.prcommitsvalidations
+date: 2021-11-26
+authors: cangulo
+tags: [nuke, cicd, commits, conventional-commits]
+
+---
+
+import ShareCard from '/src/components/blog/share.js'
+import Caption from '/src/components/blog/caption.jsx'
+import Comments from '/src/components/blog/comments.js'
+import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+
+## Problem I want to solve
+
+I want to make sure all the commits in a PR follow custom conventions based on the [Conventional Commits](https://www.conventionalcommits.org/) specification. The conventions should be per repository. Let's consider _fix_, _minor _and _major_ as a reference.
+
+On the other hand, as I have been playing with [NUKE](https://nuke.build/index.html) lately, I want to create a solution based on it.
+
+<!--truncate-->
+
+:::info
+[NUKE](https://nuke.build/index.html) is a build automation framework where you define operations as build, test or push NuGets, in a C# project. I found good reviews and some videos in [Channel9](https://channel9.msdn.com/Shows/On-NET/Build-Automation-with-NUKE) about it. So, for instance, dotnet commands are predefined methods, and its arguments are extension methods, check the next example:
+
+
+<details>
+  <summary>How a NUKE project looks like?</summary>
+
+```csharp
+Target Pack => _ => _
+    .DependsOn(Clean)
+    .Executes(() => 
+    {
+      DotNetTasks
+          .DotNetPack(s => s
+              .SetProject(project.Path)
+              .SetOutputDirectory(outputFolderAbsolutePath)
+              .SetConfiguration(configuration)
+              .SetVersionPrefix(currentPackageVersion)
+              .SetVersionSuffix(versionSuffix)
+              .EnableNoRestore());
+    });
+```
+
+</details>
+:::
+
+
+## Goals
+
+* Validate the commits from a open PR.
+* The Solution should be based on NUKE.
+* Any repository should be able to use it.
+
+## Approach
+
+cangulo.nuke.prcommitsvalidations will execute the following operations sequentially:
+
+1. Get the commit list using the GH API Client provided by NUKE
+2. Validate they follow the conventions defined in the repo.
+
+
+## Remarks
+
+* I'm not saying NUKE is the best solution, I just want to give it a try 😊. In the future, I will create another solution based on scripts.
+* The conventions are defined in a json file, you can extend the next example:
+
+```json
+{
+    "conventionalCommitTypes": [
+        "fix",
+        "minor",
+        "major"
+    ]
+}
+```
+## How to use it?
+
+Please check the examples given [here](https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations#example).
+
+## Where do I use it?
+
+I call this solution through a specific [GH Action](https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations) in the next projects:
+
+* [cangulo-nugets/cangulo.changelog](https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/.github/workflows/4-Release-New-Version.yml)
+* [cangulo-nugets/cangulo.common.testing](https://github.com/cangulo-nugets/cangulo.common.testing/blob/v0.0.2/.github/workflows/4-Release-New-Version.yml)
+* [cangulo-nuke/cangulo.nuke.prcommitsvalidations](https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations/blob/v0.0.1/.github/workflows/3-Release_New_Version.yml)
+* [cangulo-actions/cangulo.nuke.prcommitsvalidations](https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations/blob/v0.0.1/.github/workflows/2-release_new_version.yml)
+* [cangulo-tf/basic-iac](https://github.com/cangulo-tf/basic-iac/blob/v0.0.2/.github/workflows/3-Release_New_Version.yml)
+
+
+## Repository
+
+[cangulo.nuke.prcommitsvalidations repository](https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations)
+
+## GitHub Action
+
+[github action to execute in ANY repository](https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations)
+
+<AboutMePostArea/>
+
+<ShareCard 
+  slug="projects/cangulo.nuke.prcommitsvalidations" 
+  title="TITLE" 
+  tags={["nuke","cicd","commits","conventional-commits"]} />
+  
+<Comments
+  slug="projects/cangulo.nuke.prcommitsvalidations"  />
