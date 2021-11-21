@@ -1,5 +1,5 @@
 ---
-slug: cangulo.changelog-idea-and-how-to-use
+slug: 1-cangulo.changelog-idea-and-how-to-use
 title: cangulo.changelog - Idea and how I use it
 date: 2021-11-26
 authors: cangulo
@@ -21,9 +21,8 @@ This is my second post explaining my CICD tools. In this case I'm going to expla
 
 ## The problem I want to solve
 
-I am using the dotnet project [cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator) to add the next features to my GitHub repos:
+In my GitHub repos I am using the dotnet project [cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator) for releasing a new version every time I merge a PR to the main branch. For that, I have to follow the next conventions:
 
-* A new version is released in GitHub every time I merge a PR to the main branch.
 * The App follows [Semantic Versioning.](https://semver.org)
 * All PR contain [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) which set the release to be created (_major_, _minor_ or _fix_).
 
@@ -31,15 +30,15 @@ At this point, I have a release process but I'm not documenting the changes. The
 1. The release notes
 2. The changelog
 
-I created ___cangulo.changelog___ to help me adding the changes to both.
+As cangulo.nuke.releasecreator is already using the commit messages for calculating the next version, I created ___cangulo.changelog___ solution to list them in the two places mentioned before.
 
 :::info
-For the rest of the article I'm going to focus only in updating the changelog. I will talk about creating the release notes using cangulo.changelog in another post.
+For the rest of the article I'm going to focus only in updating the changelog. I will talk about creating the release notes using cangulo.changelog in the [next post](./2-cangulo.changelog-release-notes).
 :::
 
 Maybe you would say, okay, why do you need a custom solution? Why don't you do it in the GH Action itself or in the _cangulo.nuke.releasecreator_ project? Well, when I started working on this I realize it was not so simple, here is what I took into account:
 
--   The Changelog is a Markdown (MD) file, so adding the changes is not directly appending text, we should format the text to the MD language.
+-   The Changelog is a Markdown (MD) file, so adding the changes is not directly appending text, we should format.
 -   To make the Changelog more formal we should add other elements as:
 	-   Header containing the version number
 	-   A Date to know when that release was created (okay, this is a _nice to have_ 😁)
@@ -71,18 +70,12 @@ The release 0.0.2 is created after merging a PR with the next commits list:
 
 2021-11-20
 
-fix:
--   Solved bug in the TransactionsController that makes transactions fail
+-   _fix: Solved bug in the TransactionsController that makes transactions fail_
+-   refactor: Simplified Transactions Repository
+-   docs: Updated docs/examples
+-   feat: Implemented new DocumentsController
+-   refactor: It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
 
-refactor:
--   Simplified Transactions Repository
--   It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
-
-docs:
--   Updated docs/examples
-
-features:
--   Implemented new DocumentsController
 ```
 
   </TabItem>
@@ -92,23 +85,18 @@ features:
 
 2021-11-20
 
-fix:
--   Solved bug in the TransactionsController that makes transactions fail
-
-refactor:
--   Simplified Transactions Repository
--   It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
-
-docs:
--   Updated docs/examples
-
-features:
--   Implemented new DocumentsController
-
+-   _fix: Solved bug in the TransactionsController that makes transactions fail_
+-   refactor: Simplified Transactions Repository
+-   docs: Updated docs/examples
+-   feat: Implemented new DocumentsController
+-   refactor: It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
 
   </TabItem>
 </Tabs>
 </BrowserWindow>
+<br/>
+
+Please note the commits are grouped by type: _fix,refactor,docs_
 
 ## Did I achieve the goal?
 
@@ -117,6 +105,8 @@ Yes, I have created the [cangulo.changelog](https://www.nuget.org/packages/cangu
 1.  [cangulo.common.testing Changelog](https://github.com/cangulo-nugets/cangulo.common.testing/blob/main/CHANGELOG.md)
 2.  [cangulo.nuke.prcommitsvalidations Changelog](https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations/blob/main/CHANGELOG.md)
 3.  [cangulo.nuke.releasecreator Changelog](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/main/CHANGELOG.md)
+
+I also made the solution accept non conventional commits. The only difference is the output, the commits won't be grouped, they will be listed.
 
 ---
 
@@ -152,12 +142,11 @@ public class ConventionalCommitsSettings
 }
 public enum CommitsMode
 {
-  NonConventionalCommits,
+  NonConventionalCommits, // Yes, I also allow non conventional commits
   ConventionalCommits
 }
 ```
 <Caption label="Definition at cangulo.changelog" linkIsRelative="false"  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Models/ChangelogSettings.cs" />
-
 
 :::info Idea!
 
@@ -210,12 +199,17 @@ changelogBuilder.Build(nextVersion, commitMsgs, changelogPath);
 
 </details>
 
+## Final notes
+
+In order to avoid making this post longer, I keep the implementation details for the next article. So far I have explained the why I created this project and how I use it.
+
+
 <AboutMePostArea/>
 
 <ShareCard 
-  slug="projects/cangulo.changelog-idea-and-how-to-use" 
+  slug="projects/1-cangulo.changelog-idea-and-how-to-use" 
   title="cangulo.changelog - Idea and how I use it" 
   tags={["nuke", "cicd", "cangulo.changelog","conventional_commits", "changelog"]} />
   
 <Comments
-  slug="projects/cangulo.changelog-idea-and-how-to-use"  />
+  slug="projects/1-cangulo.changelog-idea-and-how-to-use"  />

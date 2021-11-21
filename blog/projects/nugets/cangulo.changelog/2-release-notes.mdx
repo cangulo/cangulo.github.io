@@ -1,0 +1,225 @@
+---
+slug: 2-cangulo.changelog-release-notes
+title: cangulo.changelog - Creating Release Notes
+date: 2021-11-26
+authors: cangulo
+tags: [nuke,cicd,conventional_commits]
+
+---
+
+import ShareCard from '/src/components/blog/share.js'
+import Caption from '/src/components/blog/caption.jsx'
+import Comments from '/src/components/blog/comments.js'
+import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+import BrowserWindow from '/src/components/BrowserWindow'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+This is my third post explaining my CICD tools. In this case, I'm going to explain how I use my cangulo.changelog nuget package to create the release notes. You can use it in any C# console project. I am going to refer to the [cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator) project explained in the previous [post](../../nuke/cangulo.nuke.releasecreator/index.mdx).
+
+<!--truncate-->
+
+## Starting Point
+
+Let me start with some points of my [previous post](../1-idea-and-how-to-use.mdx): 
+
+* The release process defined in [cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator) provides the list of commits merged
+* 
+
+ I mentioned that on every release, the changes should be provided in two places:
+1. The release notes
+2. The changelog
+
+Well, now we will focus on creating the release notes.
+
+:::info
+For the rest of the article I'm going to focus only on creating the release notes. 
+:::
+
+Maybe you would say, okay, why do you need a custom solution? Why don't you do it in the GH Action itself or in the _cangulo.nuke.releasecreator_ project? Well, when I started working on this I realize it was not so simple, here is what I took into account:
+
+-   The Changelog is a Markdown (MD) file, so adding the changes is not directly appending text, we should format the text to the MD language.
+-   To make the Changelog more formal we should add other elements as:
+	-   Header containing the version number
+	-   A Date to know when that release was created (okay, this is a _nice to have_ 😁)
+	-   Future elements as contributors, PR link, Link to the tests reports executed. Yes, I'm going too far, I will keep this for future versions 😄
+
+Although MD is easy to write, it requires to format the text when creating elements (`#` for headers `* ` for list item, etc). So, to avoid doing that logic in shell scripts or mixing domains (release process and changelog update), I decided to implement this in a separate repository, the [cangulo.changelog repository](https://github.com/cangulo-nugets/cangulo.changelog).
+
+
+## Example
+
+### Input: Commits from a merged PR
+The release 0.0.2 is created after merging a PR with the next commits list:
+-   _fix: Solved bug in the TransactionsController that makes transactions fail_
+-   refactor: Simplified Transactions Repository
+-   docs: Updated docs/examples
+-   feat: Implemented new DocumentsController
+-   refactor: It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how -> Please never write a commit message like this 😜, you can find more funny messages [here](http://whatthecommit.com/85835a6ce3edb747ec06e42f6313d0a2).
+
+### Output: Changelog Updated
+
+**Next is the changelog section I would like to have for version 0.0.2**
+
+<BrowserWindow>
+<Tabs>
+  <TabItem value="markdown" label="Markdown Code" default>
+
+```markdown
+# 0.0.2
+
+2021-11-20
+
+fix:
+-   Solved bug in the TransactionsController that makes transactions fail
+
+refactor:
+-   Simplified Transactions Repository
+-   It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
+
+docs:
+-   Updated docs/examples
+
+features:
+-   Implemented new DocumentsController
+```
+
+  </TabItem>
+  <TabItem value="html" label="Changelog Visualization" default>
+
+# 0.0.2
+
+2021-11-20
+
+fix:
+-   Solved bug in the TransactionsController that makes transactions fail
+
+refactor:
+-   Simplified Transactions Repository
+-   It's possible! You can turn a 50-line code chunk into just 3 lines. Here's how
+
+docs:
+-   Updated docs/examples
+
+features:
+-   Implemented new DocumentsController
+
+
+  </TabItem>
+</Tabs>
+</BrowserWindow>
+
+## Did I achieve the goal?
+
+Yes, I have created the [cangulo.changelog](https://www.nuget.org/packages/cangulo.changelog/) NuGet package. It is integrated in the [cangulo.nuke.releasecreator](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator) solution, and this one updates the changelog every time it release a new version. Next are some changelogs I build using this solution.
+
+1.  [cangulo.common.testing Changelog](https://github.com/cangulo-nugets/cangulo.common.testing/blob/main/CHANGELOG.md)
+2.  [cangulo.nuke.prcommitsvalidations Changelog](https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations/blob/main/CHANGELOG.md)
+3.  [cangulo.nuke.releasecreator Changelog](https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/main/CHANGELOG.md)
+
+---
+
+### How to use it?
+
+1. The services required should be setup in your `startup.cs` by calling the `AddChangelogServices` method:
+```csharp {8}
+using cangulo.changelog.Extensions;
+//...
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+		  //...
+	    services.AddChangelogServices(settings);
+	    //...
+    }
+}
+```
+<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative="false"  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/src/cangulo.nuke.releasecreator/build.startup.cs#L27" />
+
+The object passed is a `ChangelogSettings` instance. It sets the working mode (Conventional or Non Conventional Commits) in the `CommitsMode` attribute. In case you want to go with the conventional ones, you have to provide the types in the `ConventionalCommitsSettings`. 
+```csharp
+public class ChangelogSettings
+{
+  public CommitsMode CommitsMode { get; set; }
+  public ConventionalCommitsSettings ConventionalCommitsSettings { get; set; }
+}
+
+public class ConventionalCommitsSettings
+{
+  public string[] Types { get; set; }
+}
+public enum CommitsMode
+{
+  NonConventionalCommits,
+  ConventionalCommits
+}
+```
+<Caption label="Definition at cangulo.changelog" linkIsRelative="false"  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Models/ChangelogSettings.cs" />
+
+
+:::info Idea!
+
+<details>
+  <summary>Define those settings in a json file, maybe your appsettings, and parse them. Click Here to check an example</summary>
+
+```json
+{
+    "commitsMode": "conventionalCommits",
+    "conventionalCommitsSettings": {
+        "types": [
+            "fix",
+            "patch",
+            "refactor",
+            "feat",
+            "major",
+            "break",
+            "docs"
+        ]
+    }
+}
+```
+<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative="false"  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/cicd/releaseSettings.json#L38" />
+
+</details>
+  
+:::
+---
+
+2. Call the `Build` method  from the `IChangelogBuilder` interface to update your changelog:
+
+```csharp
+var changelogBuilder = serviceProvider.GetRequiredService<IChangelogBuilder>();
+changelogBuilder.Build(nextVersion, commitMsgs, changelogPath);
+```
+
+<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative="false"  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/src/cangulo.nuke.releasecreator/build.changelog.cs#L33" />
+
+<details>
+  <summary>IChangelogBuilder Definition</summary>
+
+```csharp
+ public interface IChangelogBuilder
+ {
+     void Build(string version, string[] changes, string path);
+ }
+```
+
+<Caption label="Definiton at cangulo.changelog" linkIsRelative="false"  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs" />
+
+</details>
+
+## Final notes
+
+In order to avoid making this post longer, I keep the implementation details for the next article. So far I have explained the why I created this project and how I use it.
+
+
+<AboutMePostArea/>
+
+<ShareCard 
+  slug="projects/1-cangulo.changelog-idea-and-how-to-use" 
+  title="cangulo.changelog - Idea and how I use it" 
+  tags={["nuke", "cicd", "cangulo.changelog","conventional_commits", "changelog"]} />
+  
+<Comments
+  slug="projects/1-cangulo.changelog-idea-and-how-to-use"  />
