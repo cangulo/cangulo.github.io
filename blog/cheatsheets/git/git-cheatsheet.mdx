@@ -19,20 +19,54 @@ This post explains the next topics:
 
 ## Git Commands
 
-| Command                                 | Description                                                                                                                                                                                                                          |
-| :-------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `git checkout --track origin/NAME`      | Create a local branch that tracks the remote one                                                                                                                                                                                     |
-| `git checkout -`                        | Checkout the previous branch, this can be useful if you go from your feature branch to dev, you update it, and you want to come back to your feature branch to rebase dev                                                            |
-| `git branch --list [<pattern>]`         | List all the branches that match the `<pattern>`. e.g. `*-1234` list all the branches that end `1234`                                                                                                                                |
-| `gitk`                                  | Check Last commits using a GUI                                                                                                                                                                                                       |
-| `gitk <filePath>`                       | Check `<fielPath>` last commits using a GUI                                                                                                                                                                                          |
-| `git gui blame <filePath>`              | Check `<fielPath>` last commits using a GUI                                                                                                                                                                                          |
-| `gitk`                                  | Check Last commits using a GUI                                                                                                                                                                                                       |
-| `git switch`                            | New git command to change between branches to avoid using checkout. Currently is in status experimental. Check this [link](https://git-scm.com/docs/git-switch/2.23.0) and this [one](https://bluecast.tech/blog/git-switch-branch/) |
-| `git cherry-pick -n <commit>`           | Let's you inspect the files modified in the commit before cherry-pick them. [Reference](https://stackoverflow.com/questions/5717026/how-to-git-cherry-pick-only-changes-to-certain-files)                                            |
-| `git diff [target-branch] -name-status` | List the files modified and what kind of modification (Added, Deleted, Modified) in your branch using the target branch as reference                                                                                                 |
-| `git diff [target-branch] -name-only`   | List the files modified in your branch using the target branch as reference                                                                                                                                                          |
-| `git checkout tags/<tag> -b <branch>`   | Checkout a branch starting from the tag provided                                                                                                                                                                                     |
+### Git Checkout
+
+`git checkout --track origin/NAME`      
+*  Create a local branch that tracks the remote one                                                                                                                                                                                    
+
+`git checkout -`                        
+*  Checkout the previous branch, this can be useful if you go from your feature branch to dev, you update it, and you want to come back to your feature branch to rebase dev                                                           
+
+`git checkout tags/<tag> -b <branch>`   
+*  Checkout a branch starting from the tag provided                                                                                                                                                                                    
+
+`git switch`                            
+*  New git command to change between branches to avoid using checkout. Currently is in status experimental. 
+*  Check this [link](https://git-scm.com/docs/git-switch/2.23.0) and this [one](https://bluecast.tech/blog/git-switch-branch/)
+
+### Git Branch
+
+`git branch --list [<pattern>]`         
+*  List all the branches that match the `<pattern>`. e.g. `*-1234` list all the branches that end `1234`                                                                                                                               
+
+  
+### Gitk
+
+`gitk`                                  
+*  Check Last commits using a GUI                                                                                                                                                                                                      
+
+`gitk <filePath>`                       
+*  Check `<filePath>` last commits using a GUI                                                                                                                                                                                         
+
+### Git Cherry Pick
+
+`git cherry-pick -n <commit>`           
+*  Let's you inspect the files modified in the commit before cherry-pick them. [Reference](https://stackoverflow.com/questions/5717026/how-to-git-cherry-pick-only-changes-to-certain-files)                                           
+
+### Git diff
+
+`git diff [target-branch] -name-status` 
+*  List the files modified and what kind of modification (Added, Deleted, Modified) in your branch using the target branch as reference                                                                                                
+
+`git diff [target-branch] -name-only`   
+*  List the files modified in your branch using the target branch as reference                                                                                                                                                         
+
+### Git rebase
+
+`git rebase -i --root`
+* DO IT UNDER YOUR RISK. Do a git rebase since the first commit. 
+* https://stackoverflow.com/questions/22992543/how-do-i-git-rebase-the-first-commit/23000315
+
 
 ## How to configure an Alias
 
