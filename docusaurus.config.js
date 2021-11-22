@@ -30,6 +30,7 @@ const config = {
         blogTitle: 'Carlos Angulo Posts',
         blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
         editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
+        blogSidebarTitle: 'Cheatsheets',
         feedOptions: {
           title: 'Carlos Angulo Cheatsheets',
           language: 'en',
@@ -49,6 +50,7 @@ const config = {
         blogTitle: 'Carlos Angulo Projects',
         blogDescription: 'Publications related to the personal projects I do 💻️',
         editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
+        blogSidebarTitle: 'Projects',
         feedOptions: {
           title: 'Carlos Angulo Projects',
           language: 'en',
@@ -69,6 +71,7 @@ const config = {
         blogTitle: 'Carlos Angulo Meetups',
         blogDescription: 'Publications related to the meetups I do 🧑‍🏫',
         editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
+        blogSidebarTitle: 'Meetups',
         feedOptions: {
           title: 'Carlos Angulo Meetups',
           language: 'en',
