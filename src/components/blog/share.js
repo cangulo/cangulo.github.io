@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     LinkedinShareButton,
     LinkedinIcon,
@@ -14,7 +15,7 @@ import {
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-const ShareCard = ({ slug, title, tags }) => {
+function ShareCard({ slug, title, tags }) {
 
     const { siteConfig } = useDocusaurusContext();
     const fullUrl = `${siteConfig.url}/${slug}`
@@ -50,6 +51,12 @@ const ShareCard = ({ slug, title, tags }) => {
         </TelegramShareButton>
         <br style={{ marginBottom: `15px` }} />
     </div>;
+};
+
+ShareCard.propTypes = {
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    tags: PropTypes.array.isRequired
 };
 
 export default ShareCard

@@ -1,25 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import CaptionComponent from './caption-component';
 
-const Caption = ({ label, linkIsRelative, link }) => {
-    if (link) {
 
-        const { siteConfig } = useDocusaurusContext();
-        const rawGitUrl = siteConfig.customFields.rawGitUrl
+function Caption({ label, link, linkIsRelative }) {
 
-        const urlToFile =
-            linkIsRelative === "true" ?
-                rawGitUrl.concat(link) :
-                link
+    const { siteConfig } = useDocusaurusContext()
+    const rawGitUrl = siteConfig.customFields.rawGitUrl
+    const urlToFile =
+        linkIsRelative ?
+            rawGitUrl.concat(link) :
+            link
 
-        return (
-            <a href={urlToFile}>
-                <p className="text--center">{label ?? `Link to the file`}</p>
-            </a>
-        )
-    } else {
-        return <p className="text--center" >{label ?? `Link to the file`}</p>
-    }
+    return <CaptionComponent label={label} link={urlToFile} />
+}
+
+Caption.propTypes = {
+    label: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    linkIsRelative: PropTypes.bool.isRequired
 };
 
 export default Caption

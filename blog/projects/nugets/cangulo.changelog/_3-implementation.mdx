@@ -136,7 +136,7 @@ public class Startup
     }
 }
 ```
-<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative="false"  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/src/cangulo.nuke.releasecreator/build.startup.cs#L27" />
+<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative={false}  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/src/cangulo.nuke.releasecreator/build.startup.cs#L27" />
 
 The object passed is a `ChangelogSettings` instance. It sets the working mode (Conventional or Non Conventional Commits) in the `CommitsMode` attribute. In case you want to go with the conventional ones, you have to provide the types in the `ConventionalCommitsSettings`. 
 ```csharp
@@ -156,7 +156,7 @@ public enum CommitsMode
   ConventionalCommits
 }
 ```
-<Caption label="Definition at cangulo.changelog" linkIsRelative="false"  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Models/ChangelogSettings.cs" />
+<Caption label="Definition at cangulo.changelog" linkIsRelative={false}  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Models/ChangelogSettings.cs" />
 
 
 :::info Idea!
@@ -180,7 +180,7 @@ public enum CommitsMode
     }
 }
 ```
-<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative="false"  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/cicd/releaseSettings.json#L38" />
+<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative={false}  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/cicd/releaseSettings.json#L38" />
 
 </details>
   
@@ -194,7 +194,7 @@ var changelogBuilder = serviceProvider.GetRequiredService<IChangelogBuilder>();
 changelogBuilder.Build(nextVersion, commitMsgs, changelogPath);
 ```
 
-<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative="false"  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/src/cangulo.nuke.releasecreator/build.changelog.cs#L33" />
+<Caption label="Example at cangulo.nuke.releasecreator" linkIsRelative={false}  link="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator/blob/v0.0.1/src/cangulo.nuke.releasecreator/build.changelog.cs#L33" />
 
 <details>
   <summary>IChangelogBuilder Definition</summary>
@@ -206,7 +206,7 @@ changelogBuilder.Build(nextVersion, commitMsgs, changelogPath);
  }
 ```
 
-<Caption label="Definiton at cangulo.changelog" linkIsRelative="false"  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs" />
+<Caption label="Definiton at cangulo.changelog" linkIsRelative={false}  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs" />
 
 </details>
 

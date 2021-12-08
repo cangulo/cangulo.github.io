@@ -7,7 +7,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 const Comments = () => {
 
   const { siteConfig } = useDocusaurusContext();
-  const websiteId = siteConfig.customFields.hyvorTalkSiteId
+  const websiteId = parseInt(siteConfig.customFields.hyvorTalkSiteId)
 
   return (
     <section>
