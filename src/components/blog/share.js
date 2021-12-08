@@ -15,9 +15,9 @@ import {
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const ShareCard = ({ slug, title, tags }) => {
-    const { siteConfig } = useDocusaurusContext();
 
-    const fullUrl = `https://cangulo.github.io/${slug}`
+    const { siteConfig } = useDocusaurusContext();
+    const fullUrl = `${siteConfig.url}/${slug}`
 
     return <div>
         <h2>Did you like it? Share It!</h2>

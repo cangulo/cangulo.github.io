@@ -1,39 +1,23 @@
 import React from "react";
 import HyvorTalk from 'hyvor-talk-react'
 
-export default class Comments extends React.Component {
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      slug: this.props.slug,
-    }
-  }
+const Comments = () => {
 
-  render() {
+  const { siteConfig } = useDocusaurusContext();
+  const websiteId = siteConfig.customFields.hyvorTalkSiteId
 
-    // const darkPalette = {
-    //   accent: "#ffffff",
-    //   accentText: "#000000",
-    //   footerHeader: "#1b1818",
-    //   footerHeaderText: "#cac7c7",
-    //   box: "#232121",
-    //   boxText: "#ffffff",
-    //   boxLightText: "#aaaaaa",
-    //   backgroundText: "#ffffff"
-    // }
-
-    return (
-      <section id="post-comments">
-        <h2>Comments</h2>
-        <HyvorTalk.Embed
-          loadMode="scroll"
-          websiteId={1142}
-          id={this.state.slug}
-        // palette={theme == 'dark' ? darkPalette : {}}
-        />
-      </section>
-    )
-  }
+  return (
+    <section>
+      <h2>Comments</h2>
+      <HyvorTalk.Embed
+        loadMode="scroll"
+        websiteId={websiteId}
+      />
+    </section>
+  )
 }
+
+export default Comments

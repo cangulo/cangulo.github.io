@@ -16,6 +16,10 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
+  customFields: {
+    hyvorTalkSiteId: '1142',
+  },
+
 
   plugins: [
     [
