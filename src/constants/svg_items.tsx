@@ -1,4 +1,4 @@
-import { SvgItem } from "../components/common/svgBuilder/SvgItem";
+import { SvgItem } from "../models/svgItem";
 
 export class SVG_IMAGES {
 

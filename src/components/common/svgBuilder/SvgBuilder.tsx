@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgItem } from './SvgItem';
+import { SvgItem } from '../../../models/svgItem';
 import styles from './SvgBuilder.module.css';
 
 

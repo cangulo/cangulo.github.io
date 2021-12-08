@@ -1,4 +1,4 @@
-import { SvgItem } from "../common/svgBuilder/SvgItem";
+import { SvgItem } from "../../models/svgItem";
 
 export type FeatureItem = {
     title: string;
