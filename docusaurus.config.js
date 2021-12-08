@@ -131,6 +131,7 @@ const config = {
     ],
   ],
 
+  /** @type {import('@docusaurus/types/src/index').ThemeConfig} */
   themeConfig:
     ({
       navbar: {
@@ -174,6 +175,9 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ['powershell', 'csharp']
       },
+      colorMode: {
+        defaultMode: 'dark',
+      }
     }),
 };
 
