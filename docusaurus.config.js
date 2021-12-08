@@ -18,6 +18,7 @@ const config = {
 
   customFields: {
     hyvorTalkSiteId: '1142',
+    rawGitUrl: 'https://raw.githubusercontent.com/cangulo/cangulo.github.io/main/blog/'
   },
 
 

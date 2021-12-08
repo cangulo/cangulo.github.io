@@ -1,13 +1,16 @@
 import React from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const Caption = ({ label, linkIsRelative, link }) => {
     if (link) {
-        const baseGitUrl =
-            "https://raw.githubusercontent.com/cangulo/cangulo.github.io/main/blog/"
 
-        const urlToFile = linkIsRelative === "true" ?
-            baseGitUrl.concat(link) :
-            link
+        const { siteConfig } = useDocusaurusContext();
+        const rawGitUrl = siteConfig.customFields.rawGitUrl
+
+        const urlToFile =
+            linkIsRelative === "true" ?
+                rawGitUrl.concat(link) :
+                link
 
         return (
             <a href={urlToFile}>
