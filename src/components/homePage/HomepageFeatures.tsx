@@ -12,7 +12,7 @@ import { Feature } from './Feature';
 const FeatureList: FeatureItem[] = [
   {
     title: 'Developer',
-    image: '/img/home_developer.svg',
+    imageSrc: '/img/home_developer.svg',
     description: (
       <>
         I create value for customers by implementing solutions they need.
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'DevOps',
-    image: '/img/home_devops.svg',
+    imageSrc: '/img/home_devops.svg',
     description: (
       <>
         I have implemented processes that took Terraform and dotnet source code, create a release, and deploy it using Bitbucket Pipelines and GitHub Actions.
@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Team Player',
-    image: '/img/home_team.svg',
+    imageSrc: '/img/home_team.svg',
     description: (
       <>
         <i>How can I help?</i> I think that is a good way to start a conversation.
@@ -43,7 +43,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Challenge Seeker',
-    image: '/img/home_challenge.svg',
+    imageSrc: '/img/home_challenge.svg',
     description: (
       <>
         Motivation, that is one of the keys to progress.
@@ -54,7 +54,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Documentation Hero',
-    image: '/img/home_doc_hero.svg',
+    imageSrc: '/img/home_doc_hero.svg',
     description: (
       <>
         Do you know the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a>?
@@ -65,7 +65,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Experience',
-    image: '/img/home_experience.svg',
+    imageSrc: '/img/home_experience.svg',
     description: (
       <>
         Yes! I almost forgot to mention:

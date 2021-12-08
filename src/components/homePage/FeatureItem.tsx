@@ -1,5 +1,5 @@
 export type FeatureItem = {
     title: string;
-    image: string;
+    imageSrc: string;
     description: JSX.Element;
 };
