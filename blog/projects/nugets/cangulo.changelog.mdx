@@ -8,7 +8,7 @@ tags: ["cicd", "cangulo.changelog", "personal-nuget-packages","changelog"]
 ---
 
 import ShareCard from '/src/components/blog/share.js'
-import Caption from '/src/components/blog/caption.js'
+import { CaptionDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
@@ -34,7 +34,7 @@ public interface IChangelogBuilder
     void Build(string version, string[] changes, string path);
 }
 ```
-<Caption label="Definiton at cangulo.changelog" linkIsRelative={false}  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs" />
+<CaptionDocusaurus label="Definiton at cangulo.changelog" linkIsRelative={false}  link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs" />
 
 Please, read the next link page about all the requirements and how to use:
 
