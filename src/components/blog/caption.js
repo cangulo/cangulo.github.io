@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import CaptionComponent from './caption-component';
+import { CaptionComponent } from '@cangulo-blog/components'
 
 
 function Caption({ label, link, linkIsRelative }) {
