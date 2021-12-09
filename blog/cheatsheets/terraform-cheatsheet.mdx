@@ -8,7 +8,7 @@ tags: [terraform]
 ---
 
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
-import ShareCard from '/src/components/blog/share.js'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import BrowserWindow from '/src/components/BrowserWindow'
 import Tabs from '@theme/Tabs'
@@ -60,10 +60,9 @@ alias tf=terraform
 
 <AboutMePostArea/>
 
-<ShareCard 
-  slug="cheatsheets/git" 
-  title="Git Cheatsheet" 
+<ShareDocusaurus 
+  slug="cheatsheets/terraform" 
+  title="Terraform Cheatsheet" 
   tags={["git", "githooks", "alias"]} />
   
-<Comments
-  slug="cheatsheets/git"  />
+<Comments />

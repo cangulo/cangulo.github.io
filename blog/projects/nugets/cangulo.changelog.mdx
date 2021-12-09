@@ -7,8 +7,7 @@ tags: ["cicd", "cangulo.changelog", "personal-nuget-packages","changelog"]
 
 ---
 
-import ShareCard from '/src/components/blog/share.js'
-import { CaptionDocusaurus } from '@cangulo-blog/components'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
@@ -60,10 +59,9 @@ Please check the requirements I set here.
 
 <AboutMePostArea/>
 
-<ShareCard 
+<ShareDocusaurus 
   slug="projects/cangulo.changelog" 
   title="cangulo.changelog" 
   tags={["cicd", "cangulo.changelog", "personal-nuget-packages","changelog"]} />
   
-<Comments
-  slug="projects/cangulo.changelog"  />
+<Comments />

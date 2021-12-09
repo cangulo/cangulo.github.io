@@ -5,7 +5,7 @@ authors: cangulo
 tags: [devops, deployment, deliver, cicd]
 ---
 
-import ShareCard from '/src/components/blog/share.js'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
@@ -29,10 +29,9 @@ A developer should always aim for the best quality, without over-engineering the
 
 <AboutMePostArea/>
 
-<ShareCard 
+<ShareDocusaurus 
   slug="values/developer" 
   title="What I have learn as Developer" 
   tags={["developer", "experience", "thoughts"]} />
 
-<Comments
-  slug="values/developer"  />
+<Comments />

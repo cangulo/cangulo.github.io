@@ -7,8 +7,7 @@ tags: [TAG_LIST]
 
 ---
 
-import ShareCard from '/src/components/blog/share.js'
-import { CaptionDocusaurus } from '@cangulo-blog/components'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
@@ -34,10 +33,9 @@ import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
 <AboutMePostArea/>
 
-<ShareCard 
+<ShareDocusaurus 
   slug="projects/SLUG" 
   title="TITLE" 
   tags={["TAG_LIST"]} />
   
-<Comments
-  slug="projects/SLUG"  />
+<Comments />

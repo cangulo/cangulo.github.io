@@ -9,11 +9,9 @@ tags: [terraform,cheatsheets]
 
 # Common per page
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
-import ShareCard from '/src/components/blog/share.js'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 
-# if there is anything that needs a caption
-import { CaptionDocusaurus } from '@cangulo-blog/components'
 
 This post explains the next topics:
 * How to set up a shortcut for Terraform in the Terminal
@@ -54,10 +52,9 @@ import TabItem from '@theme/TabItem';
 
 <AboutMePostArea/>
 
-<ShareCard 
+<ShareDocusaurus 
   slug="cheatsheets/git" 
   title="Git Cheatsheet" 
   tags={["git", "githooks", "alias"]} />
   
-<Comments
-  slug="cheatsheets/git"  />
+<Comments />

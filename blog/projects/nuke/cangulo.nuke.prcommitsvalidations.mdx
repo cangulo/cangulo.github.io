@@ -7,8 +7,7 @@ tags: [nuke, cicd, commits, conventional-commits]
 
 ---
 
-import ShareCard from '/src/components/blog/share.js'
-import { CaptionDocusaurus } from '@cangulo-blog/components'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
@@ -100,10 +99,9 @@ I call this solution through a specific [GH Action](https://github.com/cangulo-a
 
 <AboutMePostArea/>
 
-<ShareCard 
+<ShareDocusaurus 
   slug="projects/cangulo.nuke.prcommitsvalidations" 
   title="TITLE" 
   tags={["nuke","cicd","commits","conventional-commits"]} />
   
-<Comments
-  slug="projects/cangulo.nuke.prcommitsvalidations"  />
+<Comments />

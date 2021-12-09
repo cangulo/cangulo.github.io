@@ -7,8 +7,7 @@ tags: [nuke,cicd,conventional_commits]
 
 ---
 
-import ShareCard from '/src/components/blog/share.js'
-import { CaptionDocusaurus } from '@cangulo-blog/components'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 import BrowserWindow from '/src/components/BrowserWindow'
@@ -265,10 +264,9 @@ In order to avoid making this post longer, I keep the implementation details for
 
 <AboutMePostArea/>
 
-<ShareCard 
+<ShareDocusaurus 
   slug="projects/1-cangulo.changelog-idea-and-how-to-use" 
   title="cangulo.changelog - Idea and how I use it" 
   tags={["nuke", "cicd", "cangulo.changelog","conventional_commits", "changelog"]} />
   
-<Comments
-  slug="projects/1-cangulo.changelog-idea-and-how-to-use"  />
+<Comments />

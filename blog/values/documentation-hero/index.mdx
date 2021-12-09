@@ -5,7 +5,7 @@ authors: cangulo
 tags: [documentation, docs]
 ---
 
-import ShareCard from '/src/components/blog/share.js'
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
 
@@ -41,10 +41,9 @@ Let's take the next advice from He-man:
 
 <AboutMePostArea/>
 
-<ShareCard 
+<ShareDocusaurus 
   slug="cheatsheets/git" 
   title="Git Cheatsheet" 
   tags={["git", "githooks", "alias"]} />
 
-<Comments
-  slug="cheatsheets/git"  />
+<Comments />
