@@ -130,7 +130,10 @@ const config = {
         docs: false,
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [
+            require.resolve('@cangulo-blog/components/dist/css/blog-styles.css'),
+            require.resolve('./src/css/custom.css')
+          ],
         },
       }),
     ],
