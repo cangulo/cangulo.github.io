@@ -4,7 +4,7 @@
         <title>Carlos Angulo Cheatsheets</title>
         <link>https://cangulo.github.io/cheatsheets</link>
         <description>Here you can find useful cheatsheets about how to do the daily operations a developer does</description>
-        <lastBuildDate>Wed, 08 Dec 2021 23:01:02 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 09 Dec 2021 00:58:20 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[Git Cheatsheet]]></title>
             <link>https://cangulo.github.io/cheatsheets/git</link>
             <guid>git</guid>
-            <pubDate>Wed, 08 Dec 2021 23:01:02 GMT</pubDate>
+            <pubDate>Thu, 09 Dec 2021 00:58:20 GMT</pubDate>
             <description><![CDATA[The one I use the most is cob, every time I have to create a new branch I type git cob [BRANCH_NAME]. Also the rebase one, git re develop , that is how I update my branch with the last changes from develop.]]></description>
             <content:encoded><![CDATA[<pre><code class="language-bash">[alias]
   b = branch
