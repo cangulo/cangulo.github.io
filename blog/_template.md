@@ -8,7 +8,7 @@ tags: [terraform,cheatsheets]
 ---
 
 # Common per page
-import AboutMePostArea from '/src/mdx_components/aboutme_area.mdx'
+import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
 import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
 import Comments from '/src/components/blog/comments.js'
 
@@ -50,7 +50,7 @@ import TabItem from '@theme/TabItem';
 
 * [TF Cheatsheet](https://dzone.com/articles/terraform-cli-cheat-sheet)
 
-<AboutMePostArea/>
+<AboutMe/>
 
 <ShareDocusaurus 
   slug="cheatsheets/git" 
