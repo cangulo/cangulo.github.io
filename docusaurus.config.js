@@ -61,7 +61,7 @@ const config = {
           language: 'en',
           description: 'Here you can find posts related to the personal projects I do 💻️'
         },
-        remarkPlugins: [require('mdx-mermaid')]
+        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import')]
       })
     ],
     [
@@ -117,7 +117,7 @@ const config = {
           language: 'en',
           description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
         },
-        remarkPlugins: [require('mdx-mermaid')]
+        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import')]
       })
     ]
   ],
