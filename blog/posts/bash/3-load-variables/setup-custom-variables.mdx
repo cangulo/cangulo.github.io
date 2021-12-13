@@ -1,7 +1,7 @@
 ---
-slug: bash/3-setup-custom-env-vars
-title: Load specific variables at Terminal startup
-date: 2020-12-14
+slug: bash/3-load-vars
+title: Load custom variables at Terminal startup
+date: 2020-12-15
 authors: cangulo
 tags: [linux, productivity, hack, bash, zsh, terminal]
 ---
@@ -62,18 +62,17 @@ If we change the bookmarks location, should we change the `listBookmarks` functi
 
 On the other hand, I think having a central location for all the parameters is much cleaner, if want to migrate  or share your current setup, you only need to copy the functions and update the parameters. Otherwise, you will have to go function-by-function updating the parameters. 
 
-<Gif id="d3mlE7uhX8KFgEmY"  />
+<Gif id="d3mlE7uhX8KFgEmY" />
 
 ## One extra mile: Define the parameters as JSON
 
-Let's migrate the variables to a json file as follows:
-
+Let's migrate the variables to a json file as follows. Please note all the paths are now absolute paths.
 
 ```JSON file=./code/3-vars.json
 ```
 
 To set the json keys as the parameters name we have to:
-1. Define the path to the json file. We will consider those as the main settings. 
+1. Define the json file path. We will consider those as the main settings.
 2. Use the `jq` command to retrieve the keys and values.
 3. Use the `eval` command to execute the `key=value`  for each one.
 
@@ -108,13 +107,13 @@ References:
 
 </details>
 
-
+Nothing more for Today! Do you think this is a good approach? How would you do it? Let me know in the comments below.
 
 <AboutMe/>
 
 <ShareDocusaurus 
-  slug="posts/bash/2-add-shortcuts" 
-  title="Add shortcuts to your bash terminal"
+  slug="bash/3-load-vars" 
+  title="Load custom variables at Terminal startup"
   tags={["linux","productivity","hack","bash","zsh","terminal"]} />
 
 <Comments />
