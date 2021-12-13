@@ -1,5 +1,5 @@
 ---
-slug: bash/interactive-bookmarks
+slug: bash/1-interactive-bookmarks
 title: Create an interactive bookmarks menu in your terminal
 date: 2020-12-11
 authors: cangulo
@@ -18,6 +18,7 @@ In this post, I am going to implement an interactive bookmarks menu using fzf.
 ## Requirements
 * Linux (I'm using [Elementary OS](https://elementary.io), a Ubuntu based distro, check it!)
 * [fzf](https://github.com/junegunn/fzf) command-line fuzzy finder
+* Remember to add execution permissions to the scripts through `chmod +x`
 
 ## Demo
 
@@ -38,7 +39,7 @@ On the other hand, in case similar paths are listed, I can filter by typing keyw
 ```bash file=./code/listbookmarks.sh
 ```
 
-<CaptionDocusaurus label="listBookmarks function" linkIsRelative={true} link="posts/bash/interactive-bookmarks/code/listbookmarks.sh" />
+<CaptionDocusaurus label="listBookmarks function" linkIsRelative={true} link="posts/bash/1-interactive-bookmarks/code/listbookmarks.sh" />
 
 Let me define the basic structure:
 1. Read the paths (let's call them _bookmarks_)
@@ -53,21 +54,23 @@ First, in order to make this extensible, the paths are listed in a json file:
 ```json file=code/bookmarks.json
 ```
 
-<CaptionDocusaurus label="bookmarks" linkIsRelative={true} link="posts/bash/interactive-bookmarks/code/bookmarks.json" />
+<CaptionDocusaurus label="bookmarks" linkIsRelative={true} link="posts/bash/1-interactive-bookmarks/code/bookmarks.json" />
 
 We can print the file content using `cat`, and then use `jq` to query the array items. 
 
 `cat $bookmarksFile  | jq -r '.[]'`
 
 <details>
-  <summary>If you are asking why I'm using a json file instead of a simple text file. click here for the answer:</summary>
+  <summary>Why I'm using a JSON file instead of a simple text file. Click here for the answer:</summary>
 
-  It is becaus in the next article I will define more advanced bookmarks with different properties used by new features 😁
+  It is because in the next article I will define more advanced bookmarks with different properties used by new features 😁
 </details>
 
 ### 2. List the bookmarks
 
 Here is where fzf comes up, by piping the bookmarks to fzf, they will be output them as an interactive list.
+
+`cat $bookmarksFile | jq -r '.[]' | fzf`
 
 ### 3. Once a bookmark is selected, navigate to it
 
@@ -85,11 +88,11 @@ else
 fi
 ```
 ## Bonus: execute this every time you open a terminal
-You can add this in your bash or zsh profile (_.bashrc_, _.zshrc_ ). Just append the `listBookmarks` implementation, update the `bookmarksFile` variable to be a full path, and call the function.
+You have to add this in your bash or zsh profile (_.bashrc_, _.zshrc_ ). Just append the `listBookmarks` implementation at the end, update the `bookmarksFile` variable to be a full path, and call the function.
 
 ```bash
 listBookmarks() {
-    local bookmarksFile='/home/cangulo/repos/FULL_PATH/code/bookmarks.json'
+    local bookmarksFile='YOUR_PATH/bookmarks.json'
     local pathSelected=$(cat $bookmarksFile |
         jq -r '.[]' |
         fzf)
@@ -104,14 +107,14 @@ listBookmarks() {
 listBookmarks
 ```
 
-And that is all! I hope this saves you some time using the terminal. 
+And that is all! I hope this saves you some time using the terminal. Do you find this useful? Do you have similar functions? Let me know in the comments below.
 
 <Gif id="xUPOqo6E1XvWXwlCyQ"  />
 
 <AboutMe/>
 
 <ShareDocusaurus 
-  slug="posts/bash/interactive-bookmarks" 
+  slug="posts/bash/1-interactive-bookmarks" 
   title="Create an interactive bookmarks menu in your terminal"
   tags={["linux", "productivity", "hack", "zsh", "bash", "terminal"]} />
 
