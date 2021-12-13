@@ -1,0 +1,59 @@
+---
+slug: bash/4-create-config-repo
+title: How to create a configuration repository for your custom bash profile
+date: 2020-12-17
+authors: cangulo
+tags: [linux, productivity, hack, bash, zsh, terminal]
+---
+
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
+import Comments from '/src/components/blog/comments.js'
+import Gif from '/src/components/gif.js'
+import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+In this post, I will explain how to load custom variables by reading a JSON file, this will be done every time we open a Terminal. I will also improve the shortcuts we create in the previous posts.
+
+<!--truncate-->
+
+## Requirements
+* Linux (I'm using [Elementary OS](https://elementary.io), a Ubuntu-based distro, check it!)
+* [VS Code](https://code.visualstudio.com). If you don't want to use it, change all the `code` commands in the bash code for your text editor. Alternatives: _gedit_ or [gnome-text-editor](https://gitlab.gnome.org/GNOME/gnome-text-editor).
+* [fzf](https://github.com/junegunn/fzf) command-line fuzzy finder
+
+
+## Notes
+* Remember to add execution permissions to the scripts through `chmod +x`
+* Profile script: `$HOME/.bashrc` for bash terminal and `$HOME/.zshrc` for zsh 
+
+```json file=./code/1-profile-settings.json
+```
+
+```json file=./code/2-bookmarks.json
+```
+
+```bash file=./code/3-profile-script.sh
+```
+
+```bash file=./code/scripts/aliases-bash.sh
+```
+
+```bash file=./code/scripts/aliases-zsh.sh
+```
+
+```bash file=./code/scripts/functions.sh
+```
+
+<Gif id="d3mlE7uhX8KFgEmY" />
+
+Nothing more for Today! Do you think this is a good approach? How would you do it? Let me know in the comments below.
+
+<AboutMe/>
+
+<ShareDocusaurus 
+  slug="bash/4-create-config-repo" 
+  title="How to create a configuration repository for your custom bash profile"
+  tags={["linux","productivity","hack","bash","zsh","terminal"]} />
+
+<Comments />
