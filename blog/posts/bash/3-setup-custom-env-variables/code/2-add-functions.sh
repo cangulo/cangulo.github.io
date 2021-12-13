@@ -1,8 +1,11 @@
 #!/bin/bash
 
-listBookmarks() {
-    local bookmarksFile=./bookmarks.json
+# add this at the end of your profile, after the variables declaration
 
+alias goToRepos="cd $localRepos"
+alias goToDocs="cd $localDocuments"
+
+listBookmarks() {
     local pathSelected=$(cat $bookmarksFile |
         jq -r '.[]' |
         fzf)

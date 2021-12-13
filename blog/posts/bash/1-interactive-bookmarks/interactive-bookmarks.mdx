@@ -16,7 +16,7 @@ In this post, I am going to implement an interactive bookmarks menu using fzf.
 <!--truncate-->
 
 ## Requirements
-* Linux (I'm using [Elementary OS](https://elementary.io), a Ubuntu based distro, check it!)
+* Linux (I'm using [Elementary OS](https://elementary.io), a Ubuntu-based distro, check it!)
 * [fzf](https://github.com/junegunn/fzf) command-line fuzzy finder
 * Remember to add execution permissions to the scripts through `chmod +x`
 
@@ -43,13 +43,13 @@ On the other hand, in case similar paths are listed, I can filter by typing keyw
 
 Let me define the basic structure:
 1. Read the paths (let's call them _bookmarks_)
-2. List them in a interactive way
+2. List them in an interactive way
 3. Once a bookmark is selected, navigate to it
 
 Now let's dive into the details:
 
 ### 1. Read the bookmarks
-First, in order to make this extensible, the paths are listed in a json file:
+First, in order to make this extensible, the paths are listed in a JSON file:
 
 ```json file=code/bookmarks.json
 ```
@@ -81,7 +81,7 @@ Here is where fzf comes up, by piping the bookmarks to fzf, they will be output 
 We check if it is not empty (`-n`) before moving into:
 
 ```bash
-if [[ -n "${pathSelected}" ]]; then
+if [[ -n "$pathSelected" ]]; then
     cd $pathSelected
 else
     echo "no bookmark selected"
@@ -97,7 +97,7 @@ listBookmarks() {
         jq -r '.[]' |
         fzf)
 
-    if [[ -n "${pathSelected}" ]]; then
+    if [[ -n "$pathSelected" ]]; then
         cd $pathSelected
     else
         echo "no bookmark selected"
