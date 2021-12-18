@@ -13,7 +13,8 @@ import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-In this post, I will explain how to load custom variables by reading a JSON file, this will be done every time we open a Terminal. I will also improve the shortcuts we create in the previous posts.
+In this post, I will explain how to import custom environment variables from a JSON file. 
+I will also improve the shortcuts we create in the previous posts.
 
 <!--truncate-->
 
@@ -32,19 +33,19 @@ Let's say I want to define some variables as:
 
 * my local github repositories path
 * my documents path
-* path to a specific file, in this case, the path to a JSON file containing some bookmarks I have, check my [previous post](../1-interactive-bookmarks/interactive-bookmarks.mdx)
+* path to a specific file, in this case, the path to a JSON file containing some bookmarks I have, check my [previous post](../1-interactive-bookmarks/1-interactive-bookmarks.mdx)
 
-Then, we define them in the profile script as:
+By defining them in the profile script as:
 
 
 ```bash file=./code/1-declare-vars.sh#L3-
 ```
 
-Now we can use them during the terminal session as well as from any defined function. 
+We can use them during the terminal session.
 
 ![using the variables after loading the terminal](use-localrepo-variable.gif)
 
-Let's append the next function and alias at the bash profile. Please note those are using the variables defined before.
+Let's append the next function and aliases at the bash profile. Please note those are using the variables defined before.
 
 ```bash file=./code/2-add-functions.sh#L3-
 ```
@@ -55,23 +56,40 @@ Now, we can use them after opening the Terminal.
 
 ## Behavior vs Configuration
 
-* Behavior: Functions as `listBookmarks`
-* Configuration: Parameters as `bookmarksFile` used in the functions.
+In [a previous post](../1-interactive-bookmarks/1-interactive-bookmarks.mdx), the `listBookmarks` function has the `bookmarksFile` hardcoded. 
 
-If we change the bookmarks location, should we change the `listBookmarks` function ? I think not, we should decouple the configuration from the behavior as much as possible, otherwise we depend on hardcoded values along the functions making it hard to maintain. 
+```bash file=../1-interactive-bookmarks/code/listbookmarks.sh#L3-L4
+```
 
-On the other hand, I think having a central location for all the parameters is much cleaner, if want to migrate  or share your current setup, you only need to copy the functions and update the parameters. Otherwise, you will have to go function-by-function updating the parameters. 
+As you see, its value refers to the `bookmarks.json` location. What happens if we move that file to another folder? We would have to update the function. For one variable this doesn't seem to be a problem, right? But what if it is hardcoded in more functions? we would have to update them all, that is not extensible!
+
+Let's define two terms here:
+
+* Behavior: Functions implementation.
+* Configuration: Input parameters that the function relies on. In this case, `bookmarksFile`. 
+
+By setting all the parameters outside the functions, we are creating a central place for the configuration.
+
+```bash file=./code/1-declare-vars.sh#L4-
+```
+
+And by calling those from the functions:
+
+```bash file=./code/2-add-functions.sh#L8-L9
+```
+
+We are **decoupling** configuration from behavior.  If we want to migrate or share this setup, we won't need to look at the function implementations, we would only need to update the parameters.
 
 <Gif id="d3mlE7uhX8KFgEmY" />
 
 ## One extra mile: Define the parameters as JSON
 
-Let's migrate the variables to a json file as follows. Please note all the paths are now absolute paths.
+Let's migrate the variables to a JSON file as follows. Please note all the paths are now absolute.
 
-```JSON file=./code/3-vars.json
+```json file=./code/3-vars.json
 ```
 
-To set the json keys as the parameters name we have to:
+To set the JSON keys as the parameters name we have to:
 1. Define the json file path. We will consider those as the main settings.
 2. Use the `jq` command to retrieve the keys and values.
 3. Use the `eval` command to execute the `key=value`  for each one.
@@ -84,7 +102,7 @@ eval "$(jq -r 'to_entries | .[] | .key + "=" + (.value | @sh)' <$settingsFile)"
 ```
 
 <details>
-  <summary>In case you want to go into details in the solution. Click here.</summary>
+  <summary>In case you want to go into the solution details. Click here.</summary>
 
 References:
 * Settings json keys as variables`jq`. [Link](https://unix.stackexchange.com/a/413886)

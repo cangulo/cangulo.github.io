@@ -1,0 +1,149 @@
+---
+slug: bash/4-create-config-repo
+title: How to use a repository for importing your bash scripts and shortcuts
+date: 2020-12-17
+authors: cangulo
+tags: [linux, productivity, hack, bash, zsh, terminal]
+---
+
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
+import Comments from '/src/components/blog/comments.js'
+import Gif from '/src/components/gif.js'
+import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+In this post, I will explain how to load custom variables by reading a JSON file, this will be done every time we open a Terminal. I will also improve the shortcuts we create in the previous posts.
+
+<!--truncate-->
+
+:::info Template ready to use!
+The [cangulo-templates/linux-terminal-profile](https://github.com/cangulo-templates/linux-terminal-profile) repository contains a ready-to-use template based on this article.
+:::
+
+## Requirements
+* Linux (I'm using [Elementary OS](https://elementary.io), a Ubuntu-based distro, check it!)
+* [VS Code](https://code.visualstudio.com). If you don't want to use it, change all the `code` commands in the bash code for your text editor. Alternatives: _gedit_ or [gnome-text-editor](https://gitlab.gnome.org/GNOME/gnome-text-editor).
+* [fzf](https://github.com/junegunn/fzf) command-line fuzzy finder
+
+
+## Notes
+* Remember to add execution permissions to the scripts through `chmod +x`
+* Profile script: `$HOME/.bashrc` for bash terminal and `$HOME/.zshrc` for zsh 
+
+## Problem
+
+Simplify, as much as possible, the process to set up my shortcuts every time I migrate to a new computer, personal or work. This process is: download and setups all my scripts in the Bash profile.
+
+## Idea
+
+Remember the concept _Behavior vs Configuration_ I explained in my [previous post](../3-load-vars/3-load-vars.mdx#behavior-vs-configuration)? We are going to continue using it 😁. Let me list down the main points:
+
+* Variables are stored in a JSON file. We want those variables to be available during all the terminal sessions.
+* Functions depend on those variables, values that could change depending on the PC your use, for example paths, shouldn't be hard-coded.
+* Both, variables and functions are added in the Bash Profile.
+
+Nice, now that we have the main points, let me show the implementation.
+
+## Implementation
+
+First, we have the JSON file containing the variables:
+
+```json file=./code/1-profile-settings.json
+```
+
+Each JSON key will be an environment variable, I prefer to define them in upper case to differentiate them from other variables we define during the terminal session.
+
+Then, in the bash profile we only have to do the next actions:
+
+1. Export the path to the JSON settings. My convention is to call this variable as `SETTINGS_FILE`.
+2. Call a script to load all the variables and functions using the previous settings. Let's call this script `load-custom-profile.sh`.
+
+Next is the code for that. Please append it in your profile.
+
+```bash
+# Update FULL_PATH_TO_JSON_SETTINGS with yours
+export SETTINGS_FILE="FULL_PATH_TO_JSON_SETTINGS"
+source FULL_PATH/load-custom-profile.sh
+```
+
+Please note we use the `export` keyword, which sets `SETTINGS_FILE` as an environment variable. In that way, it will be available for other scripts. Please check this [link](https://www.baeldung.com/linux/bash-variables-export) for more details.
+
+### load-custom-profile.sh
+
+This script should perform the next actions:
+
+* Verify `$SETTINGS_FILE` is defined and valid:
+  * String is not empty
+  * Path provided exists
+* Read the JSON file and export the variables. The command is based on `jq` and `eval` as explained in my [previous post](../3-load-vars/3-load-vars.mdx) for more details. The main difference now is the use of the `export` command, following the pattern: `export KEY='VALUE'`
+
+```bash file=./code/load-custom-profile.sh
+```
+
+Next are the scripts stored in `$SCRIPTS_FOLDER`:
+
+* aliases:
+
+<Tabs>
+  <TabItem value="bash" label="bash" default>
+
+```bash file=./code/scripts/aliases-bash.sh
+```
+<CaptionDocusaurus label="aliases-bash.sh" linkIsRelative={true} link="posts/bash/4-create-config-repo/code/scripts/aliases-bash.sh" />
+
+  </TabItem>
+  <TabItem value="zsh" label="zsh">
+
+```bash file=./code/scripts/aliases-zsh.sh
+```
+<CaptionDocusaurus label="aliases-zsh.sh" linkIsRelative={true} link="posts/bash/4-create-config-repo/code/scripts/aliases-zsh.sh" />
+
+  </TabItem>
+</Tabs>
+
+* functions:
+
+```bash file=./code/scripts/functions.sh
+```
+
+* Bookmarks file referenced in the variable `BOOKMARKS_FILE` , and used in the `listBookmarks`  function:
+
+```json file=./code/2-bookmarks.json
+```
+
+## Demo
+
+![demo](demo.gif)
+
+## Repository
+
+If we store the settings and the implementations in a repository (e.g. GitHub) , we just need to reference them in the profile script the same way we have done so far:
+
+```bash
+# Update LOCAL_REPO_FULL_PATH with yours
+export SETTINGS_FILE="LOCAL_REPO_FULL_PATH/settings.local.json"
+source LOCAL_REPO_FULL_PATH/load-custom-profile.sh
+```
+
+I recommend you to have a `settings.template.json` with the empty variables as next:
+
+```json file=./code/3-profile-settings.template.json
+```
+
+In that way, when you clone the repo locally, you duplicate it, rename copy to `settings.local.json`, and fill the values. Add it to your `gitignore` to avoid pushing it.
+
+## Final Notes
+
+wow, this post is the longest one I have done so far! Do you have another approach for importing scripts or settings? How would you do it? Let me know in the comments below.
+
+<Gif id="d3mlE7uhX8KFgEmY" />
+
+<AboutMe/>
+
+<ShareDocusaurus 
+  slug="bash/4-create-config-repo" 
+  title="How to use a repository for importing your bash scripts and shortcuts"
+  tags={["linux","productivity","hack","bash","zsh","terminal"]} />
+
+<Comments />

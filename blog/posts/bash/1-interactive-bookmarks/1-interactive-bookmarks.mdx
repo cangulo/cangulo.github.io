@@ -24,7 +24,7 @@ In this post, I am going to implement an interactive bookmarks menu using fzf in
 
 ![goal](goal.gif)
 
-As you see, every time I call the function `listBookmarks` the following paths are listed interactively. 
+As you see, every time I call `listBookmarks` the following paths are listed interactively:
 * /home/cangulo/repos/cangulo-tf
 * /home/cangulo/repos/cangulo-nuke
 
@@ -42,7 +42,7 @@ On the other hand, in case similar paths are listed, I can filter by typing keyw
 <CaptionDocusaurus label="listBookmarks function" linkIsRelative={true} link="posts/bash/1-interactive-bookmarks/code/listbookmarks.sh" />
 
 Let me define the basic structure:
-1. Read the paths (let's call them _bookmarks_)
+1. Read the paths (i.e. _bookmarks_)
 2. List them in an interactive way
 3. Once a bookmark is selected, navigate to it
 
@@ -61,14 +61,15 @@ We can print the file content using `cat`, and then use `jq` to query the array 
 `cat $bookmarksFile  | jq -r '.[]'`
 
 <details>
-  <summary>Why I'm using a JSON file instead of a simple text file. Click here for the answer:</summary>
+    <summary>Why I'm using a JSON file instead of a simple text file. Click here for the answer:</summary>
 
-  It is because in the next article I will define more advanced bookmarks with different properties used by new features 😁
+    TODO: Update this with the article link
+    It is because in the next article I will define more advanced bookmarks with different properties used by new features 😁
 </details>
 
 ### 2. List the bookmarks
 
-Here is where fzf comes up, by piping the bookmarks to fzf, they will be output them as an interactive list.
+Here is where `fzf` comes up. Anything that `fzf`  receives is listed interactively. In this case, we pipe the `jq` result to `fzf`, so the bookmarks are listed as shown in the [demo](#demo) section.
 
 `cat $bookmarksFile | jq -r '.[]' | fzf`
 
@@ -78,7 +79,7 @@ Here is where fzf comes up, by piping the bookmarks to fzf, they will be output 
 
 `local pathSelected=$(cat $bookmarksFile | jq -r '.[]' | fzf)`
 
-We check if it is not empty (`-n`) before moving into:
+Last, we check if it is not empty (`-n`) before moving into:
 
 ```bash
 if [[ -n "$pathSelected" ]]; then
