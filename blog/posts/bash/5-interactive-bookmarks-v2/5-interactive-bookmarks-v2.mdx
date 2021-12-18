@@ -1,0 +1,111 @@
+---
+slug: bash/5-interactive-bookmarks-v2
+title: Interactive bookmarks menu v2
+date: 2020-12-20
+authors: cangulo
+tags: [linux, productivity, hack, bash, zsh, terminal]
+---
+
+import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
+import Comments from '/src/components/blog/comments.js'
+import Gif from '/src/components/gif.js'
+import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
+
+In this post, I am going to improve the interactive bookmark I created in a [previous post](../1-interactive-bookmarks/1-interactive-bookmarks.mdx).
+
+:::warning under constructiON
+:::
+
+<!--truncate-->
+
+## Requirements
+* Linux (I'm using [Elementary OS](https://elementary.io), a Ubuntu-based distro, check it!)
+* [fzf](https://github.com/junegunn/fzf) command-line fuzzy finder
+* Remember to add execution permissions to the scripts through `chmod +x`
+* This article is improve the interactive bookmark menu implemented in the previous post: [_Create an interactive bookmarks menu in your terminal_](../1-interactive-bookmarks/1-interactive-bookmarks.mdx)
+
+## Improvements to introduce
+
+### Add one directory layer
+
+I have a global path for all the repositories I clone locally, it is `/home/cangulo/repos`. I would like to group them into folders per organization or custom name.
+
+| Organization/ custom name | Repository                        |
+| ------------------------- | --------------------------------- |
+| cangulo-actions           | cangulo.nuke.prcommitsvalidations |
+| cangulo-actions           | cangulo.nuke.releasecreator       |
+| cangulo-actions           | workflows                         |
+| cangulo-nugets            | cangulo.changelog                 |
+| cangulo-nugets            | cangulo.changelog.github.io       |
+| cangulo-nugets            | cangulo.common.testing            |
+| old-projects              | cangulo.build                     |
+| old-projects              | cangulo.cicd                      |
+| old-projects              | cangulo.cicd-gh-action            |
+| temps                     | _any temporary repository_        |
+
+The _organization / custom name_ will be the first layer and the repositories the second one. Next is the folder structure:
+
+```bash
+├── cangulo-actions
+│   ├── cangulo.nuke.prcommitsvalidations
+│   ├── cangulo.nuke.releasecreator
+│   └── workflows
+├── cangulo-nugets
+│   ├── cangulo.changelog
+│   ├── cangulo.changelog.github.io
+│   ├── cangulo.common.testing
+│   └── package-lock.json
+├── old-projects
+│   ├── cangulo.build
+│   ├── cangulo.cicd
+│   └── cangulo.cicd-gh-action
+└── temp
+    ├── dotnet-docker
+    └── gsd
+```
+
+### Open VS Code in the repository
+
+Once I choose a repository, I would like to open VS Code on it. 
+
+### Demo
+
+When I open the Terminal, I want to have the first folder layer listed interactively as I had in the [first interactive menu version](../1-interactive-bookmarks/1-interactive-bookmarks.mdx), once a folder is selected, I want to have the repositories listed  the same way. Again, once one is choosen, we will navigate to it.
+
+![goal](goal.gif)
+
+## Implementation
+
+```bash file=./code/listbookmarks.sh
+```
+
+<CaptionDocusaurus label="listBookmarks function" linkIsRelative={true} link="posts/bash/5-interactive-bookmarks-v2/code/listbookmarks.sh" />
+
+Let me write down the changes introduced:
+
+Now let's dive into the details:
+
+### 1. Read the bookmarks
+First, in order to make this extensible, the paths are listed in a JSON file:
+
+```json file=code/bookmarks.json
+```
+
+<CaptionDocusaurus label="bookmarks" linkIsRelative={true} link="posts/bash/5-interactive-bookmarks-v2/code/bookmarks.json" />
+
+We can print the file content using `cat`, and then use `jq` to query the array items. 
+
+`cat $bookmarksFile  | jq -r '.[]'`
+
+And that is all! I hope this saves you some time using the terminal. Do you find this useful? Do you have similar functions? Let me know in the comments below.
+
+<Gif id="xUPOqo6E1XvWXwlCyQ"  />
+
+<AboutMe/>
+
+<ShareDocusaurus 
+  slug="posts/bash/5-interactive-bookmarks-v2" 
+  title="Interactive bookmarks menu v2"
+  tags={["linux", "productivity", "hack", "zsh", "bash", "terminal"]} />
+
+<Comments />

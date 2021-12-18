@@ -1,0 +1,19 @@
+[
+
+    {
+        "name": "Actions",
+        "path": "/home/cangulo/repos/cangulo-actions"
+    },
+    {
+        "name": "Nugets",
+        "path": "/home/cangulo/repos/cangulo-nugets"
+    },
+    {
+        "name": "oldprojects",
+        "path": "/home/cangulo/repos/old-projects"
+    },
+    {
+        "name": "temp",
+        "path": "/home/cangulo/repos/temp"
+    }
+]
