@@ -119,7 +119,8 @@ const config = {
         },
         remarkPlugins: [require('mdx-mermaid'), require('remark-code-import')]
       })
-    ]
+    ],
+    'plugin-image-zoom'
   ],
 
   presets: [
