@@ -2,6 +2,7 @@
 slug: cangulo.nuke.prcommitsvalidations
 title: cangulo.nuke.prcommitsvalidations
 date: 2021-11-26
+group: projects
 authors: cangulo
 tags: [nuke, cicd, commits, conventional-commits]
 
@@ -99,7 +100,7 @@ I call this solution through a specific [GH Action](https://github.com/cangulo-a
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="projects"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

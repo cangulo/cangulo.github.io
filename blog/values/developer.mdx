@@ -1,6 +1,7 @@
 ---
 slug: developer
 title: some points about being developer
+group: values
 authors: cangulo
 tags: [devops, deployment, deliver, cicd]
 ---
@@ -29,7 +30,7 @@ A developer should always aim for the best quality, without over-engineering the
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="values"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

@@ -2,6 +2,7 @@
 slug: cangulo.changelog
 title: cangulo.changelog
 date: 2021-11-26
+group: projects
 authors: cangulo
 tags: ["cicd", "cangulo.changelog", "personal-nuget-packages","changelog"]
 
@@ -59,7 +60,7 @@ Please check the requirements I set here.
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="projects"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

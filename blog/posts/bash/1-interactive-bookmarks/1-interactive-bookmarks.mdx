@@ -2,6 +2,7 @@
 slug: bash/1-interactive-bookmarks
 title: Create an interactive bookmarks menu in your terminal
 date: 2020-12-11
+group: posts
 authors: cangulo
 tags: [linux, productivity, hack, bash, zsh, terminal]
 ---
@@ -114,7 +115,7 @@ And that is all! I hope this saves you some time using the terminal. Do you find
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="blog/posts"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

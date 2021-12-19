@@ -2,6 +2,7 @@
 slug: SLUG
 title: TITLE
 date: 2021-11-26
+group: projects
 authors: cangulo
 tags: [TAG_LIST]
 
@@ -33,7 +34,7 @@ import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="projects"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

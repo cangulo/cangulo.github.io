@@ -2,6 +2,7 @@
 slug: bash/4-create-config-repo
 title: How to use a repository for importing your bash scripts and shortcuts
 date: 2020-12-17
+group: posts
 authors: cangulo
 tags: [linux, productivity, hack, bash, zsh, terminal]
 ---
@@ -141,7 +142,7 @@ wow, this post is the longest one I have done so far! Do you have another approa
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="blog/posts"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

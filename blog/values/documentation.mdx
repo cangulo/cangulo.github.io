@@ -1,6 +1,7 @@
 ---
 slug: documentation
 title: Documentation
+group: values
 authors: cangulo
 tags: [documentation, docs]
 ---
@@ -41,7 +42,7 @@ Let's take the next advice from He-man:
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="values"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

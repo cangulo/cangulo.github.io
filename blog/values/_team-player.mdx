@@ -1,6 +1,7 @@
 ---
 slug: team-player
 title: Team Player Notes
+group: values
 authors: cangulo
 tags: [team, softskills]
 ---
@@ -21,7 +22,7 @@ So, a colleagues is struggling with a development,
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="values"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

@@ -1,6 +1,7 @@
 ---
 slug: terraform
-title: Terraform Sheatsheet
+title: Terraform Cheatsheet
+group: cheatsheet
 date: 2021-11-08
 authors: cangulo
 tags: [terraform,cheatsheets]
@@ -53,7 +54,7 @@ import TabItem from '@theme/TabItem';
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="values"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

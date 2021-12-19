@@ -1,7 +1,7 @@
 ---
 slug: terraform
 title: Terraform Cheatsheet
-date: 2021-11-08
+group: cheatsheet
 authors: cangulo
 tags: [terraform, iac]
 
@@ -60,7 +60,7 @@ alias tf=terraform
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="cheatsheets" 
+  preSlug={frontMatter.group}
   slug={frontMatter.slug}
   title={frontMatter.title}
   tags={frontMatter.tags} />

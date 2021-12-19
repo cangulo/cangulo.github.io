@@ -2,6 +2,7 @@
 slug: cangulo.nuke.releasecreator
 title: cangulo.nuke.releasecreator
 date: 2021-11-26
+group: projects
 authors: cangulo
 tags: [nuke,cicd,releases]
 
@@ -97,7 +98,7 @@ I call this solution through a specific [GH Action](https://github.com/cangulo-a
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="projects"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

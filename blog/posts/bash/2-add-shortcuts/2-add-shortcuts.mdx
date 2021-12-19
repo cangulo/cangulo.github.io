@@ -2,6 +2,7 @@
 slug: bash/2-add-shortcuts
 title: Add shortcuts to your bash terminal
 date: 2020-12-14
+group: posts
 authors: cangulo
 tags: [linux, productivity, hack, bash, zsh, terminal]
 ---
@@ -111,7 +112,7 @@ Nothing else! I hope this saves you some time using the terminal. Do you have si
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="blog/posts"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

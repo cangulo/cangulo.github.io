@@ -2,6 +2,7 @@
 slug: bash/3-load-vars
 title: Load custom variables at Terminal startup
 date: 2020-12-15
+group: posts
 authors: cangulo
 tags: [linux, productivity, hack, bash, zsh, terminal]
 ---
@@ -129,7 +130,7 @@ Nothing more for Today! Do you think this is a good approach? How would you do i
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="blog/posts"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

@@ -1,6 +1,7 @@
 ---
 slug: devops
 title: What I have learn as DevOps
+group: values
 authors: cangulo
 tags: [devops, deployment, deliver, cicd]
 ---
@@ -51,7 +52,7 @@ https://devops.com/infrastructure-as-code/
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="values"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

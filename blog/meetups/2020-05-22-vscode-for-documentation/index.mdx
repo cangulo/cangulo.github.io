@@ -1,6 +1,7 @@
 ---
 slug: vscode-for-documentation
 title: Visual Studio Code for Documentation
+group: meetups
 authors: cangulo
 tags: [vscode, markdown, documentation]
 ---
@@ -33,7 +34,7 @@ The content is ideal for quick instructions/step by step guides.
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="meetups"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug}
   title={frontMatter.title}
   tags={frontMatter.tags} />

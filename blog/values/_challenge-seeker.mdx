@@ -1,6 +1,7 @@
 ---
 slug: challenge-seeker
 title: Challenge Seeker
+group: values
 authors: cangulo
 tags: [challenge, progress]
 ---
@@ -21,7 +22,7 @@ https://www.dougsguides.com/challenge
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="values"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

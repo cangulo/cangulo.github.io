@@ -1,6 +1,7 @@
 ---
 slug: git
 title: Git Cheatsheet
+group: cheatsheet
 authors: cangulo
 tags: [git, githooks, alias]
 ---
@@ -130,7 +131,7 @@ Please note the `l` and `lg` are alias defined as Bash functions with input para
 <AboutMe/>
 
 <ShareDocusaurus 
-  preSlug="cheatsheets"
+  preSlug={frontMatter.group}
   slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />
