@@ -9,7 +9,6 @@ tags: [nuke, cicd, commits, conventional-commits]
 ---
 
 import { CaptionDocusaurus } from '@cangulo-blog/components'
-import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
 
 ## Problem I want to solve
 
@@ -96,11 +95,3 @@ I call this solution through a specific [GH Action](https://github.com/cangulo-a
 ## GitHub Action
 
 [github action to execute in ANY repository](https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations)
-
-<AboutMe/>
-
-<ShareDocusaurus 
-  preSlug={frontMatter.group}
-  slug={frontMatter.slug} 
-  title={frontMatter.title}
-  tags={frontMatter.tags} />
