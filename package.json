@@ -23,6 +23,7 @@
     "docusaurus": "^1.14.7",
     "file-loader": "^6.2.0",
     "hyvor-talk-react": "^1.0.3",
+    "mdast-util-to-string": "^3.1.0",
     "mdx-mermaid": "^1.1.1",
     "mermaid": "^8.13.3",
     "plugin-image-zoom": "github:ataft/plugin-image-zoom",

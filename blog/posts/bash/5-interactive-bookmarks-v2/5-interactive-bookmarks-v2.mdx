@@ -7,7 +7,6 @@ tags: [linux, productivity, hack, bash, zsh, terminal]
 ---
 
 import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
-import Comments from '/src/components/blog/comments.js'
 import Gif from '/src/components/gif.js'
 import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
 
@@ -43,7 +42,12 @@ I have a global path for all the repositories I clone locally, it is `/home/cang
 | old-projects              | cangulo.cicd-gh-action            |
 | temps                     | _any temporary repository_        |
 
-The _organization / custom name_ will be the first layer and the repositories the second one. Next is the folder structure:
+| Name      | Description                             |
+| --------- | --------------------------------------- |
+| `url`     | URL for your site. For a site deployed  |
+| `baseUrl` | Base URL for your project, with a trail |
+
+The _organization / custom name_ will be the first layer, while the repositories are the second one. Next is the folder structure:
 
 ```bash
 ├── cangulo-actions
@@ -66,11 +70,9 @@ The _organization / custom name_ will be the first layer and the repositories th
 
 ### Open VS Code in the repository
 
-Once I choose a repository, I would like to open VS Code on it. 
+Once I choose a repository, I would like to open it using VS Code. 
 
 ### Demo
-
-When I open the Terminal, I want to have the first folder layer listed interactively as I had in the [first interactive menu version](../1-interactive-bookmarks/1-interactive-bookmarks.mdx), once a folder is selected, I want to have the repositories listed  the same way. Again, once one is choosen, we will navigate to it.
 
 ![goal](goal.gif)
 
@@ -107,5 +109,3 @@ And that is all! I hope this saves you some time using the terminal. Do you find
   slug="posts/bash/5-interactive-bookmarks-v2" 
   title="Interactive bookmarks menu v2"
   tags={["linux", "productivity", "hack", "zsh", "bash", "terminal"]} />
-
-<Comments />
