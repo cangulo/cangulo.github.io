@@ -116,6 +116,7 @@ const config = {
         id: 'posts',
         path: 'blog/posts',
         showReadingTime: true,
+        routeBasePath: 'blog',
         authorsMapPath: '../authors.yml',
         blogTitle: 'Carlos Angulo Posts',
         blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
