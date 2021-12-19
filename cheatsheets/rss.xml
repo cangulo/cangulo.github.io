@@ -4,22 +4,22 @@
         <title>Carlos Angulo Cheatsheets</title>
         <link>https://cangulo.github.io/cheatsheets</link>
         <description>Here you can find useful cheatsheets about how to do the daily operations a developer does</description>
-        <lastBuildDate>Sun, 19 Dec 2021 18:49:48 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 19 Dec 2021 19:09:31 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Git Cheatsheet]]></title>
-            <link>https://cangulo.github.io/cheatsheets/git</link>
-            <guid>git</guid>
-            <pubDate>Sun, 19 Dec 2021 18:49:48 GMT</pubDate>
-            <description><![CDATA[This post explains the next topics:]]></description>
-        </item>
-        <item>
             <title><![CDATA[Terraform Cheatsheet]]></title>
             <link>https://cangulo.github.io/cheatsheets/terraform</link>
             <guid>terraform</guid>
-            <pubDate>Mon, 08 Nov 2021 00:00:00 GMT</pubDate>
+            <pubDate>Sun, 19 Dec 2021 19:09:31 GMT</pubDate>
+            <description><![CDATA[This post explains the next topics:]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Git Cheatsheet]]></title>
+            <link>https://cangulo.github.io/cheatsheets/git</link>
+            <guid>git</guid>
+            <pubDate>Sun, 19 Dec 2021 19:09:31 GMT</pubDate>
             <description><![CDATA[This post explains the next topics:]]></description>
         </item>
     </channel>
