@@ -152,7 +152,6 @@ const config = {
   /** @type {import('@docusaurus/types/src/index').ThemeConfig} */
   themeConfig:
     ({
-      zoomSelector: '.markdown img',
       colorMode: {
         defaultMode: 'dark',
       },
