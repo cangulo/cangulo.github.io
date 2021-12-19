@@ -6,7 +6,7 @@ authors: cangulo
 tags: [vscode, markdown, documentation]
 ---
 
-import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
+import { CaptionDocusaurus } from '@cangulo-blog/components'
 import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
 
 Hi all,
@@ -32,9 +32,3 @@ The content is ideal for quick instructions/step by step guides.
 * [Meetup Event](https://www.meetup.com/Write-the-Docs-Barcelona/events/270480043/)
 
 <AboutMe/>
-
-<ShareDocusaurus 
-  preSlug={frontMatter.group}
-  slug={frontMatter.slug}
-  title={frontMatter.title}
-  tags={frontMatter.tags} />

@@ -5,6 +5,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const tableCenter = require('./src/remark/table-center');
 const addCommentArea = require('./src/remark/add-comment-area');
+const addShareArea = require('./src/remark/add-share-area');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -44,7 +45,7 @@ const config = {
           description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
         },
         beforeDefaultRemarkPlugins: [tableCenter],
-        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addCommentArea]
+        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addShareArea, addCommentArea]
       })
     ],
     [
@@ -65,7 +66,7 @@ const config = {
           language: 'en',
           description: 'Here you can find posts related to the personal projects I do 💻️'
         },
-        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addCommentArea]
+        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addShareArea, addCommentArea]
       })
     ],
     [
@@ -87,7 +88,7 @@ const config = {
           description: 'Here you can find information or resources about the meetups I have participated 🧑‍🏫'
         },
         beforeDefaultRemarkPlugins: [tableCenter],
-        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addCommentArea]
+        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addShareArea, addCommentArea]
       })
     ],
     [
@@ -106,7 +107,7 @@ const config = {
           type: null
         },
         beforeDefaultRemarkPlugins: [tableCenter],
-        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addCommentArea]
+        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addShareArea, addCommentArea]
       })
     ],
     [
@@ -127,7 +128,7 @@ const config = {
           description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
         },
         beforeDefaultRemarkPlugins: [tableCenter],
-        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addCommentArea]
+        remarkPlugins: [require('mdx-mermaid'), require('remark-code-import'), addShareArea, addCommentArea]
       })
     ],
     'plugin-image-zoom'
