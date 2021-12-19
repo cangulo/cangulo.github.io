@@ -33,6 +33,7 @@ import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
 <AboutMe/>
 
 <ShareDocusaurus 
-  slug="projects/SLUG" 
+  preSlug="projects"
+  slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

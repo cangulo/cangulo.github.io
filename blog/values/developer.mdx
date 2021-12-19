@@ -29,6 +29,7 @@ A developer should always aim for the best quality, without over-engineering the
 <AboutMe/>
 
 <ShareDocusaurus 
-  slug="values/developer" 
+  preSlug="values"
+  slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />

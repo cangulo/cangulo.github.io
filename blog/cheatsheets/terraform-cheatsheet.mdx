@@ -60,6 +60,7 @@ alias tf=terraform
 <AboutMe/>
 
 <ShareDocusaurus 
-  slug="cheatsheets/terraform" 
+  preSlug="cheatsheets" 
+  slug={frontMatter.slug}
   title={frontMatter.title}
   tags={frontMatter.tags} />

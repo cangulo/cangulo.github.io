@@ -53,8 +53,7 @@ import TabItem from '@theme/TabItem';
 <AboutMe/>
 
 <ShareDocusaurus 
-  slug="cheatsheets/git" 
-  title="Git Cheatsheet" 
-  tags={["git", "githooks", "alias"]} />
-  
-<Comments />
+  preSlug="values"
+  slug={frontMatter.slug} 
+  title={frontMatter.title}
+  tags={frontMatter.tags} />

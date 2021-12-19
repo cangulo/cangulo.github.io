@@ -102,6 +102,7 @@ And we're done! I hope this helps you to save time when using PS. Do you know an
 <AboutMe/>
 
 <ShareDocusaurus 
-  slug="posts/ps-profile-productive" 
+  preSlug="blog/posts"
+  slug={frontMatter.slug} 
   title={frontMatter.title}
   tags={frontMatter.tags} />
