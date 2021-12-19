@@ -7,6 +7,7 @@ const tableCenter = require('./src/remark/table-center');
 const addCommentArea = require('./src/remark/add-comment-area');
 const addShareArea = require('./src/remark/add-share-area');
 const addJSXComponent = require('./src/remark/add-jsxcomponent-area');
+const addJSXComponentV2 = require('./src/remark/add-jsxcomponent-area-v2');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -45,7 +46,14 @@ const config = {
           language: 'en',
           description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
         },
-        beforeDefaultRemarkPlugins: [tableCenter],
+        beforeDefaultRemarkPlugins: [
+          tableCenter,
+          [
+            addJSXComponentV2, {
+              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              position: 'start'
+            }
+          ]],
         remarkPlugins: [
           require('mdx-mermaid'),
           require('remark-code-import'),
@@ -76,6 +84,14 @@ const config = {
           language: 'en',
           description: 'Here you can find posts related to the personal projects I do 💻️'
         },
+        beforeDefaultRemarkPlugins: [
+          tableCenter,
+          [
+            addJSXComponentV2, {
+              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              position: 'start'
+            }
+          ]],
         remarkPlugins: [
           require('mdx-mermaid'),
           require('remark-code-import'),
@@ -106,7 +122,15 @@ const config = {
           language: 'en',
           description: 'Here you can find information or resources about the meetups I have participated 🧑‍🏫'
         },
-        beforeDefaultRemarkPlugins: [tableCenter],
+        beforeDefaultRemarkPlugins: [
+          tableCenter,
+          [
+            addJSXComponentV2, {
+              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              position: 'start'
+            }
+          ]
+        ],
         remarkPlugins: [
           require('mdx-mermaid'),
           require('remark-code-import'),
@@ -134,7 +158,15 @@ const config = {
         feedOptions: {
           type: null
         },
-        beforeDefaultRemarkPlugins: [tableCenter],
+        beforeDefaultRemarkPlugins: [
+          tableCenter,
+          [
+            addJSXComponentV2, {
+              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              position: 'start'
+            }
+          ]
+        ],
         remarkPlugins: [
           require('mdx-mermaid'),
           require('remark-code-import'),
@@ -164,7 +196,14 @@ const config = {
           language: 'en',
           description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
         },
-        beforeDefaultRemarkPlugins: [tableCenter],
+        beforeDefaultRemarkPlugins: [
+          tableCenter,
+          [
+            addJSXComponentV2, {
+              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              position: 'start'
+            }
+          ]],
         remarkPlugins: [
           require('mdx-mermaid'),
           require('remark-code-import'),
