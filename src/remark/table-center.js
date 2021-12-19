@@ -8,13 +8,13 @@ const plugin = (options) => {
                 ast.children.splice(index, 0,
                     {
                         type: 'jsx',
-                        value: '<center>'
+                        value: '<div style={{display:"flex",justifyContent:"center"}}>'
                     })
 
                 ast.children.splice(index + 2, 0,
                     {
                         type: 'jsx',
-                        value: '</center>'
+                        value: '</div>'
                     })
             });
         }
