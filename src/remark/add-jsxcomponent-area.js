@@ -8,36 +8,30 @@ function addJsxCode(options = {}) {
         if (isFullBody && (options.importStatement || options.jsx)) {
 
             if (typeof options.importStatement === 'string') {
-                ast.children.push({
-                    type: 'import',
-                    value: options.importStatement
-                })
+                insertCode(ast, 'import', options.importStatement);
             } else {
                 options.importStatement.forEach(statement => {
-                    ast.children.push({
-                        type: 'import',
-                        value: statement
-
-                    });
+                    insertCode(ast, 'import', statement);
                 });
             }
 
             if (typeof options.jsx === 'string') {
-                ast.children.push({
-                    type: 'jsx',
-                    value: options.jsx
-                })
+                insertCode(ast, 'jsx', options.jsx);
             } else {
                 options.jsx.forEach(code => {
-                    ast.children.push({
-                        type: 'jsx',
-                        value: code
-                    })
+                    insertCode(ast, 'jsx', code);
                 });
             }
         }
     };
     return transformer;
+
+    function insertCode(ast, type, value) {
+        ast.children.push({
+            type: type,
+            value: value
+        });
+    }
 };
 
 module.exports = addJsxCode;
