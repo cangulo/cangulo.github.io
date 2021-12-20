@@ -7,18 +7,33 @@ function addJsxCode(options = {}) {
         let isFullBody = ast.children.filter(x => x.type == 'comment' && x.value.includes('truncate')).length > 0
         if (isFullBody && (options.importStatement || options.jsx)) {
 
-            if (options.importStatement) {
+            if (typeof options.importStatement === 'string') {
                 ast.children.push({
                     type: 'import',
                     value: options.importStatement
                 })
+            } else {
+                options.importStatement.forEach(statement => {
+                    ast.children.push({
+                        type: 'import',
+                        value: statement
+
+                    });
+                });
             }
 
-            if (options.jsx) {
+            if (typeof options.jsx === 'string') {
                 ast.children.push({
                     type: 'jsx',
                     value: options.jsx
                 })
+            } else {
+                options.jsx.forEach(code => {
+                    ast.children.push({
+                        type: 'jsx',
+                        value: code
+                    })
+                });
             }
         }
     };

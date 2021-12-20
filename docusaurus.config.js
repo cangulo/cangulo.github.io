@@ -4,11 +4,22 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const {
-  addCommentArea,
   addJsxCode,
-  addShareArea,
   alignTableCenter,
   addJSXComponentV2 } = require('./src/remark/index');
+
+const jsxElements = {
+  imports: [
+    'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
+    'import { ShareDocusaurus } from \'@cangulo-blog/components\'\n',
+    'import Comments from \'/src/components/blog/comments.js\'\n'
+  ],
+  code: [
+    '<AboutMe />',
+    '<ShareDocusaurus preSlug={frontMatter.group} slug={ frontMatter.slug } title={ frontMatter.title } tags={ frontMatter.tags } />',
+    '<Comments />'
+  ]
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -60,11 +71,11 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
-              jsx: '<AboutMe/>'
-            }],
-          addShareArea,
-          addCommentArea]
+              importStatement: jsxElements.imports,
+              jsx: jsxElements.code
+            }
+          ]
+        ]
       })
     ],
     [
@@ -98,11 +109,11 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
-              jsx: '<AboutMe/>'
-            }],
-          addShareArea,
-          addCommentArea]
+              importStatement: jsxElements.imports,
+              jsx: jsxElements.code
+            }
+          ]
+        ]
       })
     ],
     [
@@ -137,11 +148,11 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
-              jsx: '<AboutMe/>'
-            }],
-          addShareArea,
-          addCommentArea]
+              importStatement: jsxElements.imports,
+              jsx: jsxElements.code
+            }
+          ]
+        ]
       })
     ],
     [
@@ -173,11 +184,11 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
-              jsx: '<AboutMe/>'
-            }],
-          addShareArea,
-          addCommentArea]
+              importStatement: jsxElements.imports,
+              jsx: jsxElements.code
+            }
+          ]
+        ]
       })
     ],
     [
@@ -210,11 +221,11 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
-              jsx: '<AboutMe/>'
-            }],
-          addShareArea,
-          addCommentArea]
+              importStatement: jsxElements.imports,
+              jsx: jsxElements.code
+            }
+          ]
+        ]
       })
     ],
     'plugin-image-zoom'
