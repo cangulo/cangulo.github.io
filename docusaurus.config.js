@@ -5,24 +5,21 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const {
   addJsxCode,
-  alignTableCenter,
-  addJSXComponentV2 } = require('./src/remark/index');
+  alignTableCenter } = require('@cangulo-blog/components/dist/remark-plugins');
 
-const commonImports = 'import { CaptionDocusaurus } from \'@cangulo-blog/components\''
+const commonImports = [
+  'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+  'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
+  'import { ShareDocusaurus } from \'@cangulo-blog/components\'\n',
+  'import Comments from \'/src/components/blog/comments.js\'\n'
+]
 
 
-const jsxElementEnding = {
-  imports: [
-    'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
-    'import { ShareDocusaurus } from \'@cangulo-blog/components\'\n',
-    'import Comments from \'/src/components/blog/comments.js\'\n'
-  ],
-  code: [
-    '<AboutMe />',
-    '<ShareDocusaurus preSlug={frontMatter.group} slug={ frontMatter.slug } title={ frontMatter.title } tags={ frontMatter.tags } />',
-    '<Comments />'
-  ]
-}
+const jsxElementsEnding = [
+  '<AboutMe />',
+  '<ShareDocusaurus preSlug={frontMatter.group} slug={ frontMatter.slug } title={ frontMatter.title } tags={ frontMatter.tags } />',
+  '<Comments />'
+]
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -64,7 +61,7 @@ const config = {
         beforeDefaultRemarkPlugins: [
           alignTableCenter,
           [
-            addJSXComponentV2, {
+            addJsxCode, {
               importStatement: commonImports,
               position: 'start'
             }
@@ -74,8 +71,7 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElementEnding.imports,
-              jsx: jsxElementEnding.code
+              jsx: jsxElementsEnding
             }
           ]
         ]
@@ -102,7 +98,7 @@ const config = {
         beforeDefaultRemarkPlugins: [
           alignTableCenter,
           [
-            addJSXComponentV2, {
+            addJsxCode, {
               importStatement: commonImports,
               position: 'start'
             }
@@ -112,8 +108,7 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElementEnding.imports,
-              jsx: jsxElementEnding.code
+              jsx: jsxElementsEnding
             }
           ]
         ]
@@ -140,7 +135,7 @@ const config = {
         beforeDefaultRemarkPlugins: [
           alignTableCenter,
           [
-            addJSXComponentV2, {
+            addJsxCode, {
               importStatement: commonImports,
               position: 'start'
             }
@@ -151,8 +146,7 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElementEnding.imports,
-              jsx: jsxElementEnding.code
+              jsx: jsxElementsEnding
             }
           ]
         ]
@@ -176,7 +170,7 @@ const config = {
         beforeDefaultRemarkPlugins: [
           alignTableCenter,
           [
-            addJSXComponentV2, {
+            addJsxCode, {
               importStatement: commonImports,
               position: 'start'
             }
@@ -187,8 +181,7 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElementEnding.imports,
-              jsx: jsxElementEnding.code
+              jsx: jsxElementsEnding
             }
           ]
         ]
@@ -214,7 +207,7 @@ const config = {
         beforeDefaultRemarkPlugins: [
           alignTableCenter,
           [
-            addJSXComponentV2, {
+            addJsxCode, {
               importStatement: commonImports,
               position: 'start'
             }
@@ -224,8 +217,7 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElementEnding.imports,
-              jsx: jsxElementEnding.code
+              jsx: jsxElementsEnding
             }
           ]
         ]
