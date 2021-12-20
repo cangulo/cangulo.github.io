@@ -1,4 +1,4 @@
-const plugin = (options) => {
+const addJsxCode = (options) => {
 
     const transformer = async (ast) => {
 
@@ -17,4 +17,4 @@ const plugin = (options) => {
     return transformer;
 };
 
-module.exports = plugin;
+module.exports = addJsxCode;

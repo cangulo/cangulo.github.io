@@ -1,4 +1,4 @@
-const plugin = (options) => {
+const alignTableCenter = (options) => {
     const transformer = async (ast) => {
 
         let tables = ast.children.filter(x => x.type == 'table' && x.children.length > 1)
@@ -22,4 +22,4 @@ const plugin = (options) => {
     return transformer;
 };
 
-module.exports = plugin;
+module.exports = alignTableCenter;

@@ -3,11 +3,12 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const tableCenter = require('./src/remark/table-center');
-const addCommentArea = require('./src/remark/add-comment-area');
-const addShareArea = require('./src/remark/add-share-area');
-const addJSXComponent = require('./src/remark/add-jsxcomponent-area');
-const addJSXComponentV2 = require('./src/remark/add-jsxcomponent-area-v2');
+const { 
+  addCommentArea, 
+  addJsxCode, 
+  addShareArea, 
+  alignTableCenter, 
+  addJSXComponentV2 } = require('./src/remark/index');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -47,7 +48,7 @@ const config = {
           description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
         },
         beforeDefaultRemarkPlugins: [
-          tableCenter,
+          alignTableCenter,
           [
             addJSXComponentV2, {
               importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
@@ -58,7 +59,7 @@ const config = {
           require('mdx-mermaid'),
           require('remark-code-import'),
           [
-            addJSXComponent, {
+            addJsxCode, {
               importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
               jsx: '<AboutMe/>'
             }],
@@ -85,7 +86,7 @@ const config = {
           description: 'Here you can find posts related to the personal projects I do 💻️'
         },
         beforeDefaultRemarkPlugins: [
-          tableCenter,
+          alignTableCenter,
           [
             addJSXComponentV2, {
               importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
@@ -96,7 +97,7 @@ const config = {
           require('mdx-mermaid'),
           require('remark-code-import'),
           [
-            addJSXComponent, {
+            addJsxCode, {
               importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
               jsx: '<AboutMe/>'
             }],
@@ -123,7 +124,7 @@ const config = {
           description: 'Here you can find information or resources about the meetups I have participated 🧑‍🏫'
         },
         beforeDefaultRemarkPlugins: [
-          tableCenter,
+          alignTableCenter,
           [
             addJSXComponentV2, {
               importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
@@ -135,7 +136,7 @@ const config = {
           require('mdx-mermaid'),
           require('remark-code-import'),
           [
-            addJSXComponent, {
+            addJsxCode, {
               importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
               jsx: '<AboutMe/>'
             }],
@@ -159,7 +160,7 @@ const config = {
           type: null
         },
         beforeDefaultRemarkPlugins: [
-          tableCenter,
+          alignTableCenter,
           [
             addJSXComponentV2, {
               importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
@@ -171,7 +172,7 @@ const config = {
           require('mdx-mermaid'),
           require('remark-code-import'),
           [
-            addJSXComponent, {
+            addJsxCode, {
               importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
               jsx: '<AboutMe/>'
             }],
@@ -197,7 +198,7 @@ const config = {
           description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
         },
         beforeDefaultRemarkPlugins: [
-          tableCenter,
+          alignTableCenter,
           [
             addJSXComponentV2, {
               importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
@@ -208,7 +209,7 @@ const config = {
           require('mdx-mermaid'),
           require('remark-code-import'),
           [
-            addJSXComponent, {
+            addJsxCode, {
               importStatement: 'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
               jsx: '<AboutMe/>'
             }],

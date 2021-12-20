@@ -1,4 +1,4 @@
-const plugin = (options) => {
+const addJSXComponentV2 = (options) => {
 
     const transformer = async (ast) => {
 
@@ -30,4 +30,4 @@ const plugin = (options) => {
     return transformer;
 };
 
-module.exports = plugin;
+module.exports = addJSXComponentV2;
