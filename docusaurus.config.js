@@ -3,11 +3,11 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const { 
-  addCommentArea, 
-  addJsxCode, 
-  addShareArea, 
-  alignTableCenter, 
+const {
+  addCommentArea,
+  addJsxCode,
+  addShareArea,
+  alignTableCenter,
   addJSXComponentV2 } = require('./src/remark/index');
 
 /** @type {import('@docusaurus/types').Config} */
