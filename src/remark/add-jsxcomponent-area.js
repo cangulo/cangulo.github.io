@@ -26,11 +26,21 @@ function addJsxCode(options = {}) {
     };
     return transformer;
 
-    function insertCode(ast, type, value) {
-        ast.children.push({
-            type: type,
-            value: value
-        });
+    function insertCode(ast, type, value, position) {
+
+        if (position === 'start') {
+            ast.children.splice(0, 0, {
+                type: type,
+                value: value
+            })
+        } else {
+            ast.children.push({
+                type: type,
+                value: value
+            });
+        }
+
+
     }
 };
 

@@ -8,7 +8,10 @@ const {
   alignTableCenter,
   addJSXComponentV2 } = require('./src/remark/index');
 
-const jsxElements = {
+const commonImports = 'import { CaptionDocusaurus } from \'@cangulo-blog/components\''
+
+
+const jsxElementEnding = {
   imports: [
     'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
     'import { ShareDocusaurus } from \'@cangulo-blog/components\'\n',
@@ -62,7 +65,7 @@ const config = {
           alignTableCenter,
           [
             addJSXComponentV2, {
-              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              importStatement: commonImports,
               position: 'start'
             }
           ]],
@@ -71,8 +74,8 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElements.imports,
-              jsx: jsxElements.code
+              importStatement: jsxElementEnding.imports,
+              jsx: jsxElementEnding.code
             }
           ]
         ]
@@ -100,7 +103,7 @@ const config = {
           alignTableCenter,
           [
             addJSXComponentV2, {
-              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              importStatement: commonImports,
               position: 'start'
             }
           ]],
@@ -109,8 +112,8 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElements.imports,
-              jsx: jsxElements.code
+              importStatement: jsxElementEnding.imports,
+              jsx: jsxElementEnding.code
             }
           ]
         ]
@@ -138,7 +141,7 @@ const config = {
           alignTableCenter,
           [
             addJSXComponentV2, {
-              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              importStatement: commonImports,
               position: 'start'
             }
           ]
@@ -148,8 +151,8 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElements.imports,
-              jsx: jsxElements.code
+              importStatement: jsxElementEnding.imports,
+              jsx: jsxElementEnding.code
             }
           ]
         ]
@@ -174,7 +177,7 @@ const config = {
           alignTableCenter,
           [
             addJSXComponentV2, {
-              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              importStatement: commonImports,
               position: 'start'
             }
           ]
@@ -184,8 +187,8 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElements.imports,
-              jsx: jsxElements.code
+              importStatement: jsxElementEnding.imports,
+              jsx: jsxElementEnding.code
             }
           ]
         ]
@@ -212,7 +215,7 @@ const config = {
           alignTableCenter,
           [
             addJSXComponentV2, {
-              importStatement: 'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
+              importStatement: commonImports,
               position: 'start'
             }
           ]],
@@ -221,8 +224,8 @@ const config = {
           require('remark-code-import'),
           [
             addJsxCode, {
-              importStatement: jsxElements.imports,
-              jsx: jsxElements.code
+              importStatement: jsxElementEnding.imports,
+              jsx: jsxElementEnding.code
             }
           ]
         ]
