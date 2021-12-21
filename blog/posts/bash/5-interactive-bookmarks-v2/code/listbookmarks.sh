@@ -11,11 +11,12 @@ listBookmarks() {
     )
 
     if [[ -n $selectedBookmark ]]; then
-        cd $(
+        local bookmarkPath=$(
             echo $selectedBookmark |
                 tr -s ' ' |
                 cut -f2 -d ' '
         )
+        cd $bookmarkPath
         lsf "code"
     else
         cd $LOCAL_REPOS
@@ -32,7 +33,6 @@ lsf() {
         if [[ -n $command ]]; then
             eval "\$command ."
         fi
-
     fi
 }
 export lsf
