@@ -9,14 +9,17 @@ const {
 
 const commonImports = [
   'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
-  'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_area.mdx\'',
+  'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_description.mdx\'',
+  'import FullExperienceLink from \'@cangulo-blog/components/dist/mdx/aboutme_fullexperiencelink.mdx\'',
+  'import Contact from \'@cangulo-blog/components/dist/mdx/aboutme_contact.mdx\'',
   'import { ShareDocusaurus } from \'@cangulo-blog/components\'\n',
   'import Comments from \'/src/components/blog/comments.js\'\n'
 ]
 
 
 const jsxElementsEnding = [
-  '<AboutMe />',
+  '<AboutMe /><FullExperienceLink />',
+  '<Contact />',
   '<ShareDocusaurus preSlug={frontMatter.group} slug={ frontMatter.slug } title={ frontMatter.title } tags={ frontMatter.tags } />',
   '<Comments />'
 ]
