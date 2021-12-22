@@ -35,8 +35,7 @@ export const FeatureList: FeatureItem[] = [
     svgItem: SVG_IMAGES.HOME_TEAM,
     description: (
       <>
-        <i>How can I help?</i> I think that is a good way to start a conversation.
-        However, there is a balance. Team Priorities first, anything else after.
+        I work with perseverance and resilience. Team Priorities and value creation first, anything else after. My conversations starts with two simple questions: <i>How are you?</i > and <i>How can I help?</i>
       </>
     ),
   },
