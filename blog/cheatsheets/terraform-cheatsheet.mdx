@@ -26,15 +26,21 @@ Please add the next code to your profile depending if you are using PowerShell o
 <Tabs>
   <TabItem value="ps" label="PowerShell" default>
 
-```
+```powershell
 New-Alias -Name tf -Value terraform -Force
+function tffmt { tf fmt -recursive }
+function tfa { tf apply -auto-approve }
+function tfd { tf destroy -auto-approve }
 ```
 
   </TabItem>
   <TabItem value="sh" label="Bash">
 
-```
+```bash
 alias tf=terraform
+alias tffmt="tf fmt -recursive"
+alias tfa="tf apply -auto-approve"
+alias tfd="tf destroy -auto-approve"
 ```
 
   </TabItem>
@@ -43,14 +49,14 @@ alias tf=terraform
 
 ## TF Commands
 
-| Command                     |
-| --------------------------- |
-| `tf init`                   |
-| `tf fmt --recursive`        |
-| `tf plan -out plan.out`     |
-| `tf apply -auto-approve `   |
-| `tf destroy -auto-approve ` |
-
+| Command                    |
+| -------------------------- |
+| `tf init`                  |
+| `tf fmt --recursive`       |
+| `tf plan -out plan.out`    |
+| `tf apply -auto-approve `  |
+| `tf destroy -auto-approve` |
+| `tf state ls`              |
 
 ## References
 
