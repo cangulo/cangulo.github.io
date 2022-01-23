@@ -2,11 +2,75 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cangulo.github.io/blog</id>
     <title>Carlos Angulo Posts</title>
-    <updated>2020-12-21T00:00:00.000Z</updated>
+    <updated>2022-01-22T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cangulo.github.io/blog"/>
     <subtitle>Here you can the general publications I do regarding different subjects as devops or programming 🙂</subtitle>
     <icon>https://cangulo.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Reducing costs when using AWS Control Tower AFT]]></title>
+        <id>aws/1-aws-ct-aft-reduce-cost</id>
+        <link href="https://cangulo.github.io/blog/aws/1-aws-ct-aft-reduce-cost"/>
+        <updated>2022-01-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This post explains some customizations I did to save costs when using AWS Control Tower after I follow the next article: Manage AWS Accounts Using Control Tower Account Factory for Terraform. I recommend you to read it before continue. Basic knowledge about AWS and Terraform is required.]]></summary>
+        <content type="html"><![CDATA[<p>:::info
+This post explains some customizations I did to save costs when using AWS Control Tower after I follow the next article: <a href="https://learn.hashicorp.com/tutorials/terraform/aws-control-tower-aft#create-aws-aft-organizational-unit-and-account">Manage AWS Accounts Using Control Tower Account Factory for Terraform</a>. I recommend you to read it before continue. Basic knowledge about AWS and Terraform is required.
+:::</p><h2>Context</h2><p>Whenever I want to start a new project, I create a AWS account for each environment to separate domains and costs. So far I have been doing this process manually, but then I discover the Account Factory for Terraform (AFT) as part of the AWS Control Tower services. </p><p>AFT defines a GitOps process to automatize the account creation and update. It is based in two main elements: </p><ol><li>Git repositories, where the account creation request and customizations are defined</li><li>AWS resources (as Pipeline, Dynamo table and step functions) that create the account using the settings defined in the repos. </li></ol><p>I don&#x27;t wan to go into details, but I think it is worth to mention that this automatization can make our life easier, not only because we avoid manual operations (that is always nice, right?). But because it allow us to have common customization along different accounts. </p><p>For example, we can setup a customization for all the AWS accounts to have a default budget policy with a notification when we are close to reach it.(in fact, this was my main goal first, avoid any surprise when testing projects 😁). Next are other examples:</p><ul><li>Create default resources as S3 buckets</li><li>Add SSM parameters to describe the account</li><li>Add custom policies</li></ul><h2>Problem: Costs</h2><p>After using it for a few days I notice some AWS resources were increasing the bill. Those were mainly:</p><ol><li>VPC Endpoints: <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html">billed hourly</a>.</li><li>Other resources related to NAT operations</li></ol><p>I found it in the Cost Explorer of my root account, grouping by API Operation:</p><p><img src="./resources/costs-using-aws-ct-aft.png" alt="costs"/></p><h2>Solution</h2><h3>Delete the VPC Endpoints when not used</h3><p>The AFT repository offers (<a href="https://github.com/aws-ia/terraform-aws-control_tower_account_factory">terraform-aws-control_tower_account_factory</a>) the flag <code>aft_vpc_endpoints</code> to enable/disable the VPC Endpoints. As those are been billed hourly, it doesn&#x27;t make sense to have them on if you are not using them. So, to save costs, only turn them on before executing an account creation request, and once is finished, turn them off. The idea is simple, let&#x27;s see that in practice:</p><p>The basic TF code that creates the AFT infrastructure is:</p><pre><code class="language-terraform">module &quot;aft&quot; {
+  source                      = &quot;github.com/aws-ia/terraform-aws-control_tower_account_factory&quot;
+
+  ct_management_account_id    = var.ct_management_account_id
+  log_archive_account_id      = var.log_archive_account_id
+  audit_account_id            = var.audit_account_id
+  aft_management_account_id   = var.aft_management_account_id
+  ct_home_region              = var.ct_home_region
+  tf_backend_secondary_region = &quot;us-west-2&quot;
+
+  vcs_provider                                  = &quot;github&quot;
+  account_request_repo_name                     = &quot;${var.github_username}/learn-terraform-aft-account-request&quot;
+  global_customizations_repo_name               = &quot;${var.github_username}/learn-terraform-aft-global-customizations&quot;
+  account_customizations_repo_name              = &quot;${var.github_username}/learn-terraform-aft-account-customizations&quot;
+  account_provisioning_customizations_repo_name = &quot;${var.github_username}/learn-terraform-aft-account-provisioning-customizations&quot;
+}
+</code></pre><p>Once we have created the infrastructure by executing a <code>terraform apply</code>, the vpc endpoints are enabled by default, we process to send the account creation request (explained in the tutorial), and then add the flag as next:</p><pre><code class="language-terraform" metastring="{5}">module &quot;aft&quot; {
+  source                      = &quot;github.com/aws-ia/terraform-aws-control_tower_account_factory&quot;
+
+  ...
+
+  aft_vpc_endpoints                             = false
+}
+</code></pre><p>We reexecute <code>terraform apply</code> and done! VPC Endpoint disabled and costs reduces ! </p><h3>Delete the NAT related resources when not used</h3><p>Maybe the first approach we think is to delete the resources manually and then terraform will take care of recreate them if required. However, lets take into account that all the code used by the AFT is based on Terraform and stored in GH, so, we could clone it and adapt it to our needs, well, that is what I did!</p><p>I fork the AWS GH repo <a href="https://github.com/aws-ia/terraform-aws-control_tower_account_factory">aws-ia/terraform-aws-control_tower_account_factory</a> in <a href="https://github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory">cangulo-aws-aft/terraform-aws-control_tower_account_factory</a>. Then, create a new flag following the <code>aft_vpc_endpoints</code> example is easy, the only work was to find out what resources should depend on the new flag, I name it <code>aft_vpc_aws_nat_gateway</code>. Everything is done in <a href="https://github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory/commit/d8cfd2584f4cec37e1a91d213f823191cec201d3">this commit</a>.</p><p>Then, we have to update the module &quot;aft&quot; source to our fork and add provide the flag value. Next is the result:</p><pre><code class="language-terraform" metastring="{22}">module &quot;aft&quot; {
+
+  # source = &quot;github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory&quot;
+
+  # source                      = &quot;github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory&quot;
+  source = &quot;../terraform-aws-control_tower_account_factory&quot;
+
+  ct_management_account_id    = var.ct_management_account_id
+  log_archive_account_id      = var.log_archive_account_id
+  audit_account_id            = var.audit_account_id
+  aft_management_account_id   = var.aft_management_account_id
+  ct_home_region              = var.ct_home_region
+  tf_backend_secondary_region = var.tf_backend_secondary_region
+
+  vcs_provider                                  = &quot;github&quot;
+  account_request_repo_name                     = &quot;${var.github_username}/account-request&quot;
+  account_provisioning_customizations_repo_name = &quot;${var.github_username}/account-provisioning-customizations&quot;
+  global_customizations_repo_name               = &quot;${var.github_username}/global-customizations&quot;
+  account_customizations_repo_name              = &quot;${var.github_username}/account-customizations&quot;
+
+  aft_feature_delete_default_vpcs_enabled = false
+  aft_vpc_aws_nat_gateway                 = false
+  aft_vpc_endpoints                       = false
+}
+</code></pre><h2>References:</h2><ul><li>Youtube Tutorial for setting up AWS Control Tower: <a href="https://www.youtube.com/watch?v=CwRy0t8nfgM">Enable AWS Control Tower for Existing Organizations</a>  </li><li><a href="https://learn.hashicorp.com/tutorials/terraform/aws-control-tower-aft#create-aws-aft-organizational-unit-and-account">Manage AWS Accounts Using Control Tower Account Factory for Terraform</a>  </li><li><a href="https://aws.amazon.com/blogs/aws/new-aws-control-tower-account-factory-for-terraform/">Account Factory for Terraform</a></li></ul><h3>Git Repositories</h3><p><a href="https://github.com/hashicorp/learn-terraform-aft-account-provisioning-customizations">learn-terraform-aft-account-provisioning-customizations</a><br/>
+<a href="https://github.com/hashicorp/learn-terraform-aft-account-customizations">learn-terraform-aft-account-customizations</a><br/>
+<a href="https://github.com/hashicorp/learn-terraform-aft-global-customizations">learn-terraform-aft-global-customizations</a><br/>
+<a href="https://github.com/hashicorp/learn-terraform-aft-account-request">learn-terraform-aft-account-request</a></p>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Interactive bookmarks menu v2]]></title>
         <id>bash/5-interactive-bookmarks-v2</id>
