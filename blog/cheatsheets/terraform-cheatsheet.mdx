@@ -49,14 +49,33 @@ alias tfd="tf destroy -auto-approve"
 
 ## TF Commands
 
-| Command                    |
-| -------------------------- |
-| `tf init`                  |
-| `tf fmt --recursive`       |
-| `tf plan -out plan.out`    |
-| `tf apply -auto-approve `  |
-| `tf destroy -auto-approve` |
-| `tf state ls`              |
+| Command                                          |
+| ------------------------------------------------ |
+| `tf init`                                        |
+| `tf fmt --recursive`                             |
+| `tf plan -out plan.out`                          |
+| `tf apply -auto-approve `                        |
+| `tf destroy -auto-approve`                       |
+| `tf state ls`                                    |
+| `tf state rm ADDR`                               |
+| `tf import -var-file=[FILENAME].tfvars ADDR ID ` |
+
+### Examples
+
+#### TF IMPORT
+`terraform [global options] import [options] ADDR ID` -> Is the resource path as `RESOURCE_TYPE.RESOURCE_NAME`. Examples:
+
+```bash
+aws_resourcegroups_group.main
+aws_organizations_organizational_unit.apps["journalbot"] -> Resources created without foreach.
+module.app_envs["temp-app-envs"].aws_organizations_organizational_unit.envs["prd"] -> Resources created **with foreach**.
+```
+
+Using the ADDR in tf import:
+```bash
+tf import -var-file=base.tfvars RESOURCE_TYPE.RESOURCE_NAME ID_OR_ARN # Resources created without foreach.
+tf import -var-file=base.tfvars 'RESOURCE_TYPE.RESOURCE_NAME["RESOURCE_KEY"]' ID_OR_ARN #  Resources created **with foreach**. Please note the `''` for the resource path.
+```
 
 ## References
 
