@@ -121,6 +121,16 @@ The one I use the most is `cob`, every time I have to create a new branch I type
 
 Please note the `l` and `lg` are alias defined as Bash functions with input parameters `${1-DefaultParameter}`.
 
+## How to update the permissions for bash files in a git repository
+
+`git update-index --chmod=+x path/to/file`
+
+```powershell
+$bashScripts= Get-ChildItem -Name -Filter "*.sh" -Depth 5
+foreach ($script in $bashScripts) {
+    git update-index --chmod=+x $script
+}
+``` 
 
 ## References
 
