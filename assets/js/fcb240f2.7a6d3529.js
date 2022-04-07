@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[8607],{8889:function(e){e.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/windows-terminal","name":"windows-terminal","count":1,"permalink":"/cheatsheets/tags/windows-terminal"}')}}]);

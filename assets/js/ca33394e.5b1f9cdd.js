@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[8325],{7081:function(s){s.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/wsl","name":"wsl","count":1,"permalink":"/cheatsheets/tags/wsl"}')}}]);
