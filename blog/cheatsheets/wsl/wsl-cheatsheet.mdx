@@ -1,0 +1,34 @@
+---
+slug: wsl
+title: WSL Cheatsheet
+group: cheatsheets
+authors: cangulo
+tags: [wsl, linux, windows-terminal]
+---
+
+
+
+
+This post explains the next topics:
+* some tips when using the WSL (Windows Subsystem for Linux)
+
+<!--truncate-->
+
+## Format bash scripts for been used in Ubuntu
+
+### User Case
+
+Let's say you are using Windows but you have some bash scripts for a Pipeline (Bitbucket or GH Action) you need to modify, if you install Ubuntu in the WSL you can call and tests those scripts. The only problems is that sometimes there is a formatting issue when Ubuntu tries to read them, the next code fix it:
+
+`sed -i 's/\r//' scripts/*.sh`          ;`
+
+```bash
+bashScripts=$(find ./ -type f -name "*.sh") ;\
+for script in "${bashScripts[@]}"; do  \
+    sed -i 's/\r//' $script; \
+done
+```
+
+## References
+
+* [Windows Subsystem for Linux Documentation - Microsoft](https://docs.microsoft.com/en-us/windows/wsl/)
