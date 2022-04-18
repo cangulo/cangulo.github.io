@@ -1,0 +1,81 @@
+---
+slug: aws/2-aws-ct-aft-costs
+title: not finished - AWS Control Tower (AFT) Costs
+date: 2022-04-22
+group: blog
+authors: cangulo
+tags: [aws, projects, accounts, setup, costs]
+---
+
+
+:::info
+In this post I'm going to talk about the costs I faced using AWS Control Tower the latest 3 months. I recommend you read my [previous posts](../setup-aws-account-envs/aws-control-tower-aft.mdx) before continuing. Basic knowledge about AWS Control Tower is required.
+:::
+
+<!--truncate-->
+
+:::caution
+
+This post is not finished yet
+
+:::
+
+## Context
+
+In my [last post](../setup-aws-account-envs/aws-control-tower-aft.mdx) I explained how I setup the services AWS Control Tower and the Account Factory for Terraform (AFT) approach. Now I'm going to talk about the costs associated.
+
+### Latest 3 months costs:
+
+Before continue I have to mention my usage of AFT:
+* January and February were the months I use it. I created 5 AWS Accounts.
+* On March I didn't create neither enroll any account. This was on purpose to check what are the fixed costs of having AFT inactive, I knew some Control Tower policies created have fixed costs no mated if you use them or not. I will dive into it in the next sections
+
+And here we have the costs:
+
+![latest 3 months costs](resources/costs-latest-3-months.png)
+
+
+| Service    | Config($) | VPC($) | Tax($) | EC2-Other($) | CodeBuild($) | Key Management Service($) | Lambda($) | S3($) | DynamoDB($) | Backup($) | EC2-Instances($) | CloudWatch($) | Total cost ($) |
+| ---------- | --------- | ------ | ------ | ------------ | ------------ | ------------------------- | --------- | ----- | ----------- | --------- | ---------------- | ------------- | -------------- |
+| 2022-01-01 | 16.58     | 17.34  | 10.62  | 8.41         | 6.62         | 1.56                      | 0.09      | 0.01  | 0.01        | 0.01      | 0.01             | 0.01          | 61.2           |
+| 2022-02-01 | 13.9      | 12.5   | 10.98  | 9.04         | 8.5          | 1.87                      | 6.44      | 0.01  | 0.01        | 0.01      | 0.01             | 0.01          | 63.22          |
+| 2022-03-01 | 9.03      | 0      | 4.72   | 7.44         | 0            | 6                         | 0         | 0.01  | 0.01        | 0.01      | 0                | 0             | 27.19          |
+
+### Wait Carlos, were you using the Free Tier?
+
+Yes I was, and that might reduce the final costs I had but I don't expect them to be significant neither to change any conclusion of this article. I checked the quota I had left on April 18 after not using it since later february, and for some services it was already exceed.
+
+![free tier stats](resources/free-tier-stats.png)
+
+
+
+### Side Notes: Audit and Log AWS Accounts costs
+
+For using AWS Control Tower there are 3 accounts required:
+* Audit Account.
+* Log Archive Account.
+* AFT Account where all the resources to process account creation request are.
+
+In this post I'm only referring to the AFT accounts costs. Next are all the costs 
+
+| Linked Account Name | cangulo_aft ($) | Log Archive ($) | Audit ($) |
+| ------------------- | --------------- | --------------- | --------- |
+| 2022-01-01          | 61.2            | 1.8             | 0.2       |
+| 2022-02-01          | 63.3            | 1.5             | 0.02      |
+| 2022-03-01          | 27.2            | 2.8             | 0.01      |
+
+
+## References:
+
+* [Starting with Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/getting-started-with-control-tower.html)
+  * `If you are running ephemeral workloads from accounts in AWS Control Tower, you may see an increase in costs associated with AWS Config. Contact your AWS account representative for more specific information about managing these costs.`
+* [control tower user guide](https://docs.aws.amazon.com/controltower/latest/userguide/controltower-ug.pdf)
+  * Page 173 -> `The detective guardrails are implemented using AWS Config rules`
+* 
+
+### Git Repositories
+
+[learn-terraform-aft-account-provisioning-customizations](https://github.com/hashicorp/learn-terraform-aft-account-provisioning-customizations)  
+[learn-terraform-aft-account-customizations](https://github.com/hashicorp/learn-terraform-aft-account-customizations)  
+[learn-terraform-aft-global-customizations](https://github.com/hashicorp/learn-terraform-aft-global-customizations)  
+[learn-terraform-aft-account-request](https://github.com/hashicorp/learn-terraform-aft-account-request)  
