@@ -45,7 +45,7 @@ I found it in the Cost Explorer of my root account, grouping by API Operation:
 
 ### Delete the VPC Endpoints when not used
 
-The AFT repository offers ([terraform-aws-control_tower_account_factory](https://github.com/aws-ia/terraform-aws-control_tower_account_factory)) the flag `aft_vpc_endpoints` to enable/disable the VPC Endpoints. As those are been billed hourly, it doesn't make sense to have them on if you are not using them. So, to save costs, only turn them on before executing an account creation request, and once it is finished, turn them off. The idea is simple, let's see that in practice:
+The AFT repository ([terraform-aws-control_tower_account_factory](https://github.com/aws-ia/terraform-aws-control_tower_account_factory)) offers  the flag `aft_vpc_endpoints` to enable/disable the VPC Endpoints. As those are been billed hourly, it doesn't make sense to have them on if you are not using them. So, to save costs, only turn them on before executing an account creation request, and once it is finished, turn them off. The idea is simple, let's see that in practice:
 
 The basic TF code that creates the AFT infrastructure is:
 
