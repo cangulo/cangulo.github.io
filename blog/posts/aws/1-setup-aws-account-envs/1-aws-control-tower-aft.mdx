@@ -19,10 +19,10 @@ This post explains some customizations I did to save costs when using AWS Contro
 Whenever I want to start a new project, I create an AWS account for each environment, I do it to separate domains and costs. So far, I have been doing this manually, but then I discover the Account Factory for Terraform (AFT) as part of the AWS Control Tower services. 
 
 AFT defines a GitOps process to automatize the account creation and update. It is based on two main elements: 
-1. Git repositories where the account creation request and customizations are defined
-2. AWS resources that create the account using the settings defined in the repositories. Some of them are CodePipeline, Dynamo tables, Lambdas, and Step Functions.
+1. Git repositories where the account creation request and customizations are defined.
+2. AWS resources used in the account creation/update process. All of them are based on the repository code. Some of them are CodePipeline, Dynamo tables, Lambdas, and Step Functions.
 
-I don't want to go into details, but I think it is worth mentioning that this automatization simplifies the whole process, not only because we avoid manual operations (that is always nice, right?), but because it allows us to have common customization among different accounts. 
+I don't want to go into details, but I think it is worth mentioning that this automatization simplifies the whole process, not only because we avoid manual operations (that is always nice, right?), but because it allows us to align different AWS accounts.
 
 A customization example could be to define a Budget after creating the account. We can add a notification when we are close to a maximum amount (in fact, this was my main goal at first, to avoid any unexpected cost 😁). Next are other examples:
 
@@ -30,12 +30,16 @@ A customization example could be to define a Budget after creating the account. 
 * Add SSM parameters to describe the account
 * Add custom policies
 
+:::info
+I'm not going to go into the customization details in this article. I just want to point out a few examples. I will explain it in a separate post in the future.
+:::
+
 ## Problem: Costs
 
-After using it for a few days, I noticed some AWS resources were increasing the bill. Those were mainly:
+AFT does not have a cost itself, the cost depends [on the resources deployed and used](https://docs.aws.amazon.com/controltower/latest/userguide/aft-pricing.html). Next are the main costs per resource after a few days of using it:
 
 1. VPC Endpoints: [billed hourly](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html).
-2. Other resources related to NAT operations
+2. NatGateway.
 
 I found it in the Cost Explorer of my root account, grouping by API Operation:
 
@@ -45,7 +49,7 @@ I found it in the Cost Explorer of my root account, grouping by API Operation:
 
 ### Delete the VPC Endpoints when not used
 
-The AFT repository ([terraform-aws-control_tower_account_factory](https://github.com/aws-ia/terraform-aws-control_tower_account_factory)) offers  the flag `aft_vpc_endpoints` to enable/disable the VPC Endpoints. As those are been billed hourly, it doesn't make sense to have them on if you are not using them. So, to save costs, only turn them on before executing an account creation request, and once it is finished, turn them off. The idea is simple, let's see that in practice:
+The AFT repository ([terraform-aws-control_tower_account_factory](https://github.com/aws-ia/terraform-aws-control_tower_account_factory)) offers  the flag `aft_vpc_endpoints` to enable/disable the VPC Endpoints. As those are been billed hourly, it doesn't make sense to have them on if you are not using them. So, to save costs, only turn them on before requesting a new account, and once it is finished, turn them off. The idea is simple, let's see that in practice:
 
 The basic TF code that creates the AFT infrastructure is:
 
@@ -68,7 +72,7 @@ module "aft" {
 }
 ```
 
-Once we have created the infrastructure by executing a `terraform apply`, the VPC endpoints are enabled by default, we process to send the account creation request (explained in the tutorial). Once it is finished, we set the `aft_vpc_endpoints` flag to false:
+Once we have created the infrastructure by executing a `terraform apply`, the VPC endpoints are enabled by default, we process to send the account creation request (explained in the [tutorial](https://learn.hashicorp.com/tutorials/terraform/aws-control-tower-aft#create-aws-aft-organizational-unit-and-account)). Once it is finished, we set the `aft_vpc_endpoints` flag to false:
 
 ```terraform {5}
 module "aft" {
@@ -80,11 +84,13 @@ module "aft" {
 }
 ```
 
-We reexecute `terraform apply` and done! VPC endpoints deleted and costs reduced! 
+We reexecute `terraform apply` and done! VPC endpoints deleted and costs reduced!
 
 ### Delete the NAT related resources when not used
 
-Maybe, the first approach we think is to manually delete the NAT resources. Then, before queuing any account creation request, we use Terraform to recreate them. That might work, but taking into account that the AFT code is in a GitHub repository, I thought it was better to fork it and add a new flag to conditionally create them. So, I did the next steps:
+Maybe, the first approach we think is to manually delete the NAT resources. Then, before queuing any account creation request, we use Terraform to recreate them. That might work, but it involves manual intervention on in the AWS Console for every request, we don't want that. 
+
+So, taking into account the AFT code is in a GitHub repository, I thought it was better to fork it and add a new flag to conditionally create the NAT resources. So, I did the next steps:
 
 1. I forked the AWS GH repo [aws-ia/terraform-aws-control_tower_account_factory](https://github.com/aws-ia/terraform-aws-control_tower_account_factory) in [cangulo-aws-aft/terraform-aws-control_tower_account_factory](https://github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory).
 2. I created a new flag called `aft_vpc_nat_gateway` following the `aft_vpc_endpoints` model.
@@ -97,10 +103,10 @@ Then, I simply update the "aft" module source to my fork and provide the new fla
 ```terraform {22}
 module "aft" {
 
-  # source = "github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory"
+  # source = "github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory" # repo in the cloud
 
   # source                      = "github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory"
-  source = "../terraform-aws-control_tower_account_factory"
+  source = "../terraform-aws-control_tower_account_factory" # repo in the same local path
 
   ct_management_account_id    = var.ct_management_account_id
   log_archive_account_id      = var.log_archive_account_id
