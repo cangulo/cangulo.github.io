@@ -9,7 +9,7 @@ tags: [aws, projects, accounts, setup, costs]
 
 
 :::info
-In this post I'm going to talk about the costs I faced using AWS Control Tower the latest 3 months. I recommend you read my [previous posts](../setup-aws-account-envs/aws-control-tower-aft.mdx) before continuing. Basic knowledge about AWS Control Tower is required.
+In this post I'm going to talk about the costs I faced using AWS Control Tower the latest 3 months. I recommend you read my [previous posts](../1-setup-aws-account-envs/1-aws-control-tower-aft.mdx) before continuing. Basic knowledge about AWS Control Tower is required.
 :::
 
 <!--truncate-->
@@ -22,7 +22,7 @@ This post is not finished yet
 
 ## Context
 
-In my [last post](../setup-aws-account-envs/aws-control-tower-aft.mdx) I explained how I setup the AWS Control Tower services with the Account Factory for Terraform (AFT) approach. Now I'm going to talk about the costs associated.
+In my [last post](../1-setup-aws-account-envs/1-aws-control-tower-aft.mdx) I explained how I setup the AWS Control Tower services with the Account Factory for Terraform (AFT) approach. Now I'm going to talk about the costs associated.
 
 ### Latest 3 months costs:
 
@@ -96,7 +96,7 @@ Let me write down the services used:
   * KMS
 * AWS Config is the highest cost. I wrote a dedicate section for this service: [aws config section](#aws-config)
 * There are no cost for  the services `CodeBuild` and  `Lambda`. This is because I haven't created nor enrolled any account in March.
-* Using the improvement to disable the VPC endpoints and NAT explained in my [previous posts](../setup-aws-account-envs/aws-control-tower-aft.mdx), in March the cost is 0 for the following operations:
+* Using the improvement to disable the VPC endpoints and NAT explained in my [previous posts](../1-setup-aws-account-envs/1-aws-control-tower-aft.mdx), in March the cost is 0 for the following operations:
   * `EU-VpcEndpoint-Hours` - service `VPC`
   * `EU-NatGateway-Hours` and `EU-NatGateway-Bytes` - service `EC2-Other`
 * However, **there is still a cost in the `EC2-Other`** service, it is for the API Operation `AssociateAddressVPC` , usage type: `EU-ElasticIP:IdleAddress`. 
