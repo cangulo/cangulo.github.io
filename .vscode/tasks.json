@@ -7,11 +7,11 @@
 			"problemMatcher": [],
 			"label": "npm: start",
 			"detail": "docusaurus start --no-open",
-			"path": "${workspaceFolder}",
+			// "path": "${workspaceFolder}",
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			}
-		}	
+		}
 	]
 }
