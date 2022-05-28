@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[5880],{6602:function(t){t.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/linux-distribution","name":"linux_distribution","count":1,"permalink":"/cheatsheets/tags/linux-distribution"}')}}]);
