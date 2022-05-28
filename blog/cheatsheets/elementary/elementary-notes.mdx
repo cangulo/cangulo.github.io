@@ -12,7 +12,7 @@ import BrowserWindow from '/src/components/BrowserWindow'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-This post explains some tips I discovered about the Elementary OS.
+This post explains some tips I discovered about [Elementary OS](https://elementary.io).
 
 <!--truncate-->
 
@@ -49,7 +49,7 @@ Name=Open calendar
 Exec=/opt/vivaldi/vivaldi --profile-directory=Default --app-id=eigpmdhekjlgjgcppnanaanbdmnlnagl --app-launch-url-for-shortcuts-menu-item=https://outlook.live.com/calendar
 ```
 
-## Nice tip: add xkill as shortcut:
+## Nice tip: add `xkill` as shortcut:
 
 First of all, what `xkill` is? It is a command to _kill_ process by clicking on their windows. The normal usage is:
 1. Open a terminal
@@ -59,7 +59,11 @@ First of all, what `xkill` is? It is a command to _kill_ process by clicking on 
 
 [More details about xkill](https://www.tutorialspoint.com/how-to-kill-linux-processes-using-xkill-command)
 
-Next is an app launcher example;
+Next is a custom app launcher example:
+
+:::info reuse this example:
+Please note this example execute the command `xkill`. You can modify it to run any other command you want to have on the app launcher. Just Update all the properties to your needs, the most important one is the `exec`, set there the command you want to execute. 
+:::
 
  ```bash
 #!/usr/bin/env xdg-open
@@ -74,6 +78,6 @@ Categories=System
 Keywords=Command;kill;close
 ```
 
-Please note you have to provide an icon, in my case, I created a folder called icons and add the next one:
+Remember to provide an icon, in my case, I created a folder called icons and add the next one:
 
 ![xkill icon](assets/xkill-icon.png)
