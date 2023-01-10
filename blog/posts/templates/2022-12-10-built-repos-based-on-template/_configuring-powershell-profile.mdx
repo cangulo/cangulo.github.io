@@ -1,0 +1,77 @@
+---
+slug: templates-1
+title: How to use GH Provider to push templates
+date: 2022-12-10
+group: blog
+authors: cangulo
+tags: [terraform,github,templates,github-provider]
+---
+
+
+
+When we start a new project we all repeat task as `npm init` or `dotnet new` for setting the code, we also add a  `README.md` file for documentation. In this post, I will explain how to save you those operations by considering using templates.
+
+<!--truncate-->
+
+# What a repo contain?
+
+Let's start by defining what files a repo contain. I have in mind the next repo structure:
+```
+
+```
+# TODO
+
+Approaches:
+
+1. add two layers
+   1. solution_group
+   2. solution_name
+
+
+Example
+
+
+| solution    | type           | id         |
+| ----------- | -------------- | ---------- |
+| gh-action   | composite      | helloworld |
+| gh-action   | composite      | custom     |
+| gh-action   | js             | helloworld |
+| gh-action   | js             | custom     |
+| gh-action   | docker         | helloworld |
+| gh-action   | docker         | custom     |
+| tf-module   | empty          | helloworld |
+| tf-module   | aws            | helloworld |
+| dotnet      | api            | helloworld |
+| tf-projects | aws-api-lambda | helloworld |
+
+Challange:
+
+How to update the readme in all repos??
+Ideas:
+* deploy a GH action in all repos that can be trigger via webhook?
+* deploy a GH action in all repos to update template_metadata.json
+
+template_metadata.json
+```
+{
+   params...
+   aboutme_version
+}
+```
+When I create a repo what files I always have to create?
+* Code Owners
+* readme
+What files can be there?
+* version.json
+* workflows to handle 
+  * CI: Commits (only validate conventional commits)
+  * CD: versioning (only versioning and releasing)
+
+When I start a project, what actions I do ?
+
+
+
+## References
+
+* [GH Docs: Creating a template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository)
+* [GH Docs: Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)

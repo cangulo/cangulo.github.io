@@ -1,0 +1,44 @@
+---
+slug: aws
+title: AWS Cheatsheet
+group: cheatsheets
+authors: cangulo
+tags: [aws, cloud,scripts]
+
+---
+
+
+import BrowserWindow from '/src/components/BrowserWindow'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+This post contains some useful AWS commands and scripts.
+
+<!--truncate-->
+
+## AWS Commands
+
+| Command                       |
+| ----------------------------- |
+| `aws sts get-caller-identity` |
+
+### Filtering command output
+
+* `--query PROP_PATH`. Like you're using `jq` for querying JSON string. You can save the initial `.`
+* `--output text|json`. Output as text print values without quotes.
+
+### Most used commands
+
+* `aws sts get-caller-identity --query Arn --output text` get current user ARN
+
+## Script to verify credentials
+
+```shell
+current_credentials=$(aws sts get-caller-identity --query Arn --output text)
+expected_credentials="arn:aws:iam::{ACCOUNT_ID}}:user/{USER_NAME}"
+
+if [[ "${current_credentials}" != "${expected_credentials}" ]]; then
+    echo "\033[31m INVALID CREDENTIALS \033[0m" # PRINT THIS IN RED
+    return
+fi
+```
