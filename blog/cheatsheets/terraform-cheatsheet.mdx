@@ -72,10 +72,27 @@ module.app_envs["temp-app-envs"].aws_organizations_organizational_unit.envs["prd
 ```
 
 Using the ADDR in tf import:
+
+<BrowserWindow>
+<Tabs>
+  <TabItem value="ps" label="PowerShell" default>
+
+```powershell
+tf import -var-file=base.tfvars RESOURCE_TYPE.RESOURCE_NAME ID_OR_ARN # Resources created without foreach.
+tf import -var-file=base.tfvars 'RESOURCE_TYPE.RESOURCE_NAME[\"RESOURCE_KEY\"]' ID_OR_ARN #  Resources created **with foreach**. Please note the `''` for the resource path.
+```
+
+  </TabItem>
+  <TabItem value="sh" label="Bash">
+
 ```bash
 tf import -var-file=base.tfvars RESOURCE_TYPE.RESOURCE_NAME ID_OR_ARN # Resources created without foreach.
 tf import -var-file=base.tfvars 'RESOURCE_TYPE.RESOURCE_NAME["RESOURCE_KEY"]' ID_OR_ARN #  Resources created **with foreach**. Please note the `''` for the resource path.
 ```
+
+  </TabItem>
+</Tabs>
+</BrowserWindow>
 
 ## References
 
