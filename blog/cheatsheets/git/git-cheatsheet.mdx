@@ -132,6 +132,29 @@ foreach ($script in $bashScripts) {
 }
 ``` 
 
+
+## undo change in file permissions 
+
+**Scenario**: you copy and paste repositories manually. When you copy it from a external drive the permissions change for all the files
+
+How to list differences? `git diff --summary`
+
+**Solution**:
+
+```bash
+function git_undo_permissions_change_in_repo() {
+    git diff -p -R --no-ext-diff --no-color | grep -E "^(diff|(old|new) mode)" --color=never  | git apply
+}
+
+function git_undo_permission_change_in_subfolders() {
+    # 1 level deep
+    for d in ./*/ ; do (cd "$d" && git diff -p -R --no-ext-diff --no-color | grep -E "^(diff|(old|new) mode)" --color=never  | git apply); done
+    # 2 level deep
+    for d in ./*/*/ ; do (cd "$d" && git diff -p -R --no-ext-diff --no-color | grep -E "^(diff|(old|new) mode)" --color=never  | git apply); done
+}
+
+```
+
 ## References
 
 * [official docs - git alias](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases)
