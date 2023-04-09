@@ -1,0 +1,55 @@
+name: 'get workspaces'
+
+on:
+  workflow_call:
+    outputs:
+      accounts_changed:
+        value: ${{ jobs.get-changes.outputs.accounts_changed }}
+      accounts_all:
+        value: ${{ jobs.get-changes.outputs.accounts_all }}
+      source_code_changed:
+        value: ${{ jobs.get-changes.outputs.source_code_changed }}
+
+jobs:
+  get-changes:
+    name: 'Detect Changes and workspaces'
+    runs-on: ubuntu-latest
+    outputs:
+      accounts_changed: ${{ steps.wss-list.outputs.accounts_changed }}
+      accounts_all: ${{ steps.wss-list.outputs.accounts_all }}
+      source_code_changed: ${{ steps.wss-list.outputs.source_code_changed }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Get Changes Paths
+      uses: dorny/paths-filter@v2.11.1
+      id: changes
+      with:
+        base: main
+        list-files: json
+        filters: |
+          accounts_changed:
+            - added|modified: 'accounts/**'
+          source_code:
+            - added|modified|deleted: 'terraform/**'
+    - name: list wss
+      id: wss-list
+      env:
+        ANY_ACCOUNT_CHANGED: ${{ steps.changes.outputs.accounts_changed }}
+        ACCOUNTS_CHANGED: ${{ steps.changes.outputs.accounts_changed_files }}
+        SOURCE_CODE_CHANGED: ${{ steps.changes.outputs.source_code }}
+        REGEX_SPLIT_PATH: 'accounts/(?<file>[^·]+).json'
+      run: |
+        accounts_all=($(ls accounts/ | sed -e 's/\.json$//'))
+        accounts_all=$(jq -c -n '$ARGS.positional' --args "${accounts_all[@]}")
+
+        if [[ "${ANY_ACCOUNT_CHANGED}" == "true" ]]; then
+          accounts_changed=$(echo "$ACCOUNTS_CHANGED" | jq --arg regex "$REGEX_SPLIT_PATH" -c '[.[] | capture($regex) | (.file) ]')
+        else
+          accounts_changed='[]'
+        fi
+
+        echo "accounts_changed=$accounts_changed"           >> $GITHUB_OUTPUT
+        echo "accounts_all=$accounts_all"                   >> $GITHUB_OUTPUT
+        echo "source_code_changed=$SOURCE_CODE_CHANGED"     >> $GITHUB_OUTPUT

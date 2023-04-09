@@ -1,0 +1,78 @@
+on:
+  workflow_call:
+    inputs:
+      accounts:
+        required: true
+        type: string
+      apply:
+        required: false
+        type: boolean
+        default: false
+env:
+  # use GH secrets to store sensitive credentials
+  AFT_ACCOUNT_ID: ${{ secrets.AFT_ACCOUNT_ID }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AFT_ROOT_EXECUTOR_AK }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AFT_ROOT_EXECUTOR_SK }}
+  AWS_DEFAULT_REGION: ${{ secrets.AFT_ROOT_EXECUTOR_REGION }}
+  TF_STATE_BACKEND_S3_KMS_KEY_ID: ${{ secrets.TF_STATE_S3_BUCKET_KMS_ID }}
+
+jobs:
+  deployment:
+    name: ${{ matrix.account }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.apply == true && matrix.account }}
+    strategy:
+      fail-fast: false
+      matrix:
+        account: ${{ fromJSON(inputs.accounts) }}  # accounts is an array with JSON files names
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: setup account properties
+      env:
+        ACCOUNT_FILE: "accounts/${{ matrix.account }}.json"
+      run: |
+        ACCOUNT_ID=$(jq '.account_id' $ACCOUNT_FILE -r)
+        ACCOUNT_ENV=$(jq '.env' $ACCOUNT_FILE -r)
+
+        # mapping ENV VARS from CodePipeline spec
+        echo "EXECUTION_TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+        echo "TF_DISTRIBUTION_TYPE=oss" >> $GITHUB_ENV
+        echo "AWS_BACKEND_REGION=$AWS_DEFAULT_REGION" >> $GITHUB_ENV
+        echo "AWS_BACKEND_BUCKET=aft-backend-$AFT_ACCOUNT_ID-primary-region" >> $GITHUB_ENV
+        echo "AWS_BACKEND_KEY=$ACCOUNT_ID-aft-global-customizations/terraform.tfstate" >> $GITHUB_ENV
+        echo "AWS_BACKEND_DYNAMODB_TABLE=aft-backend-$AFT_ACCOUNT_ID" >> $GITHUB_ENV
+        echo "AWS_BACKEND_KMS_KEY_ID=$TF_STATE_BACKEND_S3_KMS_KEY_ID" >> $GITHUB_ENV
+        
+        # BE SURE credentials have permission on the bucket
+        echo "AWS_BACKEND_ROLE_ARN=" >> $GITHUB_ENV
+
+        # BE SURE credentials can assume this role / or create a role
+        echo "AWS_PROVIDER_ROLE_ARN=arn:aws:iam::$ACCOUNT_ID:role/AWSAFTExecution" >> $GITHUB_ENV
+        
+        # file paths
+        echo "AWS_BACKEND_PATH=terraform/backend.jinja" >> $GITHUB_ENV
+        echo "AWS_PROVIDER_PATH=terraform/aft-providers.jinja" >> $GITHUB_ENV
+
+    - name: build aft-providers.tf and backend.tf
+      run: |
+        pip install Jinja2
+        ./scripts/aft-providers-builder.py
+        cat "terraform/aft-providers.tf"
+        ./scripts/backend-builder.py
+        cat "terraform/backend.tf"
+
+    - name: Terraform Plan
+      id: tf-plan
+      working-directory: terraform
+      run: |
+        TF_PLAN_PATH="$GITHUB_WORKSPACE/accounts/${{ matrix.account }}.tfplan"
+        echo "TF_PLAN_PATH=$TF_PLAN_PATH" >> $GITHUB_ENV
+        terraform init
+        terraform plan -out=$TF_PLAN_PATH
+
+    - name: terraform apply
+      if: ${{ inputs.apply == true }}
+      working-directory: terraform
+      run: |
+        terraform apply $TF_PLAN_PATH 

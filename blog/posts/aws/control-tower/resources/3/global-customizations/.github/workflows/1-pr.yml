@@ -1,0 +1,39 @@
+name: '1-PR Validation'
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  get-accounts:
+    name: 'Get Accounts'
+    uses: ./.github/workflows/shared-get-workspaces.yml
+
+  decide-accounts:
+    name: 'Decide Accounts to deploy customizations'
+    needs: get-accounts
+    outputs:
+      accounts: ${{ steps.list-wss.outputs.accounts }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: defining workspaces depending on changes
+      id: list-wss
+      run: |
+        if [[ "${{ needs.get-accounts.outputs.source_code_changed }}" == "true" ]]; then
+          accounts='${{ needs.get-accounts.outputs.accounts_all }}'
+        else
+          accounts='${{ needs.get-accounts.outputs.accounts_changed }}'
+        fi
+
+        echo "accounts=$accounts"  >> $GITHUB_OUTPUT
+
+
+  plan:
+    name: plan global customization
+    needs: decide-accounts
+    if: ${{ needs.decide-accounts.outputs.accounts != '[]' }}
+    uses: ./.github/workflows/shared-tf-plan.yml
+    with:
+      accounts: ${{ needs.decide-accounts.outputs.accounts }}
+    secrets: inherit

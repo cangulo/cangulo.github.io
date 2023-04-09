@@ -1,38 +1,27 @@
 ---
-slug: aws/2-aws-ct-aft-costs
-title: not finished - AWS Control Tower AFT Costs
+title: AWS Control Tower - Reducing Cost 2
 date: 2022-04-22
 group: blog
 authors: cangulo
-tags: [aws, projects, accounts, setup, costs]
+tags: [aws, projects, accounts, setup, costs, aws-control-tower ]
 ---
 
 
 :::info
-In this post I'm going to talk about the costs I faced using AWS Control Tower the latest 3 months. I recommend you read my [previous post](../1-setup-aws-account-envs/1-aws-control-tower-aft.mdx) before continuing. Basic knowledge about AWS Control Tower is required.
+In this post I'm going to talk about the costs I faced using AWS Control Tower the latest 3 months. I recommend you read my [previous post](./1-delete-vpc-endpoints-and-nat.mdx) before continuing. Basic knowledge about AWS Control Tower is required.
 :::
 
 <!--truncate-->
 
-:::caution
-
-This post is not finished yet
-
-:::
-
-## Context
-
-In my [last post](../1-setup-aws-account-envs/1-aws-control-tower-aft.mdx) I explained how I reduce costs when using AWS Control Tower services with the Account Factory for Terraform (AFT) approach, but only the costs I found using it for a few days. Now I'm going to talk about the costs for the latest 3 months.
-
-### Latest 3 months costs:
+## Latest 3 months costs:
 
 Before I proceed, I have to mention my usage of AFT:
 * I only used it during January and February. I created 5 AWS Accounts.
-* On March I didn't create or enroll any account. This was on purpose to check what are the fixed costs of having AFT inactive, I knew some Control Tower policies created have fixed costs no matter if you use them or not. I will dive into it in the next sections.
+* On March I didn't create or enroll any account. 
 
 And here we have the costs:
 
-![latest 3 months costs](resources/costs-latest-3-months.png)
+![latest 3 months costs](resources/2/costs-latest-3-months.png)
 
 | Service  | Config($) | VPC($) | Tax($) | EC2-Other($) | CodeBuild($) | KMS($) | Lambda($) | S3($) | DynamoDB($) | Backup($) | EC2-Instances($) | CloudWatch($) | Total cost ($) |
 | -------- | --------: | -----: | -----: | -----------: | -----------: | -----: | --------: | ----: | ----------: | --------: | ---------------: | ------------: | -------------: |
@@ -72,7 +61,7 @@ Let me write down the services used:
 
 * CodeBuild: 
   * API Operation: `Build`
-  * Usage Type: `EU-Build-Min:Linux:g1.medium` (January), `EU-Build-Min:Linux:g1.small` (February). Each usage type is defined [here](https://aws.amazon.com/es/codebuild/pricing/) and it might from one month to another because a [release on the original github](https://github.com/aws-ia/terraform-aws-control_tower_account_factory/releases) that I forked.
+  * No cost on March because no account was created neither enrolled
 * Key Management Service:
   * API Operation: `Unknown`
   * Usage Type: `eu-west-1-KMS-Keys`,`eu-west-2-KMS-Keys`
@@ -90,13 +79,12 @@ Let me write down the services used:
 
 ### Analysis
 
-* The only services that still cost without usage are:
+* The only services that cost independently of usage are:
   * AWS Config
   * EC2-Other
   * KMS
 * AWS Config is the highest cost. I will talk about this in the next section: [aws config section](#what-aws-config-does-can-i-reduce-it-cost)
-* There are no cost for  the services `CodeBuild` and  `Lambda`. This is because I haven't created nor enrolled any account in March.
-* Using the improvement to disable the VPC endpoints and NAT explained in my [previous post](../1-setup-aws-account-envs/1-aws-control-tower-aft.mdx), in March the cost is 0 for the following operations:
+* Using the improvement to disable the VPC endpoints and NAT explained in my [previous post](./1-delete-vpc-endpoints-and-nat.mdx), in March the cost is 0 for the following operations:
   * `EU-VpcEndpoint-Hours` - service `VPC`
   * `EU-NatGateway-Hours` and `EU-NatGateway-Bytes` - service `EC2-Other`
 * However, **there is still a cost in the `EC2-Other`** service, it is for the API Operation `AssociateAddressVPC` , usage type: `EU-ElasticIP:IdleAddress`. 
@@ -120,12 +108,12 @@ Those Guardrails can be preventive (ensuring your account maintain compliance) o
 The detective guardrails are implemented using AWS Config rules. 
 This means Control Tower call AWS Config to validate the configuration of the resources when a detective guardrails is active.
 
-okey, too much theory, the most importance, next are the two detective guardrails activated by default in a landing zone:
+okey, too much theory, the most important, next are the two detective guardrails activated by default in a landing zone:
 
-![Guardrails detectives](resources/guardrails-default-detectives.png)
+![Guardrails detectives](resources/2/guardrails-default-detectives.png)
 
 :::danger
-The next approach works for me because I'm using AFT sporadically and for personal projects. I don't recommend it for companies.
+The next approach works for me because I'm using AFT sporadically and for personal projects. I don't recommend it for companies because resource history might be required for compliance.
 :::
 
 Action done: 
@@ -133,16 +121,16 @@ Action done:
 2. Move the AFT account to the new OU.
 3. Check it is not enrolled.
 
-![aws-ct-account-outside-ou](resources/aws-ct-account-outside-ou.png)
+![aws-ct-account-outside-ou](resources/2/aws-ct-account-outside-ou.png)
 
 4. Open the AWS Console, login using the AFT Account, go to AWS Config, open Settings, click on `Edit`. and select stop recording, save it.
 
-![aws-config-settings](resources/aws-config-settings.png)
-![aws-config-settings-edit](resources/aws-config-settings-edit.png)
-![aws-config-setting-recorder-off](resources/aws-config-setting-recorder-off.png)
+![aws-config-settings](resources/2/aws-config-settings.png)
+![aws-config-settings-edit](resources/2/aws-config-settings-edit.png)
+![aws-config-setting-recorder-off](resources/2/aws-config-setting-recorder-off.png)
 
 
-![costs-after-disable-aws-config-recorder](resources/costs-after-disable-aws-config-recorder.png)
+![costs-after-disable-aws-config-recorder](resources/2/costs-after-disable-aws-config-recorder.png)
 
 After disabling Recorder on April 19 the cost was reduced from `0.30 $` per day to `0.03 $`
 
@@ -154,9 +142,9 @@ After disabling Recorder on April 19 the cost was reduced from `0.30 $` per day 
 
 I discovered there were two Elastic IP addresses not linked to any EC2 instances, this is why it is been charged in Idle state. I release them manually, through the AWS Console, so no more cost is generated. More details about why it was been charge [here](https://aws.amazon.com/premiumsupport/knowledge-center/elastic-ip-charges/).
 
-As we want to avoid manual intervention, I made the elastic IP creation depend on the `aft_vpc_nat_gateway` parameter I introduce for reducing NAT costs in my [previous post.](../1-setup-aws-account-envs/1-aws-control-tower-aft.mdx)
+As we want to avoid manual intervention, I made the elastic IP creation depend on the `aft_vpc_nat_gateway` parameter I introduce for reducing NAT costs in my [previous post.](./1-delete-vpc-endpoints-and-nat.mdx)
 
-![elastic-ip-modification](resources/elastic-ip-modification-in-tf.png)
+![elastic-ip-modification](resources/2/elastic-ip-modification-in-tf.png)
 
 [Commit](https://github.com/cangulo-aws-aft/terraform-aws-control_tower_account_factory/commit/e11466b8e6beaf4364f0343b5d44f0939050dbf3)
 
@@ -175,7 +163,7 @@ Yes, I was, and that might reduce the final costs I had, but I don't expect them
 
 Next is my remaining Free Tier quota on April 18, as you see some services already exceeded the free layer though I haven't used the AFT resources since later February. 
 
-![free tier stats](resources/free-tier-stats.png)
+![free tier stats](resources/2/free-tier-stats.png)
 
 ### Audit and Log AWS Accounts costs
 
@@ -202,9 +190,7 @@ In this post I'm only referring to the AFT account costs.
 ## References:
 
 * [Starting with Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/getting-started-with-control-tower.html)
-  * `If you are running ephemeral workloads from accounts in AWS Control Tower, you may see an increase in costs associated with AWS Config. Contact your AWS account representative for more specific information about managing these costs.`
 * [control tower user guide](https://docs.aws.amazon.com/controltower/latest/userguide/guardrails.html)
-  * `The detective guardrails are implemented using AWS Config rules`
 
 ### Git Repositories
 
