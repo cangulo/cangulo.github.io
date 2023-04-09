@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[118],{82567:function(e){e.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/gh-cli","name":"gh-cli","count":1,"permalink":"/cheatsheets/tags/gh-cli"}')}}]);
