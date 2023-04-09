@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[6536],{2070:function(a){a.exports=JSON.parse('{"allTagsPath":"/projects/tags","slug":"/projects/tags/personal-nuget-packages","name":"personal-nuget-packages","count":1,"permalink":"/projects/tags/personal-nuget-packages"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[7242],{21535:function(s){s.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/scripts","name":"scripts","count":1,"permalink":"/cheatsheets/tags/scripts"}')}}]);

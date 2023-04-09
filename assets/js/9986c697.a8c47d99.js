@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[4810],{28941:function(e){e.exports=JSON.parse('{"allTagsPath":"/meetups/tags","slug":"/meetups/tags/vscode","name":"vscode","count":1,"permalink":"/meetups/tags/vscode"}')}}]);

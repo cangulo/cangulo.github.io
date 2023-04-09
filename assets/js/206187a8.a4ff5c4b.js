@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[4077],{8930:function(s){s.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/aws","name":"aws","count":1,"permalink":"/cheatsheets/tags/aws"}')}}]);

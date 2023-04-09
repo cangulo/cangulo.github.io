@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[1806],{20155:function(t){t.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"/blog/tags/productivity","name":"productivity","count":6,"permalink":"/blog/tags/productivity"}')}}]);

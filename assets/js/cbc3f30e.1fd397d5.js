@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[3528],{48845:function(t){t.exports=JSON.parse('{"allTagsPath":"/projects/tags","slug":"/projects/tags/conventional-commits","name":"conventional-commits","count":1,"permalink":"/projects/tags/conventional-commits"}')}}]);

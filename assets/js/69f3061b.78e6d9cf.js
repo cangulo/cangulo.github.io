@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[2007],{3922:function(e){e.exports=JSON.parse('{"title":"Meetups","items":[{"title":"Visual Studio Code for Documentation","permalink":"/meetups/vscode-for-documentation"}]}')}}]);

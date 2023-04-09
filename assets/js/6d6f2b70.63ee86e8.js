@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[7026],{57540:function(o){o.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"/blog/tags/aws-control-tower","name":"aws-control-tower","count":4,"permalink":"/blog/tags/aws-control-tower"}')}}]);
