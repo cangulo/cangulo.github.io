@@ -1,0 +1,34 @@
+---
+slug: bash-scripts
+title: Bash Scripts Cheatsheet
+group: cheatsheets
+authors: cangulo
+tags: [bash]
+
+---
+
+This post list bash commands and scripts I use the most.
+
+<!--truncate-->
+
+## Execute a command inside subfolders
+
+```bash
+function recursive_for_loop { 
+    ls -1| until ! read f; do
+        if [ -d $f  -a ! -h $f ];
+        then
+            cd -- "$f";
+            recursive_for_loop
+            echo "### Folder $f"; 
+            git status; # replace here your command
+
+            # use recursion to navigate the entire tree; git status;
+            cd ..;
+        fi;
+    done;
+};
+recursive_for_loop
+```
+
+Source: [baeldung.com/linux/execute-command-directories](https://www.baeldung.com/linux/execute-command-directories)
