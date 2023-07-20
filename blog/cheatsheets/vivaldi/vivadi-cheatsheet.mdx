@@ -23,7 +23,6 @@ target JIRA urls: https://cangulo.atlassian.net/browse/BLOG-8
 ```javascript
 javascript:(function() {
   var url = window.location.href;
-  // this will copy anything after /browse/ text
   var pattern = /\/browse\/([^\/]+)/;
   var match = pattern.exec(url);
   var key = match ? match[1] : null;
