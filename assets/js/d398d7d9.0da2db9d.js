@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[7148],{20196:function(e){e.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/web-browser","name":"web-browser","count":1,"permalink":"/cheatsheets/tags/web-browser"}')}}]);
