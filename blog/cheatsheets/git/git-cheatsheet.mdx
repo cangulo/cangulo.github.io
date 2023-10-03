@@ -97,20 +97,26 @@ Next are my personal alias:
   bl = branch --list
   bd = branch -D
   co = checkout
+  c = commit -am
+  cw = commit -am wip
   cob = checkout -b
-  cor = checkout --track
+  cor = "!f() { git checkout --track origin/${1-No Argument Provided}; }; f"
   cp = cherry-pick
   cp-c = cherry-pick --continue
   cp-a = cherry-pick --abort
-  re = rebase -i
+  re = "!f() { git rebase -i HEAD~${1-No Argument Provided}; }; f"
   re-c = rebase --continue
   re-a = rebase --abort
   re-m = rebase -i --rebase-merges
   pushf = push --force
+  pushr = "!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch; }; f"
+  pushrf = "!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch --force; }; f"
+  fix = "!f() { git add .; git commit --amend --no-edit; git pushrf;}; f"
+  dr = "!f() { git reset --hard HEAD~1;}; f"
+  undolastco = reset --soft HEAD~1
   st = status
   l = "!f() { git log --oneline -n ${1-15}; }; f"
-  lg = "!f() { git log --oneline --grep=${1-NoArgumentProvided}; }; f"
-  pushr = "!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch; }; f"
+  lg = "!f() { git log --oneline --grep=${1-No Argument Provided}; }; f"
   settings = config --global --edit
 ```
 
