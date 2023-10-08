@@ -26,7 +26,8 @@ workflow_ids=$(gh api -X GET "/repos/$owner/$repo/actions/runs" | jq ".workflow_
 # delete workflow runs for each id
 for id in $workflow_ids; do
     echo "deleting $id"
-    gh api -X DELETE "/repos/$owner/$repo/actions/runs/$id" --silent
+    # test the execution first and uncomment this after
+    # gh api -X DELETE "/repos/$owner/$repo/actions/runs/$id" --silent
 done
 
 echo "All workflow runs for workflow '$workflow_path' on branch '$branch' in repository '$owner/$repo' have been deleted."
