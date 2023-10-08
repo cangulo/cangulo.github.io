@@ -21,7 +21,7 @@ branch=""
 workflow_path=".github/workflows/import.yml"
 
 # get workflow ids
-workflow_ids=$(gh api -X GET "/repos/$owner/$repo/actions/runs" | jq ".workflow_runs[] | select(.path == \"$workflow_path\") | .id")
+workflow_ids=$(gh api -X GET "/repos/$owner/$repo/actions/runs?branch=$branch" | jq ".workflow_runs[] | select(.path == \"$workflow_path\") | .id")
 
 # delete workflow runs for each id
 for id in $workflow_ids; do
