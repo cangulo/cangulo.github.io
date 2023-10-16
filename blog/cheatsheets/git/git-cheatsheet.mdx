@@ -60,6 +60,17 @@ This post explains the next topics:
 *  List the files modified in your branch using the target branch as reference                                                                                                                                                         
 
 ### Git rebase
+#### quick rebase commands:
+
+```shell
+git fetch
+git rebase -i origin/main   # remove the -i if you don't want to edit the commits
+git push --set-upstream origin "YOUR_BRANCH_NAME" --force
+```
+
+* cancel rebase: `git rebase --abort`
+
+#### rebase since first commit
 
 `git rebase -i --root`
 * DO IT UNDER YOUR RISK. Do a git rebase since the first commit. 
