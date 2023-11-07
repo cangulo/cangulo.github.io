@@ -94,6 +94,27 @@ tf import -var-file=base.tfvars 'RESOURCE_TYPE.RESOURCE_NAME["RESOURCE_KEY"]' ID
 </Tabs>
 </BrowserWindow>
 
+## create symbolic links
+
+<BrowserWindow>
+<Tabs>
+  <TabItem value="ps" label="PowerShell" default>
+
+```powershell
+mklink link_name.tf original_file_path.tf # execute it in command prompt as admin
+```
+
+  </TabItem>
+  <TabItem value="sh" label="Bash">
+
+```bash
+# TODO: fill
+```
+
+  </TabItem>
+</Tabs>
+</BrowserWindow>
+
 ## References
 
 * [TF Cheatsheet](https://dzone.com/articles/terraform-cli-cheat-sheet)
