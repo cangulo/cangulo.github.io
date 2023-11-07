@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[4676],{21572:function(e){e.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/powershell","name":"powershell","count":1,"permalink":"/cheatsheets/tags/powershell"}')}}]);
