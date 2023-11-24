@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[7027],{11344:function(e){e.exports=JSON.parse('{"title":"Books","items":[{"title":"Staff Engineer","permalink":"/books/staff-engineer"}]}')}}]);
