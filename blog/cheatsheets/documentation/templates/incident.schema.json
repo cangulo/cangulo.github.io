@@ -1,0 +1,117 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/product.schema.json",
+    "title": "Incident Schema",
+    "description": "Schema to validate incident data",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "title",
+        "internal",
+        "clients-affected",
+        "environments",
+        "time-window",
+        "impact",
+        "cause",
+        "resolution",
+        "preventative-measures",
+        "evidences"
+    ],
+    "properties": {
+        "title": {
+            "description": "Title of the incident. Example: error deploying to production",
+            "type": "string"
+        },
+        "internal": {
+            "description": "Internal description of the incident",
+            "type": "boolean"
+        },
+        "clients-affected": {
+            "description": "Age of the employee",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "environments": {
+            "description": "environment affected",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "prd",
+                    "acc"
+                ]
+            },
+            "minItems": 1
+        },
+        "time-window": {
+            "type": "object",
+            "properties": {
+                "start": {
+                    "type": "string",
+                    "examples": [
+                        "2023/11/24 20:30"
+                    ]
+                },
+                "end": {
+                    "type": "string",
+                    "examples": [
+                        "2023/11/24 22:30"
+                    ]
+                }
+            },
+            "examples": [
+                {
+                    "start": "2023/11/24 20:30",
+                    "end": "2023/11/24 22:30"
+                }
+            ]
+        },
+        "impact": {
+            "type": "string",
+            "description": "Please describe here the business impact of the incident",
+            "examples": [
+                "Payment system stop working"
+            ]
+        },
+        "cause": {
+            "type": "string",
+            "examples": [
+                "The payment solution was deployed with a wrong connection string to the database"
+            ]
+        },
+        "resolution": {
+            "type": "string",
+            "examples": [
+                "The connection string was updated in the configuration and deployed"
+            ]
+        },
+        "preventative-measures": {
+            "description": "Measures to prevent this incident from happening again",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true,
+            "examples": [
+                "Update the solution to consume the connection string from SSM instead of manual input"
+            ]
+        },
+        "evidences": {
+            "description": "Evidences of the incident",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true,
+            "examples": [
+                "Screenshot of the error message"
+            ]
+        }
+    }
+}
