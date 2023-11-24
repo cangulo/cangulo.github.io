@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checking out main branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: preparing npm
         run: npm install
       - name: building page
@@ -25,26 +25,30 @@ jobs:
           name: artifact
           path: build
           retention-days: 5
+
   update-gh-page:
     name: Updating GH Page
     needs: create-artifact
     runs-on: ubuntu-latest
     steps:
       - name: Checking out gh-pages branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
+
       - name: Removing previous files
         run: |
           rm -rf ./**
+
       - name: "Download Artifact"
         uses: actions/download-artifact@v2
         with:
           name: artifact
           path: ./
+
       - name: Commit Changes
         run: |
-          git config user.name cangulo_gh_action
+          git config user.name  cangulo_gh_action
           git config user.email cangulo_gh_action@github.com
 
           somethingToCommit=$(git status --short)
