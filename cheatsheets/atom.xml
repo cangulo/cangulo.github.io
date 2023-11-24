@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cangulo.github.io/cheatsheets</id>
     <title>Carlos Angulo Cheatsheets</title>
-    <updated>2023-11-24T12:59:24.576Z</updated>
+    <updated>2023-11-24T15:33:22.844Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cangulo.github.io/cheatsheets"/>
     <subtitle>Here you can find useful cheatsheets about how to do the daily operations a developer does</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Vivaldi Cheatsheet]]></title>
         <id>vivaldi</id>
         <link href="https://cangulo.github.io/cheatsheets/vivaldi"/>
-        <updated>2023-11-24T12:59:24.576Z</updated>
+        <updated>2023-11-24T15:33:22.844Z</updated>
         <summary type="html"><![CDATA[This post explains the next topics:]]></summary>
         <content type="html"><![CDATA[<p>This post explains the next topics:</p><ul><li>some tips for using <a href="https://vivaldi.com">Vivalid Web Browser</a> as creating macros, bookmarklets and shortcuts</li></ul><h2>How to create a bookmarklets that copy JIRA tickets from the url</h2><p>target JIRA urls: <a href="https://cangulo.atlassian.net/browse/BLOG-8">https://cangulo.atlassian.net/browse/BLOG-8</a></p><ol><li>Go to bookmarks</li><li>Create a new one</li><li>In the url part, <strong>paste but do not save</strong> the next code</li></ol><pre><code class="language-javascript">javascript:(function() {
   var url = window.location.href;
@@ -42,7 +42,7 @@
         <title type="html"><![CDATA[WSL Cheatsheet]]></title>
         <id>wsl</id>
         <link href="https://cangulo.github.io/cheatsheets/wsl"/>
-        <updated>2023-11-24T12:59:24.576Z</updated>
+        <updated>2023-11-24T15:33:22.844Z</updated>
         <summary type="html"><![CDATA[This post explains the next topics:]]></summary>
         <content type="html"><![CDATA[<p>This post explains the next topics:</p><ul><li>some tips when using the WSL (Windows Subsystem for Linux)</li></ul><h2>Format bash scripts for been used in Ubuntu</h2><h3>User Case</h3><p>Let&#x27;s say you are using Windows but you have some bash scripts for a Pipeline (Bitbucket or GH Action) you need to modify, if you install Ubuntu in the WSL you can call and tests those scripts. The only problems is that sometimes there is a formatting issue when Ubuntu tries to read them, the next code fix it:</p><p><code>sed -i &#x27;s/\r//&#x27; scripts/*.sh</code>          ;`</p><pre><code class="language-bash">bashScripts=$(find ./ -type f -name &quot;*.sh&quot;) ;\
 for script in &quot;${bashScripts[@]}&quot;; do  \
@@ -55,70 +55,10 @@ done
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AWS Cheatsheet]]></title>
-        <id>aws</id>
-        <link href="https://cangulo.github.io/cheatsheets/aws"/>
-        <updated>2023-11-24T12:59:24.572Z</updated>
-        <summary type="html"><![CDATA[This post contains some useful AWS commands and scripts.]]></summary>
-        <content type="html"><![CDATA[<p>This post contains some useful AWS commands and scripts.</p><h2>AWS Commands</h2><table><thead><tr><th>Command</th></tr></thead><tbody><tr><td><code>aws sts get-caller-identity</code></td></tr></tbody></table><h3>Filtering command output</h3><ul><li><code>--query PROP_PATH</code>. Like you&#x27;re using <code>jq</code> for querying JSON string. You can save the initial <code>.</code></li><li><code>--output text|json</code>. Output as text print values without quotes.</li></ul><h3>Most used commands</h3><ul><li><code>aws sts get-caller-identity --query Arn --output text</code> get current user ARN</li></ul><h2>Script to verify credentials</h2><pre><code class="language-shell">current_credentials=$(aws sts get-caller-identity --query Arn --output text)
-expected_credentials=&quot;arn:aws:iam::{ACCOUNT_ID}}:user/{USER_NAME}&quot;
-
-if [[ &quot;${current_credentials}&quot; != &quot;${expected_credentials}&quot; ]]; then
-    echo &quot;\033[31m INVALID CREDENTIALS \033[0m&quot; # PRINT THIS IN RED
-    return
-fi
-</code></pre>]]></content>
-        <author>
-            <name>Carlos Angulo Mascarell</name>
-            <uri>https://github.com/cangulo</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Bash Scripts Cheatsheet]]></title>
-        <id>bash-scripts</id>
-        <link href="https://cangulo.github.io/cheatsheets/bash-scripts"/>
-        <updated>2023-11-24T12:59:24.572Z</updated>
-        <summary type="html"><![CDATA[This post list bash commands and scripts I use the most.]]></summary>
-        <content type="html"><![CDATA[<p>This post list bash commands and scripts I use the most.</p><h2>Execute a command inside subfolders</h2><pre><code class="language-bash">function recursive_for_loop { 
-    ls -1| until ! read f; do
-        if [ -d $f  -a ! -h $f ];
-        then
-            cd -- &quot;$f&quot;;
-            recursive_for_loop
-            echo &quot;### Folder $f&quot;; 
-            git status; # replace here your command
-
-            # use recursion to navigate the entire tree; git status;
-            cd ..;
-        fi;
-    done;
-};
-recursive_for_loop
-</code></pre><p>Source: <a href="https://www.baeldung.com/linux/execute-command-directories">baeldung.com/linux/execute-command-directories</a></p>]]></content>
-        <author>
-            <name>Carlos Angulo Mascarell</name>
-            <uri>https://github.com/cangulo</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Others commands Cheatsheet]]></title>
-        <id>others</id>
-        <link href="https://cangulo.github.io/cheatsheets/others"/>
-        <updated>2023-11-24T12:59:24.572Z</updated>
-        <summary type="html"><![CDATA[list the files in a tree structure]]></summary>
-        <content type="html"><![CDATA[<h2>list the files in a tree structure</h2><div><div><div value="ps" label="PowerShell" default=""><pre><code class="language-powershell">Tree /F &gt; repo-structure.txt 
-</code></pre></div><div value="sh" label="Bash"><pre><code class="language-bash">#TODO: FILL
-</code></pre></div></div></div>]]></content>
-        <author>
-            <name>Carlos Angulo Mascarell</name>
-            <uri>https://github.com/cangulo</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Terraform Cheatsheet]]></title>
         <id>terraform</id>
         <link href="https://cangulo.github.io/cheatsheets/terraform"/>
-        <updated>2023-11-24T12:59:24.572Z</updated>
+        <updated>2023-11-24T15:33:22.840Z</updated>
         <summary type="html"><![CDATA[This post explains the next topics:]]></summary>
         <content type="html"><![CDATA[<p>This post explains the next topics:</p><ul><li>How to set up a shortcut for Terraform in the Terminal</li><li>The Terraform commands I use the most</li></ul><h2>Create an alias for TF in your Terminal</h2><p>Please add the next code to your profile depending if you are using PowerShell or bash:</p><div><div><div value="ps" label="PowerShell" default=""><pre><code class="language-powershell">New-Alias -Name tf -Value terraform -Force
 function tffmt { tf fmt -recursive }
@@ -147,7 +87,7 @@ tf import -var-file=base.tfvars &#x27;RESOURCE_TYPE.RESOURCE_NAME[&quot;RESOURCE
         <title type="html"><![CDATA[Elementary Cheatsheet]]></title>
         <id>elementary</id>
         <link href="https://cangulo.github.io/cheatsheets/elementary"/>
-        <updated>2023-11-24T12:59:24.572Z</updated>
+        <updated>2023-11-24T15:33:22.840Z</updated>
         <summary type="html"><![CDATA[This post explains some tips I discovered about Elementary OS.]]></summary>
         <content type="html"><![CDATA[<p>This post explains some tips I discovered about <a href="https://elementary.io">Elementary OS</a>.</p><h2>Where the app launcher apps are stored?</h2><ul><li><code>/home/YOUR_USER/.local/share/applications</code></li><li><code>~/.local/share/applications</code></li></ul><h2>How does an app launcher looks like:</h2><p>Outlook shortcut example</p><pre><code class="language-bash">#!/usr/bin/env xdg-open
 [Desktop Entry]
@@ -193,7 +133,7 @@ Keywords=Command;kill;close
         <title type="html"><![CDATA[GitHub CLI Cheatsheet]]></title>
         <id>/gh-cli/gh-cli</id>
         <link href="https://cangulo.github.io/cheatsheets/gh-cli/gh-cli"/>
-        <updated>2023-11-24T12:59:24.572Z</updated>
+        <updated>2023-11-24T15:33:22.840Z</updated>
         <summary type="html"><![CDATA[This post contains some scripts for that use GH CLI]]></summary>
         <content type="html"><![CDATA[<p>This post contains some scripts for that use GH CLI</p><h2>Delete Workflows run</h2><pre><code class="language-bash">#!/bin/bash
 
@@ -225,7 +165,7 @@ echo &quot;All workflow runs for workflow &#x27;$workflow_path&#x27; on branch &
         <title type="html"><![CDATA[Git Cheatsheet]]></title>
         <id>git</id>
         <link href="https://cangulo.github.io/cheatsheets/git"/>
-        <updated>2023-11-24T12:59:24.572Z</updated>
+        <updated>2023-11-24T15:33:22.840Z</updated>
         <summary type="html"><![CDATA[This post explains the next topics:]]></summary>
         <content type="html"><![CDATA[<p>This post explains the next topics:</p><ul><li>the git commands I use the most</li><li>some git <em>alias</em> to avoid typing long commands😁👌</li></ul><h2>Git Commands</h2><h3>Git Checkout</h3><p><code>git checkout --track origin/NAME</code>      </p><ul><li>Create a local branch that tracks the remote one                                                                                                                                                                                    </li></ul><p><code>git checkout -</code>                        </p><ul><li>Checkout the previous branch, this can be useful if you go from your feature branch to dev, you update it, and you want to come back to your feature branch to rebase dev                                                           </li></ul><p><code>git checkout tags/&lt;tag&gt; -b &lt;branch&gt;</code>   </p><ul><li>Checkout a branch starting from the tag provided                                                                                                                                                                                    </li></ul><p><code>git switch</code>                            </p><ul><li>New git command to change between branches to avoid using checkout. Currently is in status experimental. </li><li>Check this <a href="https://git-scm.com/docs/git-switch/2.23.0">link</a> and this <a href="https://bluecast.tech/blog/git-switch-branch/">one</a></li></ul><h3>Git Branch</h3><p><code>git branch --list [&lt;pattern&gt;]</code>         </p><ul><li>List all the branches that match the <code>&lt;pattern&gt;</code>. e.g. <code>*-1234</code> list all the branches that end <code>1234</code>                                                                                                                               </li></ul><h3>Gitk</h3><p><code>gitk</code>                                  </p><ul><li>Check Last commits using a GUI                                                                                                                                                                                                      </li></ul><p><code>gitk &lt;filePath&gt;</code>                       </p><ul><li>Check <code>&lt;filePath&gt;</code> last commits using a GUI                                                                                                                                                                                         </li></ul><h3>Git Cherry Pick</h3><p><code>git cherry-pick -n &lt;commit&gt;</code>           </p><ul><li>Let&#x27;s you inspect the files modified in the commit before cherry-pick them. <a href="https://stackoverflow.com/questions/5717026/how-to-git-cherry-pick-only-changes-to-certain-files">Reference</a>                                           </li></ul><h3>Git diff</h3><p><code>git diff [target-branch] -name-status</code> </p><ul><li>List the files modified and what kind of modification (Added, Deleted, Modified) in your branch using the target branch as reference                                                                                                </li></ul><p><code>git diff [target-branch] -name-only</code>   </p><ul><li>List the files modified in your branch using the target branch as reference                                                                                                                                                         </li></ul><h3>Git rebase</h3><h4>quick rebase commands:</h4><pre><code class="language-shell">git fetch
 git rebase -i origin/main   # remove the -i if you don&#x27;t want to edit the commits
@@ -274,6 +214,70 @@ function git_undo_permission_change_in_subfolders() {
 }
 
 </code></pre><h2>References</h2><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">official docs - git alias</a></li><li><a href="https://opensource.com/article/20/11/git-aliases">8 Git aliases that make me more efficient</a></li></ul>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AWS Cheatsheet]]></title>
+        <id>aws</id>
+        <link href="https://cangulo.github.io/cheatsheets/aws"/>
+        <updated>2023-11-24T15:33:22.832Z</updated>
+        <summary type="html"><![CDATA[This post contains some useful AWS commands and scripts.]]></summary>
+        <content type="html"><![CDATA[<p>This post contains some useful AWS commands and scripts.</p><h2>AWS Commands</h2><table><thead><tr><th>Command</th></tr></thead><tbody><tr><td><code>aws sts get-caller-identity</code></td></tr></tbody></table><h3>Filtering command output</h3><ul><li><code>--query PROP_PATH</code>. Like you&#x27;re using <code>jq</code> for querying JSON string. You can save the initial <code>.</code></li><li><code>--output text|json</code>. Output as text print values without quotes.</li></ul><h3>Most used commands</h3><ul><li><code>aws sts get-caller-identity --query Arn --output text</code> get current user ARN</li></ul><h2>Script to verify credentials</h2><pre><code class="language-shell">current_credentials=$(aws sts get-caller-identity --query Arn --output text)
+expected_credentials=&quot;arn:aws:iam::{ACCOUNT_ID}}:user/{USER_NAME}&quot;
+
+if [[ &quot;${current_credentials}&quot; != &quot;${expected_credentials}&quot; ]]; then
+    echo &quot;\033[31m INVALID CREDENTIALS \033[0m&quot; # PRINT THIS IN RED
+    return
+fi
+</code></pre>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bash Scripts Cheatsheet]]></title>
+        <id>bash-scripts</id>
+        <link href="https://cangulo.github.io/cheatsheets/bash-scripts"/>
+        <updated>2023-11-24T15:33:22.832Z</updated>
+        <summary type="html"><![CDATA[This post list bash commands and scripts I use the most.]]></summary>
+        <content type="html"><![CDATA[<p>This post list bash commands and scripts I use the most.</p><h2>Execute a command inside subfolders</h2><pre><code class="language-bash">function recursive_for_loop { 
+    ls -1| until ! read f; do
+        if [ -d $f  -a ! -h $f ];
+        then
+            cd -- &quot;$f&quot;;
+            recursive_for_loop
+            echo &quot;### Folder $f&quot;; 
+            git status; # replace here your command
+
+            # use recursion to navigate the entire tree; git status;
+            cd ..;
+        fi;
+    done;
+};
+recursive_for_loop
+</code></pre><p>Source: <a href="https://www.baeldung.com/linux/execute-command-directories">baeldung.com/linux/execute-command-directories</a></p>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Documentation Cheatsheet]]></title>
+        <id>documentation</id>
+        <link href="https://cangulo.github.io/cheatsheets/documentation"/>
+        <updated>2023-11-24T15:33:22.832Z</updated>
+        <summary type="html"><![CDATA[This post contains list all the tools and templates I use for documenting projects:]]></summary>
+        <content type="html"><![CDATA[<p>This post contains list all the tools and templates I use for documenting projects:</p><ol><li>Incidents / postmortem templates</li><li>Architectural Decision Record <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html">ADR</a></li><li>VS Code extensions</li><li>Shell Scripts: bash and powershell</li></ol><h2>1. Incidents / postmortem templates</h2><h2>2. Architectural Decision Record <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html">ADR</a></h2><h2>3. VS Code extensions</h2><table><thead><tr><th>Function</th><th>Extension</th><th>Tip</th><th>Link for installing it</th></tr></thead><tbody><tr><td>Create Diagrams</td><td><a href="#drawio-integration">Draw.io Integration</a></td><td>You can save diagrams as draw.io.png so they are visible in the readme!</td><td><a href="https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio">link</a></td></tr></tbody></table><h3>draw.io-integration</h3><p>I use this extension to manipulate Diagrams in VS code and make them visible in the README.md. Next are creenshots:</p><h4>Editing Diagrams</h4><p><img src="imgs/vscode-drawio.png" alt="Alt text"/></p><div label="Extension Link" link="https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio"></div><h4>Diagram visualization in the README</h4><p><img src="imgs/vscode-drawio-readme.png" alt="Alt text"/></p><div label="Readme" link="https://github.com/cangulo-templates/tf-cicd-template"></div><p>README.md content: </p><pre><code class="language-markdown"># tf-cicd-template
+
+![solution-schema](docs/solution-schema.drawio.png)
+</code></pre><h4>Diagram changes visualization in PR</h4><p><img src="imgs/vscode-drawio-pr.png" alt="Alt text"/></p><div label="PR adding the diagram" link="https://github.com/cangulo-templates/tf-cicd-template/pull/11/files"></div><div label="PR editting the diagram" link="https://github.com/cangulo-templates/tf-cicd-template/pull/13/files"></div><h2>4. Shell Scripts: bash and powershell</h2><table><thead><tr><th>Script</th><th>Description</th><th>When to use</th></tr></thead><tbody><tr><td><a href="#output-repository-structure">output repository structure</a></td><td>List directory content in tree format</td><td>Document the repository structure in the README.md</td></tr></tbody></table><h3>output repository structure</h3><div><div><div value="sh" label="Bash" default=""><ol><li>Install <code>tree</code> command</li><li>Execute the command. Next are some useful parameters:<ol><li><code>-L {LIMIT}</code> option  to limit the display to <code>{LIMIT}</code> levels of depth.</li><li><code>-a</code> parameter to list all hiddin files (they start with <code>.</code>) We need this to list files GH workflows files <code>.github/workflow/*</code></li><li>The <code>-I &#x27;{FOLDER_TO_IGNORE}/&#x27;</code> option tells <code>tree</code> to ignore files under <code>{FOLDER_TO_IGNORE}</code>.</li><li><code>&gt; repo-structure.txt</code> to store the output, edit its content and paste it into your README.md</li></ol></li></ol><pre><code class="language-bash">sudo apt-get install tree
+</code></pre><pre><code class="language-bash">tree -L 3 -a -I &#x27;node_modules&#x27; -I &#x27;.git&#x27; -I &#x27;.vscode&#x27;  &gt; repo-structure.txt 
+</code></pre><details><summary>Output Example</summary><p><img src="imgs/shell-tree-output.png" alt="Alt text"/></p></details></div><div value="ps" label="PowerShell"><pre><code class="language-powershell">Tree /F &gt; repo-structure.txt 
+</code></pre></div></div></div><h4>Examples:</h4><ul><li><a href="https://github.com/cangulo-templates/tf-cicd-template#repo-structure">REARDME.md wih repo-structure</a></li><li><a href="https://github.com/cangulo-templates/tf-cicd-template/pull/14/files">PR adding repo-structure</a></li></ul><p><img src="imgs/shell-tree-readme.png" alt="Alt text"/></p>]]></content>
         <author>
             <name>Carlos Angulo Mascarell</name>
             <uri>https://github.com/cangulo</uri>
