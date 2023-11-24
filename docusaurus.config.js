@@ -81,6 +81,45 @@ const config = {
         ]
       })
     ],
+
+    [
+      '@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      ({
+        id: 'books',
+        path: 'blog/books',
+        showReadingTime: true,
+        routeBasePath: 'books',
+        authorsMapPath: '../authors.yml',
+        blogTitle: 'Carlos Angulo Posts',
+        blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
+        editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
+        blogSidebarTitle: 'Books',
+        blogSidebarCount: 'ALL',
+        feedOptions: {
+          title: 'Carlos Angulo Recommended Books',
+          language: 'en',
+          description: 'Here you can find a set of books I have read about IT, team management and agile'
+        },
+        beforeDefaultRemarkPlugins: [
+          alignTableCenter,
+          [
+            addJsxCode, {
+              importStatement: commonImports,
+              position: 'start'
+            }
+          ]],
+        remarkPlugins: [
+          require('mdx-mermaid'),
+          require('remark-code-import'),
+          [
+            addJsxCode, {
+              jsx: jsxElementsEnding
+            }
+          ]
+        ]
+      })
+    ],
     [
       '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
@@ -263,6 +302,7 @@ const config = {
           { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
           { to: '/projects', label: 'Projects', position: 'left' },
           { to: '/meetups', label: 'Meetups ', position: 'left' },
+          { to: '/books', label: 'Books', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://github.com/cangulo',
