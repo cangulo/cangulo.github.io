@@ -7,6 +7,7 @@
     "additionalProperties": false,
     "required": [
         "title",
+        "ticket",
         "internal",
         "clients-affected",
         "environments",
@@ -15,11 +16,16 @@
         "cause",
         "resolution",
         "preventative-measures",
-        "evidences"
+        "evidences",
+        "tags"
     ],
     "properties": {
         "title": {
             "description": "Title of the incident. Example: error deploying to production",
+            "type": "string"
+        },
+        "ticket": {
+            "description": "Ticket number of the incident",
             "type": "string"
         },
         "internal": {
@@ -111,6 +117,21 @@
             "uniqueItems": true,
             "examples": [
                 "Screenshot of the error message"
+            ]
+        },
+        "tags": {
+            "description": "Tags to categorize the incident",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true,
+            "examples": [
+                "database",
+                "payments",
+                "prd",
+                "manual-error"
             ]
         }
     }

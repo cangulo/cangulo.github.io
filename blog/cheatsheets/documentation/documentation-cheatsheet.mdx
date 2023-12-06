@@ -22,13 +22,29 @@ This post contains list all the tools and templates I use for documenting projec
 
 ## 1. Incidents / postmortem templates
 
+<BrowserWindow>
+<Tabs>
+  <TabItem value="template" label="Template" default>
+
 ```yml file=./templates/incident.yml
 ```
 
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+```yml file=./examples/20231124-db-not-reachable.yml
+```
+
+  </TabItem>
+</Tabs>
+</BrowserWindow>
+
 ## 2. Architectural Decision Record [ADR](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html)
 
-```markdown file=./templates/adr.md
+```markdown file=./templates/adr.yml
 ```
+
+example [here](./examples/20231124-db-not-reachable.yml).
 
 ## 3. VS Code extensions
 

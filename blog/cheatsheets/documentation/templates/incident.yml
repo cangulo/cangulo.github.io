@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=./incident.schema.json
 
 title: "Incident Title"
+ticket: "INC-1234"
 internal: false
 clients-affected:
   - Client1
@@ -10,13 +11,15 @@ time-window:
   start: 2023/11/24 20:30
   end: 2023/11/24 22:30
 impact: >
-  Payment system stop working
+  Describe here how this affect us and our clients
 cause: >
-  The payment solution was deployed with a wrong connection string to the database
+  Describe here why the incident happened
 resolution: >
-  The connection string was updated in the configuration and deployed
+  Describe here how the incident was resolved. 
+  If the incident is still open, describe here the current status.
 preventative-measures:
-  - Update the solution to consume the connection string from SSM instead of manual input
+  - Describe here how we prevent this incident from happening again
 evidences:
-  - Screenshot of the error attached to the s3 bucket
-  - Screenshot of the solution
+  - Attach here were the evidences are stored
+tags:
+  - "tag1"
