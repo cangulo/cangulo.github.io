@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=../templates/incident.schema.json
+
+title: "Database not reachable"
+ticket: "INC-1234"
+internal: false
+clients-affected:
+  - Client1
+environments:
+  - prd
+time-window:
+  start: 2023/11/24 20:30
+  end: 2023/11/24 22:30
+impact: >
+  Payment system stop working
+cause: >
+  The payment solution was deployed with a wrong connection string to the database
+resolution: >
+  The connection string was updated in the configuration and deployed
+preventative-measures:
+  - Update the solution to consume the connection string from SSM instead of manual input
+evidences:
+  - Screenshot of the error attached
+  - Screenshot of the solution
+tags: 
+  - "db"
+  - "payments"
+  - "manual-error"
