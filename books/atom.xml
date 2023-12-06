@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cangulo.github.io/books</id>
     <title>Carlos Angulo Recommended Books</title>
-    <updated>2023-11-24T16:43:32.812Z</updated>
+    <updated>2023-12-06T11:41:43.780Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cangulo.github.io/books"/>
     <subtitle>Here you can find a set of books I have read about IT, team management and agile</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Staff Engineer]]></title>
         <id>staff-engineer</id>
         <link href="https://cangulo.github.io/books/staff-engineer"/>
-        <updated>2023-11-24T16:43:32.812Z</updated>
+        <updated>2023-12-06T11:41:43.780Z</updated>
         <summary type="html"><![CDATA[Here are my notes about Staff Engineer: Leadership beyond the management track by Will Larson book.]]></summary>
         <content type="html"><![CDATA[<p>Here are my notes about <a href="https://staffeng.com/book">Staff Engineer: Leadership beyond the management track by Will Larson</a> book.</p><h2>Staff engineer archetypes</h2><ol><li><strong>Tech Lead</strong>: He guides the approach and execution of a team. It tends to be the first <em>staff engineer</em> experience.</li><li><strong>Architect</strong>: He is responsible for the direction, quality, and approach within a specific area.</li><li><strong>Solver</strong>: He jumps into problems, finds solutions, and jumps into the next one. He is a trusted agent of the organization.</li><li><strong>Right hand</strong>: He extends an executive&#x27;s attention.</li></ol><p>Which is right for you?</p><p>Start by listing the kinds of work that energize you. Next, match it with the archetypes and roles available in your company.</p><h2>What do Staff engineers actually do?</h2><ol><li>Setting technical direction</li><li>Mentorship and sponsorship</li><li>Providing engineering perspective</li><li>Exploration</li><li>Being Glue: Have you been in meetings aligning frontend and backend developers? You were the glue then.</li><li>But will you still write software?</li><li>Slow but rewarding</li></ol>]]></content>
         <author>
