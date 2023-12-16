@@ -11,7 +11,7 @@ import BrowserWindow from '/src/components/BrowserWindow'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-This post contains list all the tools and templates I use for documenting projects:
+This post list all the tools and templates I use for documenting projects:
 
 1. Incidents / postmortem templates
 2. Architectural Decision Record [ADR](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html)
@@ -141,3 +141,34 @@ Tree /F > repo-structure.txt
 * [PR adding repo-structure](https://github.com/cangulo-templates/tf-cicd-template/pull/14/files)
 
 ![Alt text](imgs/shell-tree-readme.png)
+
+## 5. Documentation Tips
+
+### GitHub Markdown
+
+> [Syntax Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+#### Alerts
+
+We can use the next syntax to highlight information in repositories README.md
+
+```markdown
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+```
+![gh-md-alerts.png](imgs/gh-md-alerts.png)
+
+[Alerts Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
+
