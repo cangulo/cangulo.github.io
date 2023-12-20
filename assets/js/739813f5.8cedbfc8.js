@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[6720],{36949:function(s){s.exports=JSON.parse('{"allTagsPath":"/cheatsheets/tags","slug":"/cheatsheets/tags/gh-workflows","name":"gh-workflows","count":1,"permalink":"/cheatsheets/tags/gh-workflows"}')}}]);
