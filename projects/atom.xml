@@ -12,10 +12,8 @@
         <id>cangulo.changelog</id>
         <link href="https://cangulo.github.io/projects/cangulo.changelog"/>
         <updated>2021-11-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[cangulo-nugets/cangulo.changelog]]></summary>
-        <content type="html"><![CDATA[<p>:::info Project Web site:
-<a href="https://cangulo-nugets.github.io/cangulo.changelog.github.io/">cangulo-nugets/cangulo.changelog</a>
-:::</p><h2>Problem I want to solve</h2><p>I have the solution <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a> to handle releases in my GH repos. However, this doesn&#x27;t document the changes, for that, I need a solution that updates the Changelog and create release notes, all, having as input the commit messages of the last PR merged.</p><h2>Goal</h2><p>Have a custom solution to update changelogs and create release notes.</p><h2>Approach</h2><p>Create a NuGet package that can be imported in any C# project. In my case, I will import it in <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a>. </p><p>The main interface to call is:</p><pre><code class="language-csharp">public interface IChangelogBuilder
+        <summary type="html"><![CDATA[Project web site: cangulo-nugets/cangulo.changelog]]></summary>
+        <content type="html"><![CDATA[<p>:::caution 🚧🛑 Project discontinued</p><p>Project web site: <a href="https://cangulo-nugets.github.io/cangulo.changelog.github.io/">cangulo-nugets/cangulo.changelog</a></p><p>:::</p><h2>Problem I want to solve</h2><p>I have the solution <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a> to handle releases in my GH repos. However, this doesn&#x27;t document the changes, for that, I need a solution that updates the Changelog and create release notes, all, having as input the commit messages of the last PR merged.</p><h2>Goal</h2><p>Have a custom solution to update changelogs and create release notes.</p><h2>Approach</h2><p>Create a NuGet package that can be imported in any C# project. In my case, I will import it in <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a>. </p><p>The main interface to call is:</p><pre><code class="language-csharp">public interface IChangelogBuilder
 {
     void Build(string version, string[] changes, string path);
 }
@@ -31,7 +29,8 @@
         <link href="https://cangulo.github.io/projects/cangulo.nuke.prcommitsvalidations"/>
         <updated>2021-11-26T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Problem I want to solve]]></summary>
-        <content type="html"><![CDATA[<h2>Problem I want to solve</h2><p>I want to make sure all the commits in a PR follow custom conventions based on the <a href="https://www.conventionalcommits.org/">Conventional Commits</a> specification. The conventions should be per repository. Let&#x27;s consider <em>fix</em>, <em>minor _and _major</em> as a reference.</p><p>On the other hand, as I have been playing with <a href="https://nuke.build/index.html">NUKE</a> lately, I want to create a solution based on it.</p><p>:::info
+        <content type="html"><![CDATA[<p>:::caution 🚧🛑 Project discontinued
+:::</p><h2>Problem I want to solve</h2><p>I want to make sure all the commits in a PR follow custom conventions based on the <a href="https://www.conventionalcommits.org/">Conventional Commits</a> specification. The conventions should be per repository. Let&#x27;s consider <em>fix</em>, <em>minor _and _major</em> as a reference.</p><p>On the other hand, as I have been playing with <a href="https://nuke.build/index.html">NUKE</a> lately, I want to create a solution based on it.</p><p>:::info
 <a href="https://nuke.build/index.html">NUKE</a> is a build automation framework where you define operations as build, test or push NuGets, in a C# project. I found good reviews and some videos in <a href="https://channel9.msdn.com/Shows/On-NET/Build-Automation-with-NUKE">Channel9</a> about it. So, for instance, dotnet commands are predefined methods, and its arguments are extension methods, check the next example:</p><details><summary>How a NUKE project looks like?</summary><pre><code class="language-csharp">Target Pack =&gt; _ =&gt; _
     .DependsOn(Clean)
     .Executes(() =&gt; 
@@ -64,7 +63,8 @@
         <link href="https://cangulo.github.io/projects/cangulo.nuke.releasecreator"/>
         <updated>2021-11-26T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Problem I want to solve]]></summary>
-        <content type="html"><![CDATA[<h2>Problem I want to solve</h2><p>Every time I want to release a new version in my C# projects, I have to do it manually or define a custom GH action for every repo. I would like to have a general solution that makes this automatically every time I merge a PR. Also, as I have been playing with <a href="https://nuke.build/index.html">NUKE</a> lately, I want to include it in the solution. </p><p>:::info
+        <content type="html"><![CDATA[<p>:::caution 🚧🛑 Project discontinued
+:::</p><h2>Problem I want to solve</h2><p>Every time I want to release a new version in my C# projects, I have to do it manually or define a custom GH action for every repo. I would like to have a general solution that makes this automatically every time I merge a PR. Also, as I have been playing with <a href="https://nuke.build/index.html">NUKE</a> lately, I want to include it in the solution. </p><p>:::info
 <a href="https://nuke.build/index.html">NUKE</a> is a build automation framework where you define operations as build, test or push NuGets, in a C# project. I found good reviews and some videos in <a href="https://channel9.msdn.com/Shows/On-NET/Build-Automation-with-NUKE">Channel9</a> about it. So, for instance, dotnet commands are predefined methods, and its arguments are extension methods, check the next example:</p><details><summary>How a NUKE project looks like?</summary><pre><code class="language-csharp">Target Pack =&gt; _ =&gt; _
     .DependsOn(Clean)
     .Executes(() =&gt; 
