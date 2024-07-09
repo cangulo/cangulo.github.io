@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[8045],{7552:function(e){e.exports=JSON.parse('{"allTagsPath":"/meetups/tags","slug":"/meetups/tags/eventbridge","name":"eventbridge","count":1,"permalink":"/meetups/tags/eventbridge"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[3043],{52688:function(e){e.exports=JSON.parse('{"allTagsPath":"/meetups/tags","slug":"/meetups/tags/ecs","name":"ecs","count":1,"permalink":"/meetups/tags/ecs"}')}}]);

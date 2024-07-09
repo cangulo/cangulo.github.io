@@ -4,17 +4,25 @@
         <title>Carlos Angulo Meetups</title>
         <link>https://cangulo.github.io/meetups</link>
         <description>Here you can find information or resources about the meetups I have participated 🧑‍🏫</description>
-        <lastBuildDate>Fri, 22 May 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 09 Jul 2024 23:41:11 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Visual Studio Code for Documentation]]></title>
-            <link>https://cangulo.github.io/meetups/vscode-for-documentation</link>
-            <guid>vscode-for-documentation</guid>
-            <pubDate>Fri, 22 May 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[Hi all,]]></description>
-            <content:encoded><![CDATA[<p>Hi all,</p><p>Visual Studio Code is one of the top IDEs, but did you know you can use it for simple documentation? You only need to learn some Markdown basics!</p><p>In this meetup, I explained some basic for that:</p><ol><li>Markdown, when to use it? When not to use it?</li><li>VS Code, out of the box features</li><li>VS Code extensions for Markdown</li><li>VS Code snippets: How to increase your productivity with templates</li></ol><p>The content is ideal for quick instructions/step by step guides.</p><h2>Video and Slides</h2><ul><li><a href="https://www.dropbox.com/s/ktcrtvg56j6ddhk/visualstudiocodefordocumentation%20on%202020-05-22%2016%3A17.mp4?dl=0">Meetup recording</a></li><li><a href="https://github.com/cangulo/meetups/raw/master/vs_code_for_docs/2020_05_22_write_bcn/vs_code_for_docs_20200522.pptx">Presentation</a></li><li><a href="https://github.com/cangulo/meetups/tree/master/vs_code_for_docs/2020_05_22_write_bcn">Code</a></li><li><a href="https://www.meetup.com/Write-the-Docs-Barcelona/events/270480043/">Meetup Event</a></li></ul>]]></content:encoded>
+            <title><![CDATA[Refactoring hundred of environments with TF]]></title>
+            <link>https://cangulo.github.io/meetups/202310-bcn-serverless-meetup-tf-refactor</link>
+            <guid>202310-bcn-serverless-meetup-tf-refactor</guid>
+            <pubDate>Tue, 09 Jul 2024 23:41:11 GMT</pubDate>
+            <description><![CDATA[Slides and code in this GH repo: 202310-bcn-serverless-meetup-tf-refactor]]></description>
+            <content:encoded><![CDATA[<p>Slides and code in this GH repo: <a href="https://github.com/cangulo-talks/202310-bcn-serverless-meetup-tf-refactor">202310-bcn-serverless-meetup-tf-refactor</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Functionless batch processing with EB]]></title>
+            <link>https://cangulo.github.io/meetups/20240418-bcn-batch-ecs</link>
+            <guid>20240418-bcn-batch-ecs</guid>
+            <pubDate>Tue, 09 Jul 2024 23:41:11 GMT</pubDate>
+            <description><![CDATA[Slides and code in this GH repo: 20240418-bcn-batch-ecs]]></description>
+            <content:encoded><![CDATA[<p>Slides and code in this GH repo: <a href="https://github.com/cangulo-talks/20240418-bcn-batch-ecs">20240418-bcn-batch-ecs</a></p>]]></content:encoded>
         </item>
     </channel>
 </rss>

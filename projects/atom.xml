@@ -8,6 +8,22 @@
     <subtitle>Here you can find posts related to the personal projects I do 💻️</subtitle>
     <icon>https://cangulo.github.io/img/favicon.ico</icon>
     <entry>
+        <title type="html"><![CDATA[cangulo.changelog]]></title>
+        <id>cangulo.changelog</id>
+        <link href="https://cangulo.github.io/projects/cangulo.changelog"/>
+        <updated>2021-11-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Project web site: cangulo-nugets/cangulo.changelog]]></summary>
+        <content type="html"><![CDATA[<p>:::caution 🚧🛑 Project discontinued</p><p>Project web site: <a href="https://cangulo-nugets.github.io/cangulo.changelog.github.io/">cangulo-nugets/cangulo.changelog</a></p><p>:::</p><h2>Problem I want to solve</h2><p>I have the solution <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a> to handle releases in my GH repos. However, this doesn&#x27;t document the changes, for that, I need a solution that updates the Changelog and create release notes, all, having as input the commit messages of the last PR merged.</p><h2>Goal</h2><p>Have a custom solution to update changelogs and create release notes.</p><h2>Approach</h2><p>Create a NuGet package that can be imported in any C# project. In my case, I will import it in <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a>. </p><p>The main interface to call is:</p><pre><code class="language-csharp">public interface IChangelogBuilder
+{
+    void Build(string version, string[] changes, string path);
+}
+</code></pre><div label="Definiton at cangulo.changelog" link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs"></div><h2>Full Documentation</h2><p><a href="https://cangulo-nugets.github.io/cangulo.changelog.github.io/">cangulo-nugets/cangulo.changelog</a></p><h2>Where do I use it?</h2><p><a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a></p><h2>Repository</h2><p><a href="https://github.com/cangulo-nugets/cangulo.changelog">cangulo.changelog repository</a></p><h2>NuGet Package</h2><p><a href="https://www.nuget.org/packages/cangulo.changelog/">cangulo.changelog</a></p>]]></content>
+        <author>
+            <name>Carlos Angulo Mascarell</name>
+            <uri>https://github.com/cangulo</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[cangulo.nuke.prcommitsvalidations]]></title>
         <id>cangulo.nuke.prcommitsvalidations</id>
         <link href="https://cangulo.github.io/projects/cangulo.nuke.prcommitsvalidations"/>
@@ -63,22 +79,6 @@
               .EnableNoRestore());
     });
 </code></pre></details> ::: <h2>Goals</h2><ul><li>Build a solution that releases a new version every time a PR is merged.</li><li>The Solution should be based on NUKE.</li><li>Any repository should be able to use it.</li></ul><h2>Approach</h2><p>cangulo.nuke.releasecreator will execute the following operations sequentially:</p><ol><li>Calculate the next version based on the commits merged</li><li>Release a new version through the GH API client (provided by NUKE). </li></ol><p>Next are the requirements for calculating the release number:</p><ul><li>The repository app follows <a href="https://semver.org">Semantic Versioning.</a></li><li>All PR contain <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> which set the release to be created (<em>major</em>, <em>minor</em> or <em>fix</em>).</li></ul><p>So, if an app has the version <code>0.0.2</code> and a PR with a <em>fix</em> commit as  <code>fix: solved error in the controller</code> is merged, the version released will be <code>0.0.3</code>.</p><h2>Remarks</h2><ul><li>I&#x27;m not saying NUKE is the best solution, I just want to give it a try 😊. In the future, I will create another solution based on scripts.</li><li>As I started coding this, I realize that I can define more tasks as:<ul><li>To update the version in <code>.csproj</code> files. I did this as optional.</li><li>To update the changelog using <a href="https://github.com/cangulo-nugets/cangulo.changelog">cangulo.changelog</a></li><li>To push custom Assets to the release,  like a JSON schema that we updated</li></ul></li></ul><h2>How to use it?</h2><p>Please check the examples given <a href="https://github.com/cangulo-actions/cangulo.nuke.releasecreator#examples">here</a>.</p><h2>Where do I use it?</h2><p>I call this solution through a specific <a href="https://github.com/cangulo-actions/cangulo.nuke.releasecreator">GH Action</a> in the next projects:</p><ul><li><a href="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/.github/workflows/4-Release-New-Version.yml">cangulo-nugets/cangulo.changelog</a></li><li><a href="https://github.com/cangulo-nugets/cangulo.common.testing/blob/v0.0.2/.github/workflows/4-Release-New-Version.yml">cangulo-nugets/cangulo.common.testing</a></li><li><a href="https://github.com/cangulo-nuke/cangulo.nuke.prcommitsvalidations/blob/v0.0.1/.github/workflows/3-Release_New_Version.yml">cangulo-nuke/cangulo.nuke.prcommitsvalidations</a></li><li><a href="https://github.com/cangulo-actions/cangulo.nuke.prcommitsvalidations/blob/v0.0.1/.github/workflows/2-release_new_version.yml">cangulo-actions/cangulo.nuke.prcommitsvalidations</a></li><li><a href="https://github.com/cangulo-tf/basic-iac/blob/v0.0.2/.github/workflows/3-Release_New_Version.yml">cangulo-tf/basic-iac</a></li></ul><h2>Repository</h2><p><a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">solution cangulo.nuke.releasecreator</a></p><h2>GitHub Action</h2><p><a href="https://github.com/cangulo-actions/cangulo.nuke.releasecreator">github action to execute in ANY repository</a></p>]]></content>
-        <author>
-            <name>Carlos Angulo Mascarell</name>
-            <uri>https://github.com/cangulo</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[cangulo.changelog]]></title>
-        <id>cangulo.changelog</id>
-        <link href="https://cangulo.github.io/projects/cangulo.changelog"/>
-        <updated>2021-11-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Project web site: cangulo-nugets/cangulo.changelog]]></summary>
-        <content type="html"><![CDATA[<p>:::caution 🚧🛑 Project discontinued</p><p>Project web site: <a href="https://cangulo-nugets.github.io/cangulo.changelog.github.io/">cangulo-nugets/cangulo.changelog</a></p><p>:::</p><h2>Problem I want to solve</h2><p>I have the solution <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a> to handle releases in my GH repos. However, this doesn&#x27;t document the changes, for that, I need a solution that updates the Changelog and create release notes, all, having as input the commit messages of the last PR merged.</p><h2>Goal</h2><p>Have a custom solution to update changelogs and create release notes.</p><h2>Approach</h2><p>Create a NuGet package that can be imported in any C# project. In my case, I will import it in <a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a>. </p><p>The main interface to call is:</p><pre><code class="language-csharp">public interface IChangelogBuilder
-{
-    void Build(string version, string[] changes, string path);
-}
-</code></pre><div label="Definiton at cangulo.changelog" link="https://github.com/cangulo-nugets/cangulo.changelog/blob/v0.0.8/src/cangulo.changelog/Builders/ChangelogBuilder.cs"></div><h2>Full Documentation</h2><p><a href="https://cangulo-nugets.github.io/cangulo.changelog.github.io/">cangulo-nugets/cangulo.changelog</a></p><h2>Where do I use it?</h2><p><a href="https://github.com/cangulo-nuke/cangulo.nuke.releasecreator">cangulo.nuke.releasecreator</a></p><h2>Repository</h2><p><a href="https://github.com/cangulo-nugets/cangulo.changelog">cangulo.changelog repository</a></p><h2>NuGet Package</h2><p><a href="https://www.nuget.org/packages/cangulo.changelog/">cangulo.changelog</a></p>]]></content>
         <author>
             <name>Carlos Angulo Mascarell</name>
             <uri>https://github.com/cangulo</uri>

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[5260],{36848:function(e){e.exports=JSON.parse('{"allTagsPath":"/meetups/tags","slug":"/meetups/tags/downtime","name":"downtime","count":1,"permalink":"/meetups/tags/downtime"}')}}]);

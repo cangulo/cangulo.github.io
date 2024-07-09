@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcangulo_github_io=self.webpackChunkcangulo_github_io||[]).push([[202],{65045:function(a){a.exports=JSON.parse('{"allTagsPath":"/meetups/tags","slug":"/meetups/tags/markdown","name":"markdown","count":1,"permalink":"/meetups/tags/markdown"}')}}]);
