@@ -66,11 +66,7 @@ export const FeatureList: FeatureItem[] = [
     svgItem: SVG_IMAGES.HOME_EXPERIENCE,
     description: (
       <>
-        Yes! I almost forgot to mention:
-        I have 5 years of experience with dotnet.
-        2 with Terraform and AWS.
-        I am a AWS Developer Associate certified.
-        You can check my full profile <a href="./about"> here.</a>
+        More than 8 years of experience in software development. Currently focus on SRE and Platform Engineer responsibilities.
       </>
     ),
   },
