@@ -4,25 +4,25 @@
         <title>Carlos Angulo Meetups</title>
         <link>https://cangulo.github.io/meetups</link>
         <description>Here you can find information or resources about the meetups I have participated 🧑‍🏫</description>
-        <lastBuildDate>Tue, 09 Jul 2024 23:41:11 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 10 Jul 2024 01:11:24 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Refactoring hundred of environments with TF]]></title>
-            <link>https://cangulo.github.io/meetups/202310-bcn-serverless-meetup-tf-refactor</link>
-            <guid>202310-bcn-serverless-meetup-tf-refactor</guid>
-            <pubDate>Tue, 09 Jul 2024 23:41:11 GMT</pubDate>
-            <description><![CDATA[Slides and code in this GH repo: 202310-bcn-serverless-meetup-tf-refactor]]></description>
-            <content:encoded><![CDATA[<p>Slides and code in this GH repo: <a href="https://github.com/cangulo-talks/202310-bcn-serverless-meetup-tf-refactor">202310-bcn-serverless-meetup-tf-refactor</a></p>]]></content:encoded>
-        </item>
-        <item>
             <title><![CDATA[Functionless batch processing with EB]]></title>
             <link>https://cangulo.github.io/meetups/20240418-bcn-batch-ecs</link>
             <guid>20240418-bcn-batch-ecs</guid>
-            <pubDate>Tue, 09 Jul 2024 23:41:11 GMT</pubDate>
+            <pubDate>Wed, 10 Jul 2024 01:11:24 GMT</pubDate>
             <description><![CDATA[Slides and code in this GH repo: 20240418-bcn-batch-ecs]]></description>
             <content:encoded><![CDATA[<p>Slides and code in this GH repo: <a href="https://github.com/cangulo-talks/20240418-bcn-batch-ecs">20240418-bcn-batch-ecs</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Refactoring hundred of environments with TF]]></title>
+            <link>https://cangulo.github.io/meetups/202310-bcn-serverless-meetup-tf-refactor</link>
+            <guid>202310-bcn-serverless-meetup-tf-refactor</guid>
+            <pubDate>Wed, 10 Jul 2024 01:11:24 GMT</pubDate>
+            <description><![CDATA[Slides and code in this GH repo: 202310-bcn-serverless-meetup-tf-refactor]]></description>
+            <content:encoded><![CDATA[<p>Slides and code in this GH repo: <a href="https://github.com/cangulo-talks/202310-bcn-serverless-meetup-tf-refactor">202310-bcn-serverless-meetup-tf-refactor</a></p>]]></content:encoded>
         </item>
     </channel>
 </rss>
