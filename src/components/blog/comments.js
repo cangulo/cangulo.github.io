@@ -1,10 +1,10 @@
 import React from "react";
-import HyvorTalk from 'hyvor-talk-react'
+import { Comments } from '@hyvor/hyvor-talk-react';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 
-const Comments = () => {
+export default () => {
 
   const { siteConfig } = useDocusaurusContext();
   const websiteId = parseInt(siteConfig.customFields.hyvorTalkSiteId)
@@ -12,12 +12,11 @@ const Comments = () => {
   return (
     <section>
       <h2>Comments</h2>
-      <HyvorTalk.Embed
-        loadMode="scroll"
-        websiteId={websiteId}
-      />
+        <Comments
+            loadMode="scroll"
+            website-id={websiteId}
+            page-id=""
+        />
     </section>
   )
 }
-
-export default Comments
