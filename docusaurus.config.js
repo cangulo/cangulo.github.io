@@ -325,7 +325,6 @@ const config = {
           {
             items: [
               { label: 'LinkedIn', href: 'https://www.linkedin.com/in/angulomascarell/' },
-              { label: 'Twitter', href: 'https://twitter.com/angulomascarell' },
               { label: 'RSS', to: '/rss' },
             ],
           }
