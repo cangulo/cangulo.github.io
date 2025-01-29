@@ -14,7 +14,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@cangulo-blog/components": "^0.0.28",
+    "@cangulo-blog/components": "^0.0.29",
     "@docusaurus/core": "^2.0.0-beta.13",
     "@docusaurus/preset-classic": "^2.0.0-beta.13",
     "@hyvor/hyvor-talk-react": "^0.0.3",
