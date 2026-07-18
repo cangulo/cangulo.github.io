@@ -58,13 +58,14 @@ jobs:
 
       # Publish via OIDC trusted publishing — no token. npm's OIDC support
       # needs npm >= 11.5.1, but the pinned Node 20 ships npm 10, so upgrade
-      # npm first. Build the dist, then publish with plain npm (pnpm publish
-      # does not yet do npm OIDC). Provenance is added automatically.
+      # npm first. Pin to the 11.x line: npm 12 requires Node >= 22 and would
+      # fail EBADENGINE on Node 20. Build the dist, then publish with plain npm
+      # (pnpm publish does not yet do npm OIDC). Provenance is added automatically.
       - name: Publish to npm (OIDC trusted publishing)
         if: steps.version.outputs.published == 'false'
         working-directory: packages/components
         run: |
-          npm install -g npm@latest
+          npm install -g npm@11
           pnpm run build
           npm publish --access public
 
