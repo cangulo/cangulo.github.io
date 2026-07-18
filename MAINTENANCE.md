@@ -380,7 +380,21 @@ optional).
   - Verified locally on Node 20: clean build (no warnings), 8/8 route smoke tests,
     525 links crawled 0 broken, typecheck green; mermaid renders via theme (client-side),
     `remark-code-import` content present in built HTML.
-- Phase 6 — not started.
+- **Phase 6 (security + automation)** — implemented on branch
+  `claude/cangulo-site-maintenance-opmbq5`:
+  - `.github/dependabot.yml`: npm (covers pnpm) + github-actions lanes, monthly, grouped
+    minor/patch (majors arrive as individual PRs).
+  - `.github/workflows/dependabot-auto-merge.yml`: Dependabot minor/patch PRs get
+    `gh pr merge --auto --squash` via `dependabot/fetch-metadata`.
+  - `.github/workflows/codeql.yml`: JS/TS scan on PRs + monthly.
+  - `.github/workflows/audit.yml`: scheduled `pnpm audit --prod`, informational only.
+  - `SECURITY.md` added.
+  - **Owner actions required (GitHub UI, one-time):**
+    1. Settings → General → check **"Allow auto-merge"**.
+    2. Settings → Branches → protect `main`, require the **Build** status check —
+       without this, auto-merge fires immediately instead of waiting for green CI.
+    3. Settings → Advanced Security: enable **Dependabot alerts** and **secret
+       scanning** (CodeQL "code scanning" gets enabled automatically by the workflow).
 
 ---
 
