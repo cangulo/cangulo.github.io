@@ -4,6 +4,11 @@ name: Release components package
 # Idempotent: skips silently if the version in packages/components/package.json
 # is already on the registry, so pushes without a bump are no-ops.
 #
+# Auth is npm Trusted Publishing (OIDC): npm is configured on the registry to
+# trust this repo's release-components.yml workflow, so no token/secret is used
+# (the package disallows tokens). This needs the id-token: write permission
+# below and npm CLI >= 11.5.1 (installed in the publish step, since Node 20
+# ships npm 10). Provenance is attached automatically.
 on:
   push:
     branches: [main]
@@ -13,7 +18,7 @@ on:
 
 permissions:
   contents: write # tag + GitHub release
-  id-token: write # for gh release create
+  id-token: write # OIDC trusted publishing to npm
 
 jobs:
   release:
@@ -51,15 +56,15 @@ jobs:
             echo "published=false" >> "$GITHUB_OUTPUT"
           fi
 
-      # Build the publishable dist, then publish with npm (not pnpm): the
-      # actions/setup-node registry-url step wires the token into an .npmrc
-      # that npm reads via ${NODE_AUTH_TOKEN}, but pnpm publish doesn't honor
-      # it the same way, which sends the request unauthenticated (npm then
-      # returns 404 for the scoped package).
-      - name: Publish
+      # Publish via OIDC trusted publishing — no token. npm's OIDC support
+      # needs npm >= 11.5.1, but the pinned Node 20 ships npm 10, so upgrade
+      # npm first. Build the dist, then publish with plain npm (pnpm publish
+      # does not yet do npm OIDC). Provenance is added automatically.
+      - name: Publish to npm (OIDC trusted publishing)
         if: steps.version.outputs.published == 'false'
         working-directory: packages/components
         run: |
+          npm install -g npm@latest
           pnpm run build
           npm publish --access public
 
