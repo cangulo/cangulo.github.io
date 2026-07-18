@@ -13,9 +13,8 @@ export default () => {
     <section>
       <h2>Comments</h2>
         <Comments
-            loadMode="scroll"
+            loading="lazy"
             website-id={websiteId}
-            page-id=""
         />
     </section>
   )
