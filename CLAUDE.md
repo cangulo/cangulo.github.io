@@ -58,15 +58,17 @@ new post; `blog/authors.yml` is shared across all six plugins.
 `onBrokenLinks: 'throw'` — a broken internal link fails the build, so run `pnpm build`
 locally before pushing content changes.
 
-## Key coupling: `@cangulo-blog/components`
+## `@cangulo-blog/components` — temporarily disabled
 
-Every one of the six blog plugins injects common MDX imports/JSX (author bio, contact info,
-share buttons, comments) via `beforeDefaultRemarkPlugins`/`remarkPlugins` in
-`docusaurus.config.js`, all sourced from the owner's own package `@cangulo-blog/components`.
-`src/pages/about.mdx` and `blog/_template.md` also import fragments from it directly, and
-`CaptionDocusaurus` (from the same package) is used directly inside several content files
-under `blog/`. Changes to blog post structure, `about.mdx`, or the injected
-header/footer should account for this package.
+The owner's package `@cangulo-blog/components` used to inject a common header/footer
+(author bio, contact, share buttons, Hyvor comments) into every post of all six blog
+plugins, and provided `/about`'s content, captions, and the brand CSS. It is **disabled
+during the maintenance overhaul** (Phase 4): posts currently have no injected
+header/footer, `/about` is a minimal placeholder, captions render through the local shim
+`src/components/CaptionDocusaurus.jsx` (imported explicitly by the content files that use
+it), and the brand CSS lives at `src/css/blog-styles.css`. The plan is to import the
+package's source into this repo, adapt it to Docusaurus 3, republish it to npm from here,
+and restore all of the above — see `MAINTENANCE.md` §8.
 
 ## Deploy flow
 
