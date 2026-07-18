@@ -8,7 +8,7 @@ tags: [terraform,cheatsheets]
 
 ---
 
-import CaptionDocusaurus from '@site/src/components/CaptionDocusaurus';
+import { CaptionDocusaurus } from '@cangulo-blog/components';
 
 This post explains the next topics:
 * How to set up a shortcut for Terraform in the Terminal

@@ -444,3 +444,31 @@ peer dependencies (React 18/19, react-share v5+). `prop-types` was used but neve
    can't merge because the site build consumes it directly via the workspace.
 7. **Afterwards (owner, UI):** archive `cangulo/blog-components`, and point other blogs at
    the npm package (same name, so likely just a version bump for them).
+
+### Phase 7 — implemented
+
+Done on branch `claude/cangulo-site-maintenance-opmbq5`:
+- `pnpm-workspace.yaml` + `packages/components` (`@cangulo-blog/components@0.1.0`,
+  `type: module`, babel → `dist/` with copied MDX/CSS, exports map keeps the old
+  `/dist/*` subpaths working alongside cleaner `/mdx/*`, `/css/*`, `/remark-plugins`).
+- Components ported (PropTypes dropped; `react >=18` / `react-share ^5` as peers —
+  `TwitterIcon` → `XIcon`).
+- **Remark plugins rewritten for MDX v3**: snippets are parsed with
+  `mdast-util-from-markdown` + `micromark-extension-mdxjs` + `mdast-util-mdx` into real
+  `mdxjsEsm`/`mdxJsxFlowElement` nodes (v1's raw `import`/`jsx` string nodes are gone);
+  `alignTableCenter` now moves the table *inside* a `<div>` element node (v3 forbids
+  unbalanced open/close tags); truncate detection reads the vfile source. 3 unit tests
+  (`node --test`) cover injection, the untruncated-skip, and table wrapping.
+- Site re-wired: injections + `/about` fragments + package CSS restored; Phase 4 shim and
+  local CSS copy deleted; `CaptionDocusaurus` stays an explicit per-file import (cleaner
+  than injecting it; deviation from the pre-Phase-4 setup). Root `build`/`test` scripts
+  build/test the package first.
+- `release-components.yml`: on `main` push touching `packages/components/**` — build,
+  test, then publish to npm **only if the version isn't on the registry yet** (idempotent
+  version-guard), then tag `components-vX.Y.Z` + GH release. **Deviation from the §8
+  sketch:** `cangulo-actions/semver` was not reused — it versions/releases at repo level,
+  which now collides with site commits in the same repo; the version-guard flow needs no
+  conventional-commit coupling. Can be revisited if the owner prefers.
+- **Owner actions:** add the npm token as the `PUBLISH_CANGULO_BLOG_COMPONENTS` repo
+  secret (it lives in the old repo's secrets); after the first publish, archive
+  `cangulo/blog-components`.

@@ -12,7 +12,8 @@ remark plugins are ESM-only). TypeScript is used for editor tooling only — the
 not type-checked as part of the build (`tsconfig.json` extends `@docusaurus/tsconfig`;
 `pnpm typecheck` runs it manually).
 
-This is a single package at the repo root — not a monorepo.
+This is a **pnpm workspace**: the site at the repo root, plus `packages/components`
+(`@cangulo-blog/components`, published to npm from here — see below).
 
 ## Prerequisites
 
@@ -59,17 +60,26 @@ new post; `blog/authors.yml` is shared across all six plugins.
 `onBrokenLinks: 'throw'` — a broken internal link fails the build, so run `pnpm build`
 locally before pushing content changes.
 
-## `@cangulo-blog/components` — temporarily disabled
+## `@cangulo-blog/components` — lives in this repo
 
-The owner's package `@cangulo-blog/components` used to inject a common header/footer
-(author bio, contact, share buttons, Hyvor comments) into every post of all six blog
-plugins, and provided `/about`'s content, captions, and the brand CSS. It is **disabled
-during the maintenance overhaul** (Phase 4): posts currently have no injected
-header/footer, `/about` is a minimal placeholder, captions render through the local shim
-`src/components/CaptionDocusaurus.jsx` (imported explicitly by the content files that use
-it), and the brand CSS lives at `src/css/blog-styles.css`. The plan is to import the
-package's source into this repo, adapt it to Docusaurus 3, republish it to npm from here,
-and restore all of the above — see `MAINTENANCE.md` §8.
+This is a small **pnpm workspace**: the site is the root package, and
+`packages/components` is `@cangulo-blog/components` — the owner's shared blog package
+(React caption/share components, `aboutme_*` MDX fragments, MDX v3 remark plugins, brand
+CSS), consumed by the site via `workspace:*` and **published to npm from this repo** for
+reuse in other blogs (`.github/workflows/release-components.yml`: bump the version in
+`packages/components/package.json` on `main` and it publishes + tags `components-vX.Y.Z`).
+
+How the site uses it (`docusaurus.config.mjs`):
+- `addJsxCode` injects the AboutMe/Contact/Share/Comments header & footer into every post
+  **that has a truncate marker**; `alignTableCenter` centers multi-row tables.
+- `/about` (`src/pages/about.mdx`) imports the `aboutme_*` fragments directly.
+- `CaptionDocusaurus` is imported explicitly by the content files that use it (it is not
+  auto-injected).
+- The brand CSS comes from `@cangulo-blog/components/css/blog-styles.css` in `customCss`.
+
+Changing post structure, `about.mdx`, or the injected header/footer usually means touching
+`packages/components` — its remark plugins have unit tests (`pnpm --filter
+@cangulo-blog/components test`), which also run as part of `pnpm test`.
 
 ## Deploy flow
 

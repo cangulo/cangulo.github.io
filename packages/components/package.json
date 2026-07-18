@@ -1,0 +1,56 @@
+{
+  "name": "@cangulo-blog/components",
+  "version": "0.1.0",
+  "description": "Carlos Angulo blog components for Docusaurus 3",
+  "author": {
+    "name": "Carlos Angulo",
+    "email": "cangulo_npm@outlook.com",
+    "url": "https://cangulo.github.io/"
+  },
+  "license": "ISC",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./remark-plugins": "./dist/remark-plugins/index.js",
+    "./mdx/*": "./dist/mdx/*",
+    "./css/*": "./dist/css/*",
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && babel src --out-dir dist --copy-files --no-copy-ignored",
+    "test": "npm run build && node --test test/",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cangulo/cangulo.github.io.git",
+    "directory": "packages/components"
+  },
+  "keywords": [
+    "blog",
+    "components",
+    "docusaurus",
+    "cangulo"
+  ],
+  "dependencies": {
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-mdx": "^3.0.0",
+    "micromark-extension-mdxjs": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-share": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-react": "^7.27.1",
+    "mdast-util-gfm-table": "^2.0.0",
+    "micromark-extension-gfm-table": "^2.1.1"
+  }
+}
