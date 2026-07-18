@@ -6,10 +6,11 @@ site; a maintenance overhaul is planned and will update this file phase by phase
 
 ## What this is
 
-Carlos Angulo's personal blog/site, built with **Docusaurus 2** (currently a pre-release
-`2.0.0-beta.13`) and hosted on GitHub Pages at https://cangulo.github.io. TypeScript is used
-for editor tooling only — the codebase is not type-checked as part of the build (`tsconfig.json`
-extends `@tsconfig/docusaurus`; `npm run typecheck` runs it manually).
+Carlos Angulo's personal blog/site, built with **Docusaurus 3** and hosted on GitHub Pages
+at https://cangulo.github.io. The config lives in **`docusaurus.config.mjs`** (ESM — the
+remark plugins are ESM-only). TypeScript is used for editor tooling only — the codebase is
+not type-checked as part of the build (`tsconfig.json` extends `@docusaurus/tsconfig`;
+`pnpm typecheck` runs it manually).
 
 This is a single package at the repo root — not a monorepo.
 
@@ -39,7 +40,7 @@ Both test commands require a `pnpm build` first — they run against `build/`.
 ## Content model
 
 The site has **no single blog** — it's six independent
-`@docusaurus/plugin-content-blog` instances configured in `docusaurus.config.js`
+`@docusaurus/plugin-content-blog` instances configured in `docusaurus.config.mjs`
 (`preset-classic` itself has `docs: false, blog: false`):
 
 | Plugin id     | Source dir          | Route            |

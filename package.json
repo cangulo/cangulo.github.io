@@ -20,29 +20,25 @@
     "test:smoke": "node scripts/linkcheck.mjs"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.13",
-    "@docusaurus/preset-classic": "^2.0.0-beta.13",
+    "@docusaurus/core": "^3.10.2",
+    "@docusaurus/preset-classic": "^3.10.2",
+    "@docusaurus/theme-mermaid": "^3.10.2",
     "@hyvor/hyvor-talk-react": "^0.0.3",
-    "@mdx-js/react": "^1.6.21",
-    "@svgr/webpack": "^5.5.0",
-    "clsx": "^1.1.1",
-    "docusaurus": "^1.14.7",
-    "file-loader": "^6.2.0",
-    "mdast-util-to-string": "^3.1.0",
-    "mdx-mermaid": "^1.1.1",
-    "mermaid": "^8.13.3",
-    "plugin-image-zoom": "github:ataft/plugin-image-zoom",
-    "prism-react-renderer": "^1.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "url-loader": "^4.1.1"
+    "@mdx-js/react": "^3.1.1",
+    "clsx": "^2.1.1",
+    "docusaurus-plugin-image-zoom": "^3.0.1",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.0.0-beta.9",
-    "@tsconfig/docusaurus": "^1.0.4",
+    "@docusaurus/module-type-aliases": "^3.10.2",
+    "@docusaurus/tsconfig": "^3.10.2",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
     "linkinator": "^7.6.1",
-    "remark-code-import": "^0.4.0",
-    "typescript": "^4.3.5"
+    "remark-code-import": "^1.2.0",
+    "typescript": "^5.9.3"
   },
   "browserslist": {
     "production": [
