@@ -361,7 +361,26 @@ optional).
     live in this repo anyway (see §8), the file was copied to `src/css/blog-styles.css`
     and kept in `customCss`. Zero maintenance cost, avoids weeks of an off-brand site.
   - `package.json`: `@cangulo-blog/components` and `react-share` removed.
-- Phases 5–6 — not started.
+- **Phase 5 (Docusaurus 3)** — implemented on branch `claude/cangulo-site-maintenance-opmbq5`:
+  - `@docusaurus/*` → `^3.10.2` (core, preset-classic, theme-mermaid, module-type-aliases,
+    tsconfig); React 18.3; MDX v3; `prism-react-renderer` v2; `clsx` v2; TypeScript 5;
+    `@types/react{,-dom}` 18 pinned as dev deps (a transitive v17 was hoisted otherwise,
+    breaking `pnpm typecheck`).
+  - Removed: vestigial `docusaurus@1`, `mdx-mermaid` + `mermaid` (replaced by built-in
+    `@docusaurus/theme-mermaid`, `markdown.mermaid: true`), the unpinned
+    `github:ataft/plugin-image-zoom` fork (replaced by published
+    `docusaurus-plugin-image-zoom` + `themeConfig.zoom`), and unused `@svgr/webpack`,
+    `file-loader`, `url-loader`, `mdast-util-to-string`, `@tsconfig/docusaurus`.
+  - Config rewritten as **`docusaurus.config.mjs`** (ESM — remark plugins are ESM-only);
+    the six blog sections now share a `blogSection()` helper; `onBrokenMarkdownLinks`
+    moved to `markdown.hooks`; `onUntruncatedBlogPosts: 'ignore'` (some sections have
+    one-liner posts); prism themes via `prism-react-renderer` v2 `themes` export;
+    `remark-code-import` → v1.2 (ESM).
+  - Content needed **zero** MDX v3 fixes (`docusaurus-mdx-checker`: 48/48 files clean).
+  - Verified locally on Node 20: clean build (no warnings), 8/8 route smoke tests,
+    525 links crawled 0 broken, typecheck green; mermaid renders via theme (client-side),
+    `remark-code-import` content present in built HTML.
+- Phase 6 — not started.
 
 ---
 
