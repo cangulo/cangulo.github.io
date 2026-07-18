@@ -1,6 +1,28 @@
 // @ts-check
+import { createRequire } from 'node:module';
 import { themes as prismThemes } from 'prism-react-renderer';
 import remarkCodeImport from 'remark-code-import';
+import { addJsxCode, alignTableCenter } from '@cangulo-blog/components/remark-plugins';
+
+const require = createRequire(import.meta.url);
+
+// Injected into every post that has a truncate marker (real posts, not
+// one-liner announcements). CaptionDocusaurus is NOT injected — the files
+// that need it import it explicitly.
+const commonImports = [
+  "import AboutMe from '@cangulo-blog/components/mdx/aboutme_description.mdx'",
+  "import FullExperienceLink from '@cangulo-blog/components/mdx/aboutme_fullexperiencelink.mdx'",
+  "import Contact from '@cangulo-blog/components/mdx/aboutme_contact.mdx'",
+  "import { ShareDocusaurus } from '@cangulo-blog/components'",
+  "import Comments from '@site/src/components/blog/comments.js'",
+];
+
+const jsxElementsEnding = [
+  '<AboutMe /><FullExperienceLink />',
+  '<Contact />',
+  '<ShareDocusaurus preSlug={frontMatter.group} slug={frontMatter.slug} title={frontMatter.title} tags={frontMatter.tags} />',
+  '<Comments />',
+];
 
 /**
  * The six content sections share the same blog-plugin options.
@@ -15,7 +37,14 @@ const blogSection = (options) => [
     editUrl: 'https://github.com/cangulo/cangulo.github.io/blob/main',
     // Some sections have one-liner posts where truncation makes no sense.
     onUntruncatedBlogPosts: 'ignore',
-    remarkPlugins: [remarkCodeImport],
+    beforeDefaultRemarkPlugins: [
+      alignTableCenter,
+      [addJsxCode, { importStatement: commonImports, position: 'start' }],
+    ],
+    remarkPlugins: [
+      remarkCodeImport,
+      [addJsxCode, { jsx: jsxElementsEnding }],
+    ],
     ...options,
   }),
 ];
@@ -137,7 +166,7 @@ const config = {
         blog: false,
         theme: {
           customCss: [
-            './src/css/blog-styles.css',
+            require.resolve('@cangulo-blog/components/css/blog-styles.css'),
             './src/css/custom.css'
           ],
         },

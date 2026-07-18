@@ -1,0 +1,75 @@
+name: Release components package
+
+# Publishes @cangulo-blog/components to npm when its version changes on main.
+# Idempotent: skips silently if the version in packages/components/package.json
+# is already on the registry, so pushes without a bump are no-ops.
+#
+# Requires the NPM automation token in the PUBLISH_CANGULO_BLOG_COMPONENTS
+# repo secret (same token the old blog-components repo used).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/components/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write # tag + GitHub release
+
+jobs:
+  release:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and test package
+        run: pnpm --filter @cangulo-blog/components test
+
+      - name: Check if version is already published
+        id: version
+        working-directory: packages/components
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "$NAME@$VERSION already on npm — nothing to do."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish
+        if: steps.version.outputs.published == 'false'
+        working-directory: packages/components
+        run: pnpm publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_CANGULO_BLOG_COMPONENTS }}
+
+      - name: Tag and create GitHub release
+        if: steps.version.outputs.published == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          TAG="components-v$VERSION"
+          git tag "$TAG"
+          git push origin "$TAG"
+          gh release create "$TAG" \
+            --title "@cangulo-blog/components $VERSION" \
+            --notes "Published @cangulo-blog/components@$VERSION to npm."
