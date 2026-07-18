@@ -1,0 +1,291 @@
+# Maintenance Overhaul Plan — cangulo.github.io
+
+> Full record of the maintenance review: repository analysis, the decisions taken (with the
+> options that were on the table), and the phased execution plan. This document is the
+> single source of truth for the overhaul; each phase ships as its own PR.
+
+- **Repo:** https://github.com/cangulo/cangulo.github.io
+- **Live site:** https://cangulo.github.io
+- **Reviewed:** 2026-07-18
+- **Overarching goal:** reach a modern, stable, low-touch state where the site keeps itself
+  up to date and deploys safely with near-zero owner involvement (the repo is edited
+  infrequently, so *minimizing ongoing maintenance* is the top priority).
+
+---
+
+## 1. Context — why this work is needed
+
+The site had drifted into a fragile, high-maintenance state:
+
+- **CI is effectively broken.** `.github/workflows/update-page.yml` uses the
+  **decommissioned** `actions/upload-artifact@v2` / `download-artifact@v2` (GitHub shut
+  these down in 2025), so pushes to `main` no longer deploy reliably. It also uses
+  `npm install` (not `npm ci`) and has **no `setup-node`** step (builds run on whatever Node
+  the runner happens to ship).
+- **Stale, pre-release stack.** Docusaurus `2.0.0-beta.13` (a *beta*), React 17, MDX v1,
+  `prism-react-renderer` v1, a vestigial `docusaurus@1` dep, and a mismatched
+  `@docusaurus/module-type-aliases@2.0.0-beta.9`. `.nvmrc` pins **Node 14 (EOL)**; no
+  `engines` field.
+- **Fragile supply chain.** `plugin-image-zoom` is pulled from an unpinned GitHub fork
+  (`github:ataft/plugin-image-zoom`); every page injects the owner's own
+  `@cangulo-blog/components` package.
+- **No safety net.** No tests, no Dependabot, no `npm audit`, no CodeQL.
+
+---
+
+## 2. Repository analysis (findings)
+
+### Project
+- **Docusaurus 2 (beta) static site**, TypeScript for editor experience only (not compiled;
+  `tsconfig.json` extends `@tsconfig/docusaurus`). Babel via the Docusaurus preset.
+- **Single package** (not a monorepo/workspaces). One `package.json` at the root.
+- **npm** with a committed `package-lock.json` (lockfileVersion 3, ~22.8k lines). No
+  `.npmrc`, no `yarn.lock`, no `pnpm-lock.yaml`.
+- `.nvmrc` = `14`. No `engines`, no `packageManager` field.
+
+### Dependencies of note (`package.json`)
+- `@docusaurus/core` / `preset-classic` `^2.0.0-beta.13`; `module-type-aliases`
+  `2.0.0-beta.9` (mismatched).
+- `react` / `react-dom` `^17`, `@mdx-js/react` `^1.6.21`, `prism-react-renderer` `^1.2.1`,
+  `clsx` `^1`.
+- `mdx-mermaid` `^1.1.1` + `mermaid` `^8.13.3` (Mermaid diagrams).
+- `plugin-image-zoom` → `github:ataft/plugin-image-zoom` (unpinned git dep).
+- `@cangulo-blog/components` `^0.0.29` (owner's own package, injected into every page).
+- `@hyvor/hyvor-talk-react` `^0.0.3` (comments), `react-share` `^4.4.0` (share buttons).
+- `docusaurus` `^1.14.7` — **vestigial v1**, unused.
+
+### Content model
+- Six `@docusaurus/plugin-content-blog` instances in `docusaurus.config.js`
+  (`preset-classic` has `docs:false, blog:false`):
+  `blog/posts`→`/blog`, `blog/cheatsheets`, `blog/projects`, `blog/meetups`, `blog/books`,
+  `blog/values`.
+- Standalone pages in `src/pages/` (`index.tsx`, `about.mdx`, `rss.mdx`); assets in
+  `static/` (incl. `.nojekyll`). ~46 routed pages total.
+- `onBrokenLinks: 'throw'` — a broken internal link already fails the build.
+
+### CI / deploy (`.github/workflows/update-page.yml`)
+- Trigger: `push` to `main` only (no PR builds, no `workflow_dispatch`).
+- Job 1 `create-artifact`: `checkout@v4` → `npm install` → `npm run build` →
+  `upload-artifact@v2` (**deprecated**).
+- Job 2 `update-gh-page`: checks out `gh-pages`, `rm -rf ./**`, `download-artifact@v2`
+  (**deprecated**), commits + pushes to `gh-pages` as `cangulo_gh_action`.
+- No `dependabot.yml`, no CodeQL, no `npm audit`, no `.github` beyond this one workflow.
+
+### Testing & security posture
+- **No tests** of any kind (no Jest/Vitest/Cypress/Playwright, no `test` script).
+- **No secrets committed.** `hyvorTalkSiteId: 1142` is a public identifier. `.gitignore`
+  correctly excludes `node_modules`, `/build`, `.env*.local`.
+- External runtime surface: Hyvor Talk, Giphy iframes (`src/components/gif.js`), and the
+  injected `@cangulo-blog/components`. No analytics. No CSP (GitHub Pages can't set real
+  headers).
+
+### `@cangulo-blog/components` usage (mapped precisely)
+- `docusaurus.config.js`: `addJsxCode` + `alignTableCenter` remark plugins; `commonImports`
+  / `jsxElementsEnding` injection arrays (used by all six blog plugins); `blog-styles.css`
+  in `customCss`.
+- `src/pages/about.mdx`: imports 5 text fragments from the package.
+- `blog/_template.md`: imports `AboutMe`, `CaptionDocusaurus`, `ShareDocusaurus`.
+- **`CaptionDocusaurus` is used directly in 9 content files (18×)** — removing the package
+  naively would break the build for all of them.
+- `react-share` is **not** imported anywhere in `src/` — it was only used via the package's
+  `ShareDocusaurus`, so it becomes dead weight once the package is disabled.
+
+---
+
+## 3. Decisions log
+
+Decisions taken interactively during the review. Each lists the options considered and the
+**chosen** one.
+
+### Round 1 — scope & strategy
+| # | Question | Options | Decision |
+|---|----------|---------|----------|
+| 1 | How far to take the upgrade? | D3 (recommended) / D2 stable only / just fix what's broken | **Go to Docusaurus 3** (React 18, Node 20) — lowest long-term maintenance |
+| 2 | Can `@cangulo-blog/components` be updated for D3? | Yes / owner but rather not / not sure | **Yes, owner controls & can update it** (later superseded — see Round 3) |
+| 3 | Deploy method going forward | Official Pages Actions (recommended) / keep `gh-pages` push | **Switch to official GitHub Pages Actions** (needs one-time Pages source setting change) |
+| 4 | How hands-off should updates be? | Auto-merge safe (recommended) / PRs I review / grouped monthly | **Auto-merge safe (minor/patch) updates**, guarded by smoke tests |
+
+### Round 2 — implementation choices
+| # | Question | Options | Decision |
+|---|----------|---------|----------|
+| 5 | `plugin-image-zoom` (unpinned fork) | Replace with published (recommended) / keep fork / drop feature | **Replace with published `docusaurus-plugin-image-zoom`** (pinned) |
+| 6 | Delivery across PRs | Phased PRs (recommended) / one big PR / two PRs | **Phased PRs** — one per phase |
+| 7 | Mermaid | Built-in `@docusaurus/theme-mermaid` (recommended) / keep `mdx-mermaid` | **Use built-in Mermaid**; drop `mdx-mermaid` + `mermaid` |
+| 8 | Smoke-test depth | Lightweight build + link crawl (recommended) / add Playwright | **Lightweight** (build + linkinator + tiny route check); no Playwright |
+
+### Round 3 — disable `@cangulo-blog/components`
+The owner decided to **temporarily disable `@cangulo-blog/components`** and reintegrate a
+D3-compatible version in a **separate later iteration**, *after* all phases. This removes
+the D3 upgrade's main blocker (supersedes Round 1 #2).
+
+| # | Question | Options | Decision |
+|---|----------|---------|----------|
+| 9 | Per-post injected header/footer during the interim | Keep Hyvor comments only / **full clean removal** (recommended) / keep comments + share | **Full clean removal** — drop AboutMe/Contact/Share/Comments injection until reintegration |
+| 10 | `/about` page during the interim | Inline real content (recommended) / **minimal placeholder** | **Minimal placeholder** (keep the already-local Certifications section) |
+
+**Interim behavior (all restored on reintegration):** posts lose the auto-injected
+AboutMe/Contact/Share/**Hyvor Comments** header & footer; `/about` is a minimal placeholder;
+`CaptionDocusaurus` is replaced by a small **local** shim so the build stays green; table
+auto-centering and `blog-styles.css` are dropped (cosmetic).
+
+### Package manager
+- Migrate npm → **pnpm** (requested up front).
+
+---
+
+## 4. Phased plan
+
+Each phase leaves the site building and deployable, and ships as its **own PR**. Ordered so
+the safety net (working CI + smoke tests) exists *before* the risky framework upgrade and
+*before* auto-merge is enabled.
+
+| Phase / PR | Deliverable | Risk | Depends on |
+|-----------|-------------|------|------------|
+| 1 | `CLAUDE.md` | none | — |
+| 2 | Migrate to pnpm + rewrite CI (official Pages deploy) | low–med | — |
+| 3 | Minimal smoke tests wired into CI | low | 2 |
+| 4 | Decouple from `@cangulo-blog/components` (temporary) | med | 3 |
+| 5 | Docusaurus 3 + dependency updates | **high** | 2, 3, 4 |
+| 6 | Security + hands-off automation (Dependabot auto-merge, CodeQL, audit) | low | 2, 3 |
+
+> **Follow-up (out of scope here):** a later, separate iteration reintegrates a
+> D3-compatible `@cangulo-blog/components`, restoring the injected footer, real `/about`
+> content, captions via the package, and table styling.
+
+### Phase 1 — `CLAUDE.md`
+Short, operational orientation file at the repo root: what the site is, prerequisites,
+common commands, the content model (six blog-plugin instances), key couplings, deploy flow,
+and a pointer to this plan. Describes the **current** state; later phases update it.
+
+### Phase 2 — Migrate to pnpm + rewrite CI
+**pnpm migration:**
+- Add `"packageManager": "pnpm@9.x"` and `"engines": { "node": ">=20" }` to `package.json`.
+- Generate `pnpm-lock.yaml` (`pnpm import` from `package-lock.json`, then `pnpm install`);
+  **delete `package-lock.json`**.
+- Add `.npmrc` with `node-linker=hoisted` (makes pnpm behave like npm's flat
+  `node_modules` — avoids Docusaurus phantom-dependency "module not found" issues; lowest
+  maintenance).
+- Update `README.md` / `CLAUDE.md` commands to `pnpm`.
+
+**Node:** `.nvmrc` `14` → `20`.
+
+**Rewrite `.github/workflows/update-page.yml`** to the official Pages flow:
+- Triggers: `push` to `main`, **`pull_request`** (build-only gate), `workflow_dispatch`.
+- Least-privilege `permissions:` (`contents: read`; deploy job gets `pages: write` +
+  `id-token: write`); Pages `concurrency` group.
+- Build job: `checkout@v4` → `pnpm/action-setup@v4` → `setup-node@v4`
+  (`node-version-file: .nvmrc`, `cache: pnpm`) → `pnpm install --frozen-lockfile` →
+  `pnpm build` → (Phase 3) smoke → `actions/upload-pages-artifact@v3` (`path: build`).
+- Deploy job (only on push to `main`, `needs: build`): `actions/deploy-pages@v4`.
+- Remove the `rm -rf` / bot-commit / `gh-pages` push logic entirely.
+
+**One-time GitHub setting (owner, in UI):** Settings → Pages → Source = **"GitHub Actions"**.
+After the first successful deploy, the `gh-pages` branch may be deleted (keep briefly for
+rollback).
+
+### Phase 3 — Minimal smoke tests
+Lightest trustworthy "the site still loads" gate:
+1. **Build-time link integrity (free):** keep `onBrokenLinks: 'throw'`.
+2. **Crawl built output with `linkinator`** (one dev dep, no browser): script
+   `"test:smoke": "linkinator ./build --recurse --silent"` (optionally `--skip` flaky
+   external hosts like giphy/linkedin).
+3. **Tiny key-route assertion:** `scripts/smoke.mjs` (~15 lines) serves `build/` and asserts
+   `/`, `/about`, `/blog`, `/cheatsheets`, `/projects`, `/rss` return HTTP 200 with expected
+   text. Wire as `"test"`.
+
+CI: run `pnpm test` + `pnpm test:smoke` after `pnpm build` in the build job (gates PR merge
+and `main` deploy).
+
+### Phase 4 — Decouple from `@cangulo-blog/components` (temporary)
+Remove the runtime dependency while keeping the build green:
+1. **Local `CaptionDocusaurus` shim** (`src/components/CaptionDocusaurus.jsx`) matching the
+   prop API (`label`, `linkIsRelative`, `link`); add an explicit import to each of the 9
+   content files that use it.
+2. **`docusaurus.config.js`:** remove the package remark-plugin require, the
+   `commonImports` / `jsxElementsEnding` arrays, the `beforeDefaultRemarkPlugins`
+   (`alignTableCenter`, `addJsxCode`) + `addJsxCode` entries across all six blog plugins,
+   and the `blog-styles.css` `customCss` entry. Keep `mdx-mermaid` / `remark-code-import`
+   (handled in Phase 5).
+3. **`src/pages/about.mdx`:** drop the 5 package imports → minimal placeholder; keep the
+   local Certifications section.
+4. **`blog/_template.md`:** drop package imports; point any caption example at the local
+   shim.
+5. **`package.json`:** remove `@cangulo-blog/components` **and** `react-share` (now unused);
+   refresh the lockfile.
+
+Verify: `pnpm build` succeeds with **zero** references to `@cangulo-blog/components`; smoke
+green; captions still render.
+
+### Phase 5 — Docusaurus 3 + dependency updates
+No longer blocked on any components-package release. Follow the official
+[v2→v3 migration guide](https://docusaurus.io/docs/migration).
+- `@docusaurus/*` → `^3.x` (same version across core/preset/module-type-aliases).
+- `react`/`react-dom` → `^18`; `@mdx-js/react` → `^3` (MDX v1→v3 is the biggest breaking
+  change — sweep `.mdx` for unescaped `<`/`{`, comments, self-closing tags, admonitions);
+  `prism-react-renderer` → `^2` (theme import paths change); `clsx` → `^2`; `@svgr/webpack`,
+  `file-loader`, `url-loader`, `remark-code-import` → current.
+- **Remove `docusaurus@1`** (vestigial).
+- **Mermaid:** drop `mdx-mermaid` + `mermaid`; enable built-in `@docusaurus/theme-mermaid`
+  (`markdown: { mermaid: true }` + theme).
+- **Image zoom:** replace the GitHub fork with published `docusaurus-plugin-image-zoom`
+  (pinned).
+- **Config → ESM:** D3 remark/rehype plugins are ESM-only; convert `docusaurus.config.js`
+  to `.mjs` (or async config + dynamic `import()`); update Prism imports.
+
+### Phase 6 — Security + hands-off automation
+- **Dependabot** (`.github/dependabot.yml`): `npm` ecosystem (covers pnpm), monthly,
+  **grouped** minor/patch, plus a `github-actions` lane; majors split out for human review.
+- **Auto-merge** (`.github/workflows/dependabot-auto-merge.yml`): on Dependabot PRs, if the
+  bump is **minor/patch** (via `dependabot/fetch-metadata`) **and** build+smoke passed,
+  enable auto-merge (`gh pr merge --auto --squash`). Requires "Allow auto-merge" + branch
+  protection requiring the build/smoke check on `main` — so it only fires on green.
+- **CodeQL** (`.github/workflows/codeql.yml`): JS/TS, on PR + monthly schedule.
+- **Audit:** `pnpm audit` step (non-blocking / scheduled) to avoid low-severity noise.
+- **Hardening/hygiene:** least-privilege workflow `permissions:`; enable GitHub secret
+  scanning + Dependabot alerts (UI); optional `SECURITY.md`. Document the CSP limitation of
+  GitHub Pages rather than investing effort.
+
+---
+
+## 5. Files to be created / modified
+
+**Create:** `CLAUDE.md`, `.npmrc`, `pnpm-lock.yaml`,
+`src/components/CaptionDocusaurus.jsx`, `scripts/smoke.mjs`, `.github/dependabot.yml`,
+`.github/workflows/codeql.yml`, `.github/workflows/dependabot-auto-merge.yml`, (optional)
+`SECURITY.md`, `MAINTENANCE.md` (this file).
+
+**Modify:** `package.json` (packageManager, engines, deps, scripts; remove
+`@cangulo-blog/components`, `react-share`, `docusaurus@1`, `mdx-mermaid`/`mermaid`; swap
+image-zoom), `docusaurus.config.js` (strip package wiring in P4; ESM + Prism v2 + Mermaid +
+image-zoom in P5), `src/pages/about.mdx`, `blog/_template.md`, the 9 `<CaptionDocusaurus>`
+content files, `.nvmrc`, `.github/workflows/update-page.yml`, `README.md`, and possibly
+further `.mdx` files (MDX v3 fixes).
+
+**Delete:** `package-lock.json`; `gh-pages` branch (after first official-Pages deploy;
+optional).
+
+---
+
+## 6. End-to-end verification (whole plan)
+
+1. Fresh clone → `corepack enable` → `pnpm install --frozen-lockfile` → `pnpm build` on
+   Node 20.
+2. `pnpm test` + `pnpm test:smoke` pass against the built output.
+3. `pnpm serve` → manual pass over `/`, `/about` (placeholder), `/blog`, a Mermaid
+   cheatsheet, a caption-heavy post, image zoom + Giphy. (Injected comments/AboutMe/Share
+   are intentionally absent until reintegration.)
+4. Open a PR → CI runs build + smoke (no deploy); merge to `main` → official Pages deploy
+   publishes; live site loads and all sections render.
+5. A minor Dependabot PR auto-merges on green CI and redeploys with zero manual steps; a
+   major Dependabot PR waits for review.
+6. CodeQL and audit report on PRs; branch protection blocks merges on red CI.
+
+---
+
+## 7. Progress log
+
+- **Phase 1 (`CLAUDE.md`)** — implemented and pushed on branch
+  `claude/cangulo-site-maintenance-opmbq5` (GitHub write-access, previously blocked by a
+  `403 Resource not accessible by integration` on both `git push` and the GitHub MCP
+  tools, was resolved). PR not yet opened.
+- Phases 2–6 — not started.
