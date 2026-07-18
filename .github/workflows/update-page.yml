@@ -40,6 +40,12 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Smoke test (key routes)
+        run: pnpm test
+
+      - name: Smoke test (crawl built output)
+        run: pnpm test:smoke
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
