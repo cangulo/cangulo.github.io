@@ -54,10 +54,17 @@ jobs:
             echo "published=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # Build the publishable dist, then publish with npm (not pnpm): the
+      # actions/setup-node registry-url step wires the token into an .npmrc
+      # that npm reads via ${NODE_AUTH_TOKEN}, but pnpm publish doesn't honor
+      # it the same way, which sends the request unauthenticated (npm then
+      # returns 404 for the scoped package).
       - name: Publish
         if: steps.version.outputs.published == 'false'
         working-directory: packages/components
-        run: pnpm publish --access public --no-git-checks
+        run: |
+          pnpm run build
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_CANGULO_BLOG_COMPONENTS }}
 
