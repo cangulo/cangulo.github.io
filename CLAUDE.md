@@ -30,7 +30,11 @@ pnpm build      # production build -> build/
 pnpm serve      # serve a production build locally
 pnpm typecheck  # tsc, editor-only type checking
 pnpm clear      # clear Docusaurus caches
+pnpm test       # smoke test: key routes of build/ return 200 + expected text
+pnpm test:smoke # linkinator crawl of build/ (internal links only)
 ```
+
+Both test commands require a `pnpm build` first — they run against `build/`.
 
 ## Content model
 
@@ -69,10 +73,10 @@ header/footer should account for this package.
 `.github/workflows/update-page.yml` uses the official GitHub Pages Actions flow:
 - Runs on push to `main`, on pull requests (build-only, no deploy), and via manual dispatch.
 - **`build`** job: checks out the repo, sets up pnpm + the pinned Node version, runs
-  `pnpm install --frozen-lockfile`, builds the site, and uploads `build/` via
-  `actions/upload-pages-artifact`.
-- **`deploy`** job (push to `main` only): publishes the uploaded artifact via
-  `actions/deploy-pages`.
+  `pnpm install --frozen-lockfile`, builds the site, runs the smoke tests (`pnpm test` +
+  `pnpm test:smoke`), and uploads `build/` via `actions/upload-pages-artifact`.
+- **`deploy`** job (push or manual dispatch on `main`; skipped for PRs): publishes the
+  uploaded artifact via `actions/deploy-pages`.
 
 GitHub Pages is configured (repo Settings → Pages) with **Source: GitHub Actions** — there
 is no `gh-pages` branch involved anymore.

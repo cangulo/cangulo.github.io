@@ -319,4 +319,36 @@ optional).
     that rewrites the SSH URL to HTTPS before `pnpm install` runs — no `package.json`
     change needed; verified the rewrite works with a manual clone test. This is a pure
     CI/transport fix; the actual "unpin this fragile fork" work stays scoped to Phase 5.
-- Phases 3–6 — not started.
+- **Phase 2 — completed.** Merged via [PR #6](https://github.com/cangulo/cangulo.github.io/pull/6)
+  plus two follow-up fixes:
+  - [PR #7](https://github.com/cangulo/cangulo.github.io/pull/7): the SSH→HTTPS rewrite
+    step's `run:` line ended with a bare `git@github.com:` — the trailing colon made the
+    whole workflow file invalid YAML, so every run failed at startup with zero jobs.
+    Fixed by moving the command into a `run: |` block scalar.
+  - [PR #8](https://github.com/cangulo/cangulo.github.io/pull/8): the `deploy` job was
+    gated on `event_name == 'push'`, so `workflow_dispatch` runs built but skipped the
+    deploy. Re-gated on `event_name != 'pull_request'`.
+  - Owner flipped Settings → Pages → Source to **"GitHub Actions"**; the first
+    Actions-based deploy succeeded (deployment status `success`,
+    https://cangulo.github.io/). The `gh-pages` branch is no longer used and can be
+    deleted at the owner's leisure.
+- **Phase 3 (smoke tests)** — implemented on branch `claude/cangulo-site-maintenance-opmbq5`:
+  - `scripts/serve-build.mjs`: shared static server that resolves URLs like GitHub Pages
+    does (`/foo` → `foo.html` / `foo/index.html`), needed because the site builds with
+    `trailingSlash: false`.
+  - `scripts/smoke.mjs` (`pnpm test`): asserts 8 key routes return 200 + expected text.
+  - `scripts/linkcheck.mjs` (`pnpm test:smoke`): crawls `build/` via the linkinator
+    **Node API** over that server. The linkinator *CLI* was tried first and produced
+    false positives: its own static server doesn't do Pages-style `.html` resolution,
+    and it generates trailing-slash link variants (`/blog/`) that no page actually
+    links to. External links are skipped on purpose — link rot on other people's sites
+    must not turn CI red (protects Phase 6 auto-merge).
+  - Both wired into the CI `build` job between `pnpm build` and the artifact upload.
+  - Verified locally: 8/8 routes pass; 533 links scanned, 0 broken.
+- Phases 4–6 — not started.
+
+> **New follow-up scope (owner request, 2026-07-18):** after the phases, import the
+> `@cangulo-blog/components` source into this repo, adapt it to Docusaurus 3, and publish
+> it from here as an npm package for reuse in other personal project blogs. This
+> supersedes the earlier "reintegrate from the separate repo" follow-up; plan to be
+> detailed before execution.
