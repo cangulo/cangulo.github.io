@@ -284,8 +284,30 @@ optional).
 
 ## 7. Progress log
 
-- **Phase 1 (`CLAUDE.md`)** — implemented and pushed on branch
-  `claude/cangulo-site-maintenance-opmbq5` (GitHub write-access, previously blocked by a
-  `403 Resource not accessible by integration` on both `git push` and the GitHub MCP
-  tools, was resolved). PR not yet opened.
-- Phases 2–6 — not started.
+- **Phase 1 (`CLAUDE.md`)** — merged via [PR #5](https://github.com/cangulo/cangulo.github.io/pull/5).
+- **Phase 2 (pnpm migration + CI rewrite)** — implemented on branch
+  `claude/cangulo-site-maintenance-opmbq5`:
+  - `pnpm-lock.yaml` generated from `package-lock.json` via `pnpm import`; `package-lock.json`
+    deleted. `.npmrc` added with `node-linker=hoisted`.
+  - `package.json` gained `packageManager: pnpm@10.33.0` (10.x, not 9.x as originally
+    scoped — the environment's available pnpm was 10.33.0; 9.x was never actually pinned
+    anywhere so there was no reason to install an older line) and `engines.node: >=20`.
+  - `.nvmrc` `14` → `20`.
+  - `.github/workflows/update-page.yml` rewritten to the official Pages Actions flow: a
+    `build` job (checkout → `pnpm/action-setup` → `setup-node` with pnpm cache →
+    `pnpm install --frozen-lockfile` → `pnpm build` → `upload-pages-artifact`) that also
+    runs on `pull_request` and `workflow_dispatch`, and a `deploy` job
+    (`actions/deploy-pages`) gated to `push` on `main`. The old `gh-pages`-branch
+    checkout/wipe/commit/push logic is gone entirely.
+  - `README.md` and `CLAUDE.md` updated to the pnpm commands and the new deploy flow.
+  - Verified locally on Node 20.20.2: `pnpm install --frozen-lockfile` and `pnpm build`
+    both succeed (build emits pre-existing MDX/SSR console warnings from the beta
+    Docusaurus + MDX v1 combo, unrelated to this phase — build still reports "Success!");
+    `pnpm serve` returns HTTP 200 for `/`, `/about`, `/blog`, `/cheatsheets`, `/projects`,
+    `/rss`.
+  - **Owner action still required, not doable from here:** in GitHub repo Settings →
+    Pages, change **Source** to **"GitHub Actions"** (it's currently serving from the
+    `gh-pages` branch). Until that's flipped, this new workflow's `deploy` job will run
+    but Pages won't actually publish from it. After the first successful Actions deploy,
+    the old `gh-pages` branch can be deleted (optional, keep briefly for rollback).
+- Phases 3–6 — not started.

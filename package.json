@@ -2,6 +2,10 @@
   "name": "cangulo-github-io",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start --no-open",

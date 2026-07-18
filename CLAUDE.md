@@ -11,23 +11,25 @@ Carlos Angulo's personal blog/site, built with **Docusaurus 2** (currently a pre
 for editor tooling only — the codebase is not type-checked as part of the build (`tsconfig.json`
 extends `@tsconfig/docusaurus`; `npm run typecheck` runs it manually).
 
-This is a single npm package at the repo root — not a monorepo.
+This is a single package at the repo root — not a monorepo.
 
 ## Prerequisites
 
-- Node **14** (pinned via `.nvmrc`). This is EOL upstream; do not assume a newer Node works
-  without testing.
-- npm, using the committed `package-lock.json`.
+- Node **20+** (pinned via `.nvmrc`; also declared in `package.json` `engines`).
+- **pnpm** (pinned via `package.json` `packageManager`), using the committed
+  `pnpm-lock.yaml`. `.npmrc` sets `node-linker=hoisted` so `node_modules` stays flat, like
+  npm's — this avoids Docusaurus's occasional phantom-dependency resolution issues under
+  pnpm's default symlinked layout.
 
 ## Common commands
 
 ```bash
-npm install        # install deps (uses package-lock.json)
-npm start          # local dev server (docusaurus start --no-open)
-npm run build      # production build -> build/
-npm run serve      # serve a production build locally
-npm run typecheck  # tsc, editor-only type checking
-npm run clear      # clear Docusaurus caches
+pnpm install    # install deps (uses pnpm-lock.yaml)
+pnpm start      # local dev server (docusaurus start --no-open)
+pnpm build      # production build -> build/
+pnpm serve      # serve a production build locally
+pnpm typecheck  # tsc, editor-only type checking
+pnpm clear      # clear Docusaurus caches
 ```
 
 ## Content model
@@ -49,7 +51,7 @@ Standalone pages live in `src/pages/` (`index.tsx`, `about.mdx`, `rss.mdx`). Sta
 (including `.nojekyll`) live in `static/`. `blog/_template.md` is the starting point for a
 new post; `blog/authors.yml` is shared across all six plugins.
 
-`onBrokenLinks: 'throw'` — a broken internal link fails the build, so run `npm run build`
+`onBrokenLinks: 'throw'` — a broken internal link fails the build, so run `pnpm build`
 locally before pushing content changes.
 
 ## Key coupling: `@cangulo-blog/components`
@@ -64,15 +66,16 @@ header/footer should account for this package.
 
 ## Deploy flow
 
-`.github/workflows/update-page.yml` triggers on push to `main`:
-1. Builds the site and uploads it as a workflow artifact.
-2. A second job checks out the `gh-pages` branch, wipes it, downloads the artifact, and
-   commits/pushes the built output as `cangulo_gh_action`.
+`.github/workflows/update-page.yml` uses the official GitHub Pages Actions flow:
+- Runs on push to `main`, on pull requests (build-only, no deploy), and via manual dispatch.
+- **`build`** job: checks out the repo, sets up pnpm + the pinned Node version, runs
+  `pnpm install --frozen-lockfile`, builds the site, and uploads `build/` via
+  `actions/upload-pages-artifact`.
+- **`deploy`** job (push to `main` only): publishes the uploaded artifact via
+  `actions/deploy-pages`.
 
-GitHub Pages serves from the `gh-pages` branch. This workflow currently relies on
-deprecated `actions/upload-artifact@v2` / `download-artifact@v2` actions and `npm install`
-(no lockfile-enforced install, no pinned Node) — see the maintenance plan for the planned
-fix.
+GitHub Pages is configured (repo Settings → Pages) with **Source: GitHub Actions** — there
+is no `gh-pages` branch involved anymore.
 
 ## Maintenance plan
 

@@ -1,62 +1,58 @@
-name: Update Page
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
+  pull_request:
+  workflow_dispatch:
 
-# BRANCHES STRUCTURE
-# main    -> contains the development
-# gh-page -> contains the page src
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  create-artifact:
-    name: Create Artifact
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checking out main branch
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: preparing npm
-        run: npm install
-      - name: building page
-        run: npm run build
-      - name: "Upload Artifact"
-        uses: actions/upload-artifact@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          name: artifact
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
           path: build
-          retention-days: 5
 
-  update-gh-page:
-    name: Updating GH Page
-    needs: create-artifact
+  deploy:
+    name: Deploy
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checking out gh-pages branch
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-
-      - name: Removing previous files
-        run: |
-          rm -rf ./**
-
-      - name: "Download Artifact"
-        uses: actions/download-artifact@v2
-        with:
-          name: artifact
-          path: ./
-
-      - name: Commit Changes
-        run: |
-          git config user.name  cangulo_gh_action
-          git config user.email cangulo_gh_action@github.com
-
-          somethingToCommit=$(git status --short)
-
-          if [[ -z "$somethingToCommit" ]]; then
-              echo "nothing to commit."
-          else
-              git add .
-              git commit -m "fix: updated gh page"
-              git push --set-upstream origin gh-pages
-          fi
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
