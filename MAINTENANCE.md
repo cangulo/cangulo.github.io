@@ -310,4 +310,13 @@ optional).
     `gh-pages` branch). Until that's flipped, this new workflow's `deploy` job will run
     but Pages won't actually publish from it. After the first successful Actions deploy,
     the old `gh-pages` branch can be deleted (optional, keep briefly for rollback).
+  - **Live-CI fix, discovered after the PR's first run:** the `build` job failed —
+    `plugin-image-zoom: github:ataft/plugin-image-zoom` resolves to a `git clone
+    git@github.com:ataft/plugin-image-zoom.git` under pnpm (unlike npm, which fetched it
+    over HTTPS via a GitHub tarball URL), and the Actions runner has no SSH key for
+    arbitrary repos, so it failed with `Permission denied (publickey)`. Fixed with a CI
+    step (`git config --global url."https://github.com/".insteadOf git@github.com:`)
+    that rewrites the SSH URL to HTTPS before `pnpm install` runs — no `package.json`
+    change needed; verified the rewrite works with a manual clone test. This is a pure
+    CI/transport fix; the actual "unpin this fragile fork" work stays scoped to Phase 5.
 - Phases 3–6 — not started.
