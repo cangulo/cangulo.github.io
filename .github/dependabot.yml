@@ -1,0 +1,28 @@
+version: 2
+updates:
+  # npm ecosystem also covers pnpm (pnpm-lock.yaml).
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      # One grouped PR per month for all minor/patch bumps; these auto-merge on
+      # green CI (see dependabot-auto-merge.yml). Majors fall outside the group
+      # and arrive as individual PRs for human review.
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    groups:
+      actions-minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
