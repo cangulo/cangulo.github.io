@@ -8,11 +8,7 @@ tags: [terraform,cheatsheets]
 
 ---
 
-# Common per page
-import AboutMe from '@cangulo-blog/components/dist/mdx/aboutme_area.mdx'
-import { CaptionDocusaurus, ShareDocusaurus } from '@cangulo-blog/components'
-import Comments from '/src/components/blog/comments.js'
-
+import CaptionDocusaurus from '@site/src/components/CaptionDocusaurus';
 
 This post explains the next topics:
 * How to set up a shortcut for Terraform in the Terminal
@@ -51,10 +47,7 @@ import TabItem from '@theme/TabItem';
 
 * [TF Cheatsheet](https://dzone.com/articles/terraform-cli-cheat-sheet)
 
-<AboutMe/>
-
-<ShareDocusaurus 
-  preSlug={frontMatter.group}
-  slug={frontMatter.slug} 
-  title={frontMatter.title}
-  tags={frontMatter.tags} />
+<CaptionDocusaurus
+  label="Example caption linking a file in this repo"
+  link="cheatsheets/terraform/terraform-cheatsheet.md"
+  linkIsRelative={true} />

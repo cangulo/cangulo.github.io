@@ -3,27 +3,6 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const {
-  addJsxCode,
-  alignTableCenter } = require('@cangulo-blog/components/dist/remark-plugins');
-
-const commonImports = [
-  'import { CaptionDocusaurus } from \'@cangulo-blog/components\'',
-  'import AboutMe from \'@cangulo-blog/components/dist/mdx/aboutme_description.mdx\'',
-  'import FullExperienceLink from \'@cangulo-blog/components/dist/mdx/aboutme_fullexperiencelink.mdx\'',
-  'import Contact from \'@cangulo-blog/components/dist/mdx/aboutme_contact.mdx\'',
-  'import { ShareDocusaurus } from \'@cangulo-blog/components\'\n',
-  'import Comments from \'/src/components/blog/comments.js\'\n'
-]
-
-
-const jsxElementsEnding = [
-  '<AboutMe /><FullExperienceLink />',
-  '<Contact />',
-  '<ShareDocusaurus preSlug={frontMatter.group} slug={ frontMatter.slug } title={ frontMatter.title } tags={ frontMatter.tags } />',
-  '<Comments />'
-]
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Carlos Angulo',
@@ -62,22 +41,9 @@ const config = {
           language: 'en',
           description: 'Here you can find useful cheatsheets about how to do the daily operations a developer does'
         },
-        beforeDefaultRemarkPlugins: [
-          alignTableCenter,
-          [
-            addJsxCode, {
-              importStatement: commonImports,
-              position: 'start'
-            }
-          ]],
         remarkPlugins: [
           require('mdx-mermaid'),
-          require('remark-code-import'),
-          [
-            addJsxCode, {
-              jsx: jsxElementsEnding
-            }
-          ]
+          require('remark-code-import')
         ]
       })
     ],
@@ -101,22 +67,9 @@ const config = {
           language: 'en',
           description: 'Here you can find a set of books I have read about IT, team management and agile'
         },
-        beforeDefaultRemarkPlugins: [
-          alignTableCenter,
-          [
-            addJsxCode, {
-              importStatement: commonImports,
-              position: 'start'
-            }
-          ]],
         remarkPlugins: [
           require('mdx-mermaid'),
-          require('remark-code-import'),
-          [
-            addJsxCode, {
-              jsx: jsxElementsEnding
-            }
-          ]
+          require('remark-code-import')
         ]
       })
     ],
@@ -139,22 +92,9 @@ const config = {
           language: 'en',
           description: 'Here you can find posts related to the personal projects I do 💻️'
         },
-        beforeDefaultRemarkPlugins: [
-          alignTableCenter,
-          [
-            addJsxCode, {
-              importStatement: commonImports,
-              position: 'start'
-            }
-          ]],
         remarkPlugins: [
           require('mdx-mermaid'),
-          require('remark-code-import'),
-          [
-            addJsxCode, {
-              jsx: jsxElementsEnding
-            }
-          ]
+          require('remark-code-import')
         ]
       })
     ],
@@ -177,23 +117,9 @@ const config = {
           language: 'en',
           description: 'Here you can find information or resources about the meetups I have participated 🧑‍🏫'
         },
-        beforeDefaultRemarkPlugins: [
-          alignTableCenter,
-          [
-            addJsxCode, {
-              importStatement: commonImports,
-              position: 'start'
-            }
-          ]
-        ],
         remarkPlugins: [
           require('mdx-mermaid'),
-          require('remark-code-import'),
-          [
-            addJsxCode, {
-              jsx: jsxElementsEnding
-            }
-          ]
+          require('remark-code-import')
         ]
       })
     ],
@@ -212,23 +138,9 @@ const config = {
         feedOptions: {
           type: null
         },
-        beforeDefaultRemarkPlugins: [
-          alignTableCenter,
-          [
-            addJsxCode, {
-              importStatement: commonImports,
-              position: 'start'
-            }
-          ]
-        ],
         remarkPlugins: [
           require('mdx-mermaid'),
-          require('remark-code-import'),
-          [
-            addJsxCode, {
-              jsx: jsxElementsEnding
-            }
-          ]
+          require('remark-code-import')
         ]
       })
     ],
@@ -250,22 +162,9 @@ const config = {
           language: 'en',
           description: 'Here you can the general publications I do regarding different subjects as devops or programming 🙂'
         },
-        beforeDefaultRemarkPlugins: [
-          alignTableCenter,
-          [
-            addJsxCode, {
-              importStatement: commonImports,
-              position: 'start'
-            }
-          ]],
         remarkPlugins: [
           require('mdx-mermaid'),
-          require('remark-code-import'),
-          [
-            addJsxCode, {
-              jsx: jsxElementsEnding
-            }
-          ]
+          require('remark-code-import')
         ]
       })
     ],
@@ -281,7 +180,7 @@ const config = {
         blog: false,
         theme: {
           customCss: [
-            require.resolve('@cangulo-blog/components/dist/css/blog-styles.css'),
+            require.resolve('./src/css/blog-styles.css'),
             require.resolve('./src/css/custom.css')
           ],
         },

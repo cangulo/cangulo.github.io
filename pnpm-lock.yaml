@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@cangulo-blog/components':
-        specifier: ^0.0.29
-        version: 0.0.29(@babel/core@7.16.0)
       '@docusaurus/core':
         specifier: ^2.0.0-beta.13
         version: 2.0.0-beta.13(acorn@8.12.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.4.4)
@@ -56,9 +53,6 @@ importers:
       react-dom:
         specifier: ^17.0.1
         version: 17.0.2(react@17.0.2)
-      react-share:
-        specifier: ^4.4.0
-        version: 4.4.0(react@17.0.2)
       url-loader:
         specifier: ^4.1.1
         version: 4.1.1(file-loader@6.2.0(webpack@5.65.0))(webpack@5.65.0)
@@ -783,9 +777,6 @@ packages:
   '@braintree/sanitize-url@3.1.0':
     resolution: {integrity: sha512-GcIY79elgB+azP74j8vqkiXz8xLFfIzbQJdlwOPisgbKT00tviJQuEghOXSMVxJ00HoYJbGswr4kcllUc4xCcg==}
     deprecated: Potential XSS vulnerability patched in v6.0.0.
-
-  '@cangulo-blog/components@0.0.29':
-    resolution: {integrity: sha512-zOrH4tmCFhDxog4XmasDnSMrLTVAHHRzlkRAEvYdQvus9OaI3pRmbdR+6rV+kBXU/do7gCexnVdtGO+0zZBhag==}
 
   '@docsearch/css@3.0.0-alpha.42':
     resolution: {integrity: sha512-AGwI2AXUacYhVOHmYnsXoYDJKO6Ued2W+QO80GERbMLhC7GH5tfvtW5REs/s7jSdcU3vzFoxT8iPDBCh/PkrlQ==}
@@ -3987,9 +3978,6 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  jsonp@0.2.1:
-    resolution: {integrity: sha512-pfog5gdDxPdV4eP7Kg87M8/bHgshlZ5pybl+yKxAnCZ5O7lCIn7Ixydj03wOlnDQesky2BPyA91SQ+5Y/mNwzw==}
-
   jsprim@1.4.2:
     resolution: {integrity: sha512-P2bSOMAc/ciLz6DzgjVlGJP9+BrJWu5UDGK70C2iweC5QBIeFf0ZXRvGjEj2uYgrY2MkAAhsSWHDWlFtEroZWw==}
     engines: {node: '>=0.6.0'}
@@ -5458,12 +5446,6 @@ packages:
     resolution: {integrity: sha512-lIboRiOtDLFdg1VTemMwud9vRVuOCZmUIT/7lUoZiSpPODiiH1UQlfXy+vPLC/7IWdFYnhRwAyNqA/+I7wnvKQ==}
     peerDependencies:
       react: '>=15'
-
-  react-share@4.4.0:
-    resolution: {integrity: sha512-POe8Ge/JT9Ew9iyW7CiYsCCWCb8uMJWqFl9S7W0fJ/oH5gBJNzukH0bL5vSr17KKG5h15d3GfKaoviI22BKeYA==}
-    engines: {node: '>=6.9.0', npm: '>=5.0.0'}
-    peerDependencies:
-      react: ^16.3.0 || ^17
 
   react-side-effect@2.1.1:
     resolution: {integrity: sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ==}
@@ -7673,17 +7655,6 @@ snapshots:
       to-fast-properties: 2.0.0
 
   '@braintree/sanitize-url@3.1.0': {}
-
-  '@cangulo-blog/components@0.0.29(@babel/core@7.16.0)':
-    dependencies:
-      '@babel/plugin-transform-runtime': 7.16.5(@babel/core@7.16.0)
-      '@babel/polyfill': 7.12.1
-      '@docusaurus/module-type-aliases': 2.0.0-beta.9
-      react: 17.0.2
-      react-share: 4.4.0(react@17.0.2)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
 
   '@docsearch/css@3.0.0-alpha.42': {}
 
@@ -11909,12 +11880,6 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.8
 
-  jsonp@0.2.1:
-    dependencies:
-      debug: 2.6.9
-    transitivePeerDependencies:
-      - supports-color
-
   jsprim@1.4.2:
     dependencies:
       assert-plus: 1.0.0
@@ -13467,14 +13432,6 @@ snapshots:
       react-is: 16.13.1
       tiny-invariant: 1.2.0
       tiny-warning: 1.0.3
-
-  react-share@4.4.0(react@17.0.2):
-    dependencies:
-      classnames: 2.3.1
-      jsonp: 0.2.1
-      react: 17.0.2
-    transitivePeerDependencies:
-      - supports-color
 
   react-side-effect@2.1.1(react@17.0.2):
     dependencies:

@@ -347,8 +347,67 @@ optional).
   - Verified locally: 8/8 routes pass; 533 links scanned, 0 broken.
 - Phases 4–6 — not started.
 
-> **New follow-up scope (owner request, 2026-07-18):** after the phases, import the
-> `@cangulo-blog/components` source into this repo, adapt it to Docusaurus 3, and publish
-> it from here as an npm package for reuse in other personal project blogs. This
-> supersedes the earlier "reintegrate from the separate repo" follow-up; plan to be
-> detailed before execution.
+- **Phase 4 (decouple from `@cangulo-blog/components`)** — implemented on branch
+  `claude/cangulo-site-maintenance-opmbq5`:
+  - Local shim `src/components/CaptionDocusaurus.jsx` (same prop API, no PropTypes dep);
+    explicit `@site/...` import added to the 8 content files that use it (+ template).
+  - `docusaurus.config.js`: package require, `commonImports`, `jsxElementsEnding`, all
+    `beforeDefaultRemarkPlugins` blocks, and the per-plugin `addJsxCode` ending entries
+    removed; `mdx-mermaid` + `remark-code-import` kept for Phase 5.
+  - `src/pages/about.mdx`: minimal placeholder (short intro + links) keeping the local
+    Certifications section.
+  - **Deviation from decision #9 (deliberate):** `blog-styles.css` was *not* dropped —
+    it holds the site's brand colors, and since the components code is now destined to
+    live in this repo anyway (see §8), the file was copied to `src/css/blog-styles.css`
+    and kept in `customCss`. Zero maintenance cost, avoids weeks of an off-brand site.
+  - `package.json`: `@cangulo-blog/components` and `react-share` removed.
+- Phases 5–6 — not started.
+
+---
+
+## 8. New scope: import `@cangulo-blog/components` into this repo (owner request, 2026-07-18)
+
+**Goal:** this repo stays the main blog *and* becomes the home of the components package —
+adapted to Docusaurus 3 and published to npm from here, for reuse in the owner's other
+project blogs. This supersedes the earlier "reintegrate from the separate repo" follow-up.
+Executes as **Phase 7**, after the D3 upgrade (Phase 5) and automation (Phase 6).
+
+### Package inventory (from `cangulo/blog-components@f477c47`)
+
+| Piece | Content | D3 impact |
+|-------|---------|-----------|
+| `lib/components/` | `CaptionComponent`, `ShareComponent` (react-share buttons) | trivial — React-only |
+| `lib/docusaurus/` | `CaptionDocusaurus`, `ShareDocusaurus` (wrap the above with `useDocusaurusContext`) | trivial |
+| `lib/mdx/` | 6 small `aboutme_*` fragments | sweep for MDX v3 syntax |
+| `lib/remark-plugins/` | `addJsxCode`, `alignTableCenter` | **rewrite required** — they emit MDX v1 `import`/`jsx` AST nodes, which don't exist in MDX v3; must emit `mdxjsEsm`/`mdxJsxFlowElement` (estree) nodes instead |
+| `lib/css/blog-styles.css` | brand colors + code-line highlight | none (already copied locally in Phase 4) |
+| Build/publish | babel `lib`→`dist`; `cangulo-actions/semver` + `npm publish` on push to `main` | rebuild pipeline in-repo |
+
+Old deps to drop on import: `@babel/polyfill` (deprecated), `@babel/plugin-transform-runtime`,
+`@docusaurus/module-type-aliases@beta` (consumer concern). `react` / `react-share` become
+peer dependencies (React 18/19, react-share v5+). `prop-types` was used but never declared
+(phantom dep) — either declare it or drop PropTypes.
+
+### Phase 7 steps
+
+1. **Workspace layout:** add `pnpm-workspace.yaml` (`packages/*`); the site stays the root
+   package; new `packages/components` with the package name `@cangulo-blog/components`.
+   Site consumes it as `"@cangulo-blog/components": "workspace:*"`.
+2. **Port the code** into `packages/components`: components + MDX fragments + CSS moved
+   over; build with a minimal modern toolchain (babel or tsup → `dist/`, ESM) targeting
+   React 18+ peer deps and Docusaurus 3.
+3. **Rewrite the two remark plugins for MDX v3** (the only nontrivial adaptation, see
+   table above). Unit-test them with fixture MDX so regressions can't slip silently.
+4. **Re-wire the site:** restore `commonImports`/`jsxElementsEnding` injection in
+   `docusaurus.config.*`, restore the real `/about` from the package fragments, replace
+   the Phase 4 local `CaptionDocusaurus` shim with the package import, point `customCss`
+   back at the package CSS (delete the local copy).
+5. **Publish workflow:** on push to `main` touching `packages/components/**`, run the
+   owner's existing `cangulo-actions/semver` flow (conventional commits → version → GH
+   release) followed by `pnpm publish` with an `NPM_TOKEN` secret (`PUBLISH_CANGULO_BLOG_COMPONENTS`
+   exists in the old repo; needs to be added to this repo's secrets). PR lane keeps the
+   existing conventional-commits validation.
+6. **CI integration:** package build + site build/smoke stay one gate — a broken package
+   can't merge because the site build consumes it directly via the workspace.
+7. **Afterwards (owner, UI):** archive `cangulo/blog-components`, and point other blogs at
+   the npm package (same name, so likely just a version bump for them).
