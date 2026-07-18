@@ -21,8 +21,8 @@ importers:
         specifier: ^3.10.2
         version: 3.10.2(@docusaurus/plugin-content-docs@3.10.2(@mdx-js/react@3.1.1(@types/react@18.3.31)(react@18.3.1))(acorn@8.17.0)(postcss@8.5.19)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(@mdx-js/react@3.1.1(@types/react@18.3.31)(react@18.3.1))(acorn@8.17.0)(postcss@8.5.19)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
       '@hyvor/hyvor-talk-react':
-        specifier: ^0.0.3
-        version: 0.0.3(react@18.3.1)
+        specifier: ^1.0.2
+        version: 1.0.2(react@18.3.1)
       '@mdx-js/react':
         specifier: ^3.1.1
         version: 3.1.1(@types/react@18.3.31)(react@18.3.1)
@@ -760,10 +760,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/runtime@7.16.5':
-    resolution: {integrity: sha512-TXWihFIS3Pyv5hzR7j6ihmeLkZfrXGxAr5UfSl8CHf+6q/wpiYDkUau0czckpYG8QmnCIuPpdLtuA9VmuGGyMA==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/runtime@7.29.7':
     resolution: {integrity: sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==}
     engines: {node: '>=6.9.0'}
@@ -1319,13 +1315,13 @@ packages:
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
 
-  '@hyvor/hyvor-talk-base@0.0.6':
-    resolution: {integrity: sha512-7pgWggo6hGplIU9Tt9mgZ4y5su7gpqn2o8aVa5FQhD0f/qriI3XN1yXxvTp1A4et+psBnfOUwgkeYH/xzhdHew==}
+  '@hyvor/hyvor-talk-base@1.0.1':
+    resolution: {integrity: sha512-/Y7hDJ0rRODHjzFvv6jsqiSkJYpvZyLhEeO4PN0NnDGhcnLSIPTqB1VoaoA3aFedMz2YVcL8G80ciOrIeC9C+A==}
 
-  '@hyvor/hyvor-talk-react@0.0.3':
-    resolution: {integrity: sha512-Pb46TRAOYazqjnMRrkYaAf4ltFCfG/vlaSvrcj3cRrEvI37PRMx4/PB2Dkj+5/yT+BTQRBwgsZRHX0lR7hWbkg==}
+  '@hyvor/hyvor-talk-react@1.0.2':
+    resolution: {integrity: sha512-kD2RvygGbwOtvLRsJyshyOgFRY1j4Qzd591Oj30NsksU46fC1j7nrmuvVRh1A+dnUZdVsJeGl6dlhy0LCEI3lA==}
     peerDependencies:
-      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -4992,9 +4988,6 @@ packages:
   regenerate@1.4.2:
     resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
 
-  regenerator-runtime@0.13.9:
-    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
-
   regexpu-core@6.4.0:
     resolution: {integrity: sha512-0ghuzq67LI9bLXpOX/ISfve/Mq33a4aFRzoQYhnnok1JOFpmE/A2TBGkNVenOGEeSBCjIiWcc6MVOG5HEQv0sA==}
     engines: {node: '>=4'}
@@ -6750,10 +6743,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/runtime@7.16.5':
-    dependencies:
-      regenerator-runtime: 0.13.9
-
   '@babel/runtime@7.29.7': {}
 
   '@babel/template@7.29.7':
@@ -8084,11 +8073,11 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@hyvor/hyvor-talk-base@0.0.6': {}
+  '@hyvor/hyvor-talk-base@1.0.1': {}
 
-  '@hyvor/hyvor-talk-react@0.0.3(react@18.3.1)':
+  '@hyvor/hyvor-talk-react@1.0.2(react@18.3.1)':
     dependencies:
-      '@hyvor/hyvor-talk-base': 0.0.6
+      '@hyvor/hyvor-talk-base': 1.0.1
       react: 18.3.1
 
   '@iconify/types@2.0.0': {}
@@ -12303,19 +12292,19 @@ snapshots:
 
   react-loadable-ssr-addon-v5-slorber@1.0.3(@docusaurus/react-loadable@6.0.0(react@18.3.1))(webpack@5.108.4(postcss@8.5.19)):
     dependencies:
-      '@babel/runtime': 7.16.5
+      '@babel/runtime': 7.29.7
       react-loadable: '@docusaurus/react-loadable@6.0.0(react@18.3.1)'
       webpack: 5.108.4(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.19))(html-minifier-terser@7.2.0)(postcss@8.5.19)
 
   react-router-config@5.1.1(react-router@5.3.4(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.16.5
+      '@babel/runtime': 7.29.7
       react: 18.3.1
       react-router: 5.3.4(react@18.3.1)
 
   react-router-dom@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.16.5
+      '@babel/runtime': 7.29.7
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.7.2
@@ -12326,7 +12315,7 @@ snapshots:
 
   react-router@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.16.5
+      '@babel/runtime': 7.29.7
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
@@ -12405,8 +12394,6 @@ snapshots:
       regenerate: 1.4.2
 
   regenerate@1.4.2: {}
-
-  regenerator-runtime@0.13.9: {}
 
   regexpu-core@6.4.0:
     dependencies:
