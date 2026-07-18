@@ -40,7 +40,7 @@
     "@types/react-dom": "^18.3.7",
     "linkinator": "^7.6.1",
     "remark-code-import": "^1.2.0",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   },
   "browserslist": {
     "production": [
