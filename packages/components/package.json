@@ -47,7 +47,7 @@
     "react-share": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.3",
+    "@babel/cli": "^8.0.4",
     "@babel/core": "^7.28.4",
     "@babel/preset-react": "^7.27.1",
     "mdast-util-gfm-table": "^2.0.0",
