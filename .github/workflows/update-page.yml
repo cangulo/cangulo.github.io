@@ -31,7 +31,8 @@ jobs:
           cache: pnpm
 
       - name: Use HTTPS for GitHub-hosted git dependencies
-        run: git config --global url."https://github.com/".insteadOf git@github.com:
+        run: |
+          git config --global url."https://github.com/".insteadOf git@github.com:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
