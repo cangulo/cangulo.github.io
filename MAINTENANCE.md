@@ -284,8 +284,8 @@ optional).
 
 ## 7. Progress log
 
-- **Phase 1 (`CLAUDE.md`)** — implemented on branch `claude/cangulo-site-maintenance-opmbq5`;
-  committed locally. Push/PR pending resolution of GitHub write-access (both direct `git
-  push` and the GitHub MCP `create_branch`/`push_files` tools returned `403 Resource not
-  accessible by integration` for `cangulo/cangulo.github.io`).
+- **Phase 1 (`CLAUDE.md`)** — implemented and pushed on branch
+  `claude/cangulo-site-maintenance-opmbq5` (GitHub write-access, previously blocked by a
+  `403 Resource not accessible by integration` on both `git push` and the GitHub MCP
+  tools, was resolved). PR not yet opened.
 - Phases 2–6 — not started.
