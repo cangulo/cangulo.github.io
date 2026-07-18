@@ -4,8 +4,6 @@ name: Release components package
 # Idempotent: skips silently if the version in packages/components/package.json
 # is already on the registry, so pushes without a bump are no-ops.
 #
-# Requires the NPM automation token in the PUBLISH_CANGULO_BLOG_COMPONENTS
-# repo secret (same token the old blog-components repo used).
 on:
   push:
     branches: [main]
@@ -29,11 +27,10 @@ jobs:
         uses: pnpm/action-setup@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: pnpm
-          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
