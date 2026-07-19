@@ -12,40 +12,13 @@ import BrowserWindow from '/src/components/BrowserWindow'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-This post explains the next topics:
-* How to set up a shortcut for Terraform in the Terminal
-* The Terraform commands I use the most
+This post explains the Terraform commands I use the most.
+
+:::info Looking for the `tf` shortcut?
+The Terraform alias/shortcut I set up in my terminal moved to [Terraform Shortcuts](/personal-config/terraform), part of my [personal config](/personal-config).
+:::
 
 <!--truncate-->
-
-## Create an alias for TF in your Terminal
-
-Please add the next code to your profile depending if you are using PowerShell or bash:
-
-<BrowserWindow>
-<Tabs>
-  <TabItem value="ps" label="PowerShell" default>
-
-```powershell
-New-Alias -Name tf -Value terraform -Force
-function tffmt { tf fmt -recursive }
-function tfa { tf apply -auto-approve }
-function tfd { tf destroy -auto-approve }
-```
-
-  </TabItem>
-  <TabItem value="sh" label="Bash">
-
-```bash
-alias tf=terraform
-alias tffmt="tf fmt -recursive"
-alias tfa="tf apply -auto-approve"
-alias tfd="tf destroy -auto-approve"
-```
-
-  </TabItem>
-</Tabs>
-</BrowserWindow>
 
 ## TF Commands
 

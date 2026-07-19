@@ -1,0 +1,82 @@
+---
+slug: git-config
+title: Git Config & Alias
+group: personal-config
+date: 2026-07-19
+authors: cangulo
+tags: [git, alias, config]
+---
+
+import { CaptionDocusaurus } from '@cangulo-blog/components';
+
+The git alias and config I use to avoid typing long commands 😁👌
+
+This content used to live in the [Git Cheatsheet](/cheatsheets/git); it now lives here as part of my personal config.
+
+<!--truncate-->
+
+## How to configure an Alias
+
+### Using Command Line
+
+| Command                                              | Example                                 |
+| ---------------------------------------------------- | --------------------------------------- |
+| `git config --global alias.[AliasName] [AliasValue]` | `git config --global alias.co checkout` |
+
+### Editing the git config file
+
+1. Open your `.gitconfig` file, it is located in your home folder
+2. In a new line, add the tag `[alias]`
+3. In the next lines add your alias following the format `[TAB space]AliasName = AliasValue`.
+
+Please note this config file is space/tab sensitive so be sure no spaces are added at the end of each line
+
+```bash
+[alias]
+	b = branch
+```
+
+Next are my personal alias:
+
+## Alias configured
+
+```bash
+[alias]
+  b = branch
+  bl = branch --list
+  bd = branch -D
+  co = checkout
+  c = commit -am
+  cw = commit -am wip
+  cob = checkout -b
+  cor = "!f() { git checkout --track origin/${1-No Argument Provided}; }; f"
+  cp = cherry-pick
+  cp-c = cherry-pick --continue
+  cp-a = cherry-pick --abort
+  re = "!f() { git rebase -i HEAD~${1-No Argument Provided}; }; f"
+  re-c = rebase --continue
+  re-a = rebase --abort
+  re-m = rebase -i --rebase-merges
+  pushf = push --force
+  pushr = "!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch; }; f"
+  pushrf = "!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch --force; }; f"
+  fix = "!f() { git add .; git commit --amend --no-edit; git pushrf;}; f"
+  dr = "!f() { git reset --hard HEAD~1;}; f"
+  undolastco = reset --soft HEAD~1
+  st = status
+  l = "!f() { git log --oneline -n ${1-15}; }; f"
+  lg = "!f() { git log --oneline --grep=${1-No Argument Provided}; }; f"
+  settings = config --global --edit
+```
+
+<CaptionDocusaurus label="Check the file here" linkIsRelative={true} link="personal-config/git-config/git-alias"/>
+
+
+The one I use the most is `cob`, every time I have to create a new branch I type `git cob [BRANCH_NAME]`. Also the rebase one, `git re develop` , that is how I update my branch with the last changes from develop.
+
+Please note the `l` and `lg` are alias defined as Bash functions with input parameters `${1-DefaultParameter}`.
+
+## References
+
+* [official docs - git alias](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases)
+* [8 Git aliases that make me more efficient](https://opensource.com/article/20/11/git-aliases)

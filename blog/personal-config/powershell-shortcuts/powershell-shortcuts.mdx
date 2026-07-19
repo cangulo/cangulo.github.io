@@ -1,0 +1,45 @@
+---
+slug: powershell
+title: PowerShell Shortcuts
+group: personal-config
+date: 2026-07-19
+authors: cangulo
+tags: [powershell, productivity, alias, config]
+---
+
+The shortcuts I set up in my PowerShell Profile to be more productive.
+
+Want the full walkthrough on how the PowerShell Profile works and how to set it up? Check the blog post [How to use the PowerShell Profile to be more productive](/blog/ps-profile-productive).
+
+<!--truncate-->
+
+## PowerShell Profile shortcuts
+
+The PS Profile is a script that runs when the console starts. It is a good place to set variables, functions and aliases to avoid repeating operations. Check your `$Profile` variable to know where your profile is stored, then open it with `code $PROFILE`.
+
+* For a command with **static** parameters, define a **function** (e.g. `goToRepos`).
+* For a frequently used command called with **different** parameters, define an **alias** (e.g. `ss` for `Select-String`).
+
+```powershell
+# Variables
+
+$localRepo = $HOME + '\source\repos'
+
+# Functions
+
+function goToRepos { cd $localRepo }
+
+# Alias
+
+New-Alias -Name startTaskManagerAPI -Value $localRepo\TaskManager\startTaskManagerScript.ps1
+```
+
+:::tip use the autocomplete feature!
+You don't need to write your aliases or functions completely. Just type the initial part and press `tab`.
+:::
+
+If PowerShell blocks the profile from running because it is not signed, allow local scripts with:
+
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```

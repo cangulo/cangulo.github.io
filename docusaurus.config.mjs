@@ -105,6 +105,20 @@ const config = {
       },
     }),
     blogSection({
+      id: 'personal-config',
+      path: 'blog/personal-config',
+      routeBasePath: 'personal-config',
+      blogTitle: 'Carlos Angulo Personal Config',
+      blogDescription: 'My personal shortcuts and config: PowerShell, Terraform and git 🛠️',
+      blogSidebarTitle: 'Personal Config',
+      blogSidebarCount: 'ALL',
+      feedOptions: {
+        title: 'Carlos Angulo Personal Config',
+        language: 'en',
+        description: 'My personal shortcuts and config: PowerShell, Terraform and git 🛠️'
+      },
+    }),
+    blogSection({
       id: 'projects',
       path: 'blog/projects',
       routeBasePath: 'projects',
@@ -189,6 +203,7 @@ const config = {
           { to: '/projects', label: 'Projects', position: 'left' },
           { to: '/meetups', label: 'Meetups ', position: 'left' },
           { to: '/notes', label: 'Notes', position: 'left' },
+          { to: '/personal-config', label: 'Personal Config', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://github.com/cangulo',
@@ -206,6 +221,7 @@ const config = {
               { label: 'Blog', to: '/blog' },
               { label: 'Cheatsheets', to: '/cheatsheets' },
               { label: 'Projects', to: '/projects' },
+              { label: 'Personal Config', to: '/personal-config' },
             ],
           },
           {
