@@ -1,6 +1,6 @@
 {
   "name": "@cangulo-blog/components",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Carlos Angulo blog components for Docusaurus 3",
   "author": {
     "name": "Carlos Angulo",
@@ -47,9 +47,9 @@
     "react-share": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.3",
-    "@babel/core": "^7.28.4",
-    "@babel/preset-react": "^7.27.1",
+    "@babel/cli": "^8.0.4",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-react": "^8.0.1",
     "mdast-util-gfm-table": "^2.0.0",
     "micromark-extension-gfm-table": "^2.1.1"
   }
