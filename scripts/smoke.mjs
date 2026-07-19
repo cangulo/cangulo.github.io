@@ -11,7 +11,7 @@ const ROUTES = [
   { path: '/cheatsheets', expect: 'Cheatsheets' },
   { path: '/projects', expect: 'Projects' },
   { path: '/meetups', expect: 'Meetups' },
-  { path: '/books', expect: 'Books' },
+  { path: '/notes', expect: 'Notes' },
   { path: '/rss', expect: 'RSS' },
 ];
 
