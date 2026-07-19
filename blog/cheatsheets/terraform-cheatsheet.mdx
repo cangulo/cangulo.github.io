@@ -12,13 +12,34 @@ import BrowserWindow from '/src/components/BrowserWindow'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-This post explains the Terraform commands I use the most.
-
-:::info Looking for the `tf` shortcut?
-The Terraform alias/shortcut I set up in my terminal moved to [Terraform Shortcuts](/personal-config/terraform), part of my [personal config](/personal-config).
-:::
+This post explains how to set up a shortcut for Terraform in the terminal and the Terraform commands I use the most.
 
 <!--truncate-->
+
+## Create an alias for TF in your Terminal
+
+Add an alias to your shell profile so you can type `tf` instead of `terraform`:
+
+<BrowserWindow>
+<Tabs>
+  <TabItem value="ps" label="PowerShell" default>
+
+```powershell
+New-Alias -Name tf -Value terraform -Force
+```
+
+  </TabItem>
+  <TabItem value="sh" label="Bash">
+
+```bash
+alias tf=terraform
+```
+
+  </TabItem>
+</Tabs>
+</BrowserWindow>
+
+👉 See my **full** Terraform shortcuts (with `tffmt`, `tfa`, `tfd`) in [Terraform Shortcuts](/personal-config/terraform).
 
 ## TF Commands
 
