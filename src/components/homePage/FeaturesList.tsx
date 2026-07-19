@@ -60,13 +60,14 @@ export const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Mentoring & Leadership',
+    title: 'Technical Leadership',
     svgItem: SVG_IMAGES.HOME_TEAM,
     description: (
       <>
-        I support 100+ engineers through mentoring, best practices, and documentation.
-        Team priorities and value creation first — my conversations start with <i>How are
-        you?</i> and <i>How can I help?</i>
+        I raise the engineering bar for 100+ engineers through mentorship, sponsorship, and
+        documentation — leading through influence, not authority. Team priorities and value
+        creation first: my conversations start with <i>How are you?</i> and <i>How can I
+        help?</i>
       </>
     ),
   },
