@@ -91,17 +91,17 @@ const config = {
       },
     }),
     blogSection({
-      id: 'books',
-      path: 'blog/books',
-      routeBasePath: 'books',
-      blogTitle: 'Carlos Angulo Posts',
-      blogDescription: 'General Publications I do regarding different subjects as devops or programming 🙂',
-      blogSidebarTitle: 'Books',
+      id: 'notes',
+      path: 'blog/notes',
+      routeBasePath: 'notes',
+      blogTitle: 'Carlos Angulo Notes',
+      blogDescription: 'Notes I take about the books I read and the courses I take 📚',
+      blogSidebarTitle: 'Notes',
       blogSidebarCount: 'ALL',
       feedOptions: {
-        title: 'Carlos Angulo Recommended Books',
+        title: 'Carlos Angulo Notes',
         language: 'en',
-        description: 'Here you can find a set of books I have read about IT, team management and agile'
+        description: 'Here you can find my notes about the books I read and the courses I take, mostly about IT, team management and agile'
       },
     }),
     blogSection({
@@ -188,7 +188,7 @@ const config = {
           { to: '/cheatsheets', label: 'Cheatsheets', position: 'left' },
           { to: '/projects', label: 'Projects', position: 'left' },
           { to: '/meetups', label: 'Meetups ', position: 'left' },
-          { to: '/books', label: 'Books', position: 'left' },
+          { to: '/notes', label: 'Notes', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://github.com/cangulo',

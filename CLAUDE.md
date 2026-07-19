@@ -55,7 +55,7 @@ The site has **no single blog** — it's six independent
 | `cheatsheets` | `blog/cheatsheets`   | `/cheatsheets`    |
 | `projects`    | `blog/projects`      | `/projects`       |
 | `meetups`     | `blog/meetups`       | `/meetups`        |
-| `books`       | `blog/books`         | `/books`          |
+| `notes`       | `blog/notes`         | `/notes`          |
 | `values`      | `blog/values`        | `/values`         |
 
 Standalone pages live in `src/pages/` (`index.tsx`, `about.mdx`, `rss.mdx`). Static assets
