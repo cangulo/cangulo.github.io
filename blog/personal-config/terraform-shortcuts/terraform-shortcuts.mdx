@@ -1,0 +1,43 @@
+---
+slug: terraform
+title: Terraform Shortcuts
+group: personal-config
+date: 2026-07-19
+authors: cangulo
+tags: [terraform, iac, alias, config]
+---
+
+import BrowserWindow from '/src/components/BrowserWindow'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+My Terraform `tf` alias. For the how-to and the Terraform commands, see the [Terraform Cheatsheet](/cheatsheets/terraform).
+
+<!--truncate-->
+
+## Terraform alias
+
+<BrowserWindow>
+<Tabs>
+  <TabItem value="ps" label="PowerShell" default>
+
+```powershell
+New-Alias -Name tf -Value terraform -Force
+function tffmt { tf fmt -recursive }
+function tfa { tf apply -auto-approve }
+function tfd { tf destroy -auto-approve }
+```
+
+  </TabItem>
+  <TabItem value="sh" label="Bash">
+
+```bash
+alias tf=terraform
+alias tffmt="tf fmt -recursive"
+alias tfa="tf apply -auto-approve"
+alias tfd="tf destroy -auto-approve"
+```
+
+  </TabItem>
+</Tabs>
+</BrowserWindow>

@@ -6,15 +6,8 @@ authors: cangulo
 tags: [git, githooks, alias]
 ---
 
-import { CaptionDocusaurus } from '@cangulo-blog/components';
 
-
-
-
-
-This post explains the next topics:
-* the git commands I use the most
-* some git _alias_ to avoid typing long commands😁👌
+This post explains the git commands I use the most and how I configure my git alias.
 
 <!--truncate-->
 
@@ -96,50 +89,19 @@ git push --set-upstream origin "YOUR_BRANCH_NAME" --force
 
 Please note this config file is space/tab sensitive so be sure no spaces are added at the end of each line
 
-```bash
-[alias]
-	b = branch
-```
-
-Next are my personal alias:
-
-## Alias configured
+A short example:
 
 ```bash
 [alias]
-  b = branch
-  bl = branch --list
-  bd = branch -D
   co = checkout
-  c = commit -am
-  cw = commit -am wip
   cob = checkout -b
-  cor = "!f() { git checkout --track origin/${1-No Argument Provided}; }; f"
-  cp = cherry-pick
-  cp-c = cherry-pick --continue
-  cp-a = cherry-pick --abort
-  re = "!f() { git rebase -i HEAD~${1-No Argument Provided}; }; f"
-  re-c = rebase --continue
-  re-a = rebase --abort
-  re-m = rebase -i --rebase-merges
-  pushf = push --force
-  pushr = "!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch; }; f"
-  pushrf = "!f() { currentBranch=$(git branch --show-current);git push --set-upstream origin $currentBranch --force; }; f"
-  fix = "!f() { git add .; git commit --amend --no-edit; git pushrf;}; f"
-  dr = "!f() { git reset --hard HEAD~1;}; f"
-  undolastco = reset --soft HEAD~1
   st = status
-  l = "!f() { git log --oneline -n ${1-15}; }; f"
-  lg = "!f() { git log --oneline --grep=${1-No Argument Provided}; }; f"
-  settings = config --global --edit
+  re = "!f() { git rebase -i HEAD~${1-No Argument Provided}; }; f"
 ```
 
-<CaptionDocusaurus label="Check the file here" linkIsRelative={true} link="cheatsheets/git/git-alias"/>
+The one I use the most is `cob`, every time I have to create a new branch I type `git cob [BRANCH_NAME]`. Also the rebase one, `git re develop`, that is how I update my branch with the last changes from develop.
 
-
-The one I use the most is `cob`, every time I have to create a new branch I type `git cob [BRANCH_NAME]`. Also the rebase one, `git re develop` , that is how I update my branch with the last changes from develop.
-
-Please note the `l` and `lg` are alias defined as Bash functions with input parameters `${1-DefaultParameter}`.
+👉 See my **full** git alias & `.gitconfig` in [Git Config & Alias](/personal-config/git-config).
 
 ## How to update the permissions for bash files in a git repository
 
