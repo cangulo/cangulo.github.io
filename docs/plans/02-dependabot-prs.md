@@ -54,6 +54,26 @@
 - For runtime deps, sanity-check the actual rendered output in `build/` (e.g. comments markup,
   share buttons, mermaid, image zoom) — the smoke test only checks routes + internal links.
 
+## Execution log — 2026-07-19 batch (#28–#32)
+
+Reviewed the 5 open Dependabot majors and applied all of them in one PR (their branches were
+stale vs. the strict `Build` rule):
+
+- **#28 upload-pages-artifact 3→5** — CI action bump; `deploy-pages@v5` already in use. Applied.
+- **#29/#31/#32 Babel 8** (`@babel/cli`, `@babel/core`, `@babel/preset-react`, devDeps of
+  `packages/components`) — the package's babel build still works; 3/3 unit tests pass. Applied.
+- **#30 React 19** (react/react-dom/@types/react 18→19) — Docusaurus 3.10 peer-supports React
+  19 (`^18 || ^19`), so it's viable. **But** the site build failed SSG with
+  `jsxDEV is not a function` on the 26 truncated posts that inject the components package.
+  Root cause: `packages/components` was building its `dist` with the **development** JSX
+  runtime (`react/jsx-dev-runtime`) because `babel.config.json` didn't pin
+  `development: false`. React 18 tolerated it in SSG; React 19 doesn't. Fix: set
+  `"development": false` in the preset-react options so `dist` emits the production
+  `react/jsx-runtime`, and bump the package (→ 0.1.2) to republish the corrected build.
+
+Lesson for future runtime majors: a published React package must ship the **production** JSX
+runtime; verify `packages/components/dist` imports `react/jsx-runtime` (not `jsx-dev-runtime`).
+
 ## Out of scope
 
 Adding *new* dependencies for features (Plans 03/04 own their own deps).
