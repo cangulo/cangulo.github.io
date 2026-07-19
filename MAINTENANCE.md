@@ -1,8 +1,14 @@
 # Maintenance Overhaul Plan — cangulo.github.io
 
+> **STATUS: COMPLETE.** All phases (1–7) shipped as of 2026-07-19: pnpm workspace, official
+> GitHub Pages Actions deploy, smoke tests, Docusaurus 3, the in-repo
+> `@cangulo-blog/components` package (published to npm via OIDC), and Dependabot/CodeQL/audit
+> automation. This document is retained as a **historical record** of the review and the
+> decisions made — not an active roadmap. See `CLAUDE.md` for the current steady state.
+
 > Full record of the maintenance review: repository analysis, the decisions taken (with the
-> options that were on the table), and the phased execution plan. This document is the
-> single source of truth for the overhaul; each phase ships as its own PR.
+> options that were on the table), and the phased execution plan. Each phase shipped as its
+> own PR.
 
 - **Repo:** https://github.com/cangulo/cangulo.github.io
 - **Live site:** https://cangulo.github.io
