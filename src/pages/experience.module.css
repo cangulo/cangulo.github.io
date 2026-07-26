@@ -1,0 +1,220 @@
+/* Scoped styles for the /experience page. */
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.name {
+  margin: 0;
+  font-size: 2.4rem;
+}
+
+.headline {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  margin: 0.25rem 0 0.75rem;
+}
+
+.summary {
+  max-width: 640px;
+  margin: 0 auto 0.75rem;
+  opacity: 0.9;
+}
+
+.meta {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin: 0;
+}
+
+.section {
+  margin-top: 2.5rem;
+}
+
+.section > h2 {
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  padding-bottom: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Two-column layout for the smaller sections, collapsing on mobile. */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Timeline */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.role {
+  position: relative;
+  padding: 0 0 1.75rem 1.5rem;
+  border-left: 2px solid var(--ifm-color-emphasis-300);
+}
+
+.role:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.role::before {
+  content: '';
+  position: absolute;
+  left: -0.5rem;
+  top: 0.35rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+}
+
+.roleHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+}
+
+.roleTitle {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.company {
+  color: var(--ifm-color-primary);
+}
+
+.dates {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+.roleSummary {
+  margin: 0.5rem 0 0.75rem;
+  opacity: 0.9;
+}
+
+.subhead {
+  margin: 0.75rem 0 0.4rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.contributions {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.contributions li {
+  margin-bottom: 0.35rem;
+}
+
+/* Per-role metric chips */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 6.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.metricValue {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ifm-color-primary);
+}
+
+.metricLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* Skill lists with star ratings */
+.skillList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skillRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-100);
+}
+
+.skillName {
+  font-weight: 500;
+}
+
+.stars {
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.starOn {
+  color: var(--ifm-color-primary);
+}
+
+.starOff {
+  color: var(--ifm-color-emphasis-300);
+}
+
+.additional {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.plainList {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.plainList li {
+  margin-bottom: 0.4rem;
+}
+
+.footerNote {
+  margin-top: 2.5rem;
+  text-align: center;
+  opacity: 0.85;
+}

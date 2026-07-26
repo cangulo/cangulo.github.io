@@ -204,6 +204,7 @@ const config = {
           { to: '/meetups', label: 'Meetups ', position: 'left' },
           { to: '/notes', label: 'Notes', position: 'left' },
           { to: '/personal-config', label: 'Personal Config', position: 'left' },
+          { to: '/experience', label: 'Experience', position: 'left' },
           { to: '/about', label: 'About', position: 'left' },
           {
             href: 'https://github.com/cangulo',

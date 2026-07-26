@@ -7,6 +7,7 @@ const BUILD_DIR = new URL('../build', import.meta.url).pathname;
 const ROUTES = [
   { path: '/', expect: 'Carlos Angulo' },
   { path: '/about', expect: 'Certifications' },
+  { path: '/experience', expect: 'Senior Platform Engineer' },
   { path: '/blog', expect: 'Posts' },
   { path: '/cheatsheets', expect: 'Cheatsheets' },
   { path: '/projects', expect: 'Projects' },
