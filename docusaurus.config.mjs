@@ -52,7 +52,7 @@ const blogSection = (options) => [
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Carlos Angulo',
-  tagline: 'Staff Engineer · Platform Engineering — setting technical direction for Internal Developer Platforms and raising the engineering bar across teams (AWS, Terraform, CI/CD)',
+  tagline: 'Senior Platform Engineer — Internal Developer Platforms with golden paths and self-service, so teams ship faster, safer, and more autonomously (AWS, Terraform, CI/CD)',
   url: 'https://cangulo.github.io',
   baseUrl: '/',
   organizationName: 'cangulo',

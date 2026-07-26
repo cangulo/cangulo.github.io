@@ -17,11 +17,11 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Carlos Angulo</h1>
-        <p className={styles.heroRole}>Staff Engineer · Platform Engineering</p>
+        <p className={styles.heroRole}>Senior Platform Engineer</p>
         <p className="hero__subtitle">
-          I set technical direction for Internal Developer Platforms — AWS, Terraform, and
-          CI/CD at scale — and lead through influence so engineering teams across the org
-          ship faster, safer, and more autonomously.
+          I build and evolve Internal Developer Platforms — golden paths, self-service
+          tooling, and paved roads on AWS, Terraform, and CI/CD — so engineering teams ship
+          faster, safer, and more autonomously.
         </p>
 
         <div className={styles.stats}>
@@ -55,10 +55,10 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const profileImg = `https://github.com/cangulo/cangulo/raw/main/profile-picture-preview-link.jpg`;
-  const description = `Carlos Angulo — Staff Engineer in Platform Engineering. I set technical direction for Internal Developer Platforms (AWS, Terraform, CI/CD) and raise the engineering bar across teams.`;
+  const description = `Carlos Angulo — Senior Platform Engineer building Internal Developer Platforms (AWS, Terraform, CI/CD) with golden paths and self-service, so engineering teams ship faster, safer, and more autonomously.`;
   return (
     <Layout
-      title={`Carlos Angulo — Staff Engineer`}
+      title={`Carlos Angulo — Senior Platform Engineer`}
       description={description}>
       <head>
         <meta name="image" content={profileImg} />
