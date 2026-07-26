@@ -62,6 +62,27 @@ Standalone pages live in `src/pages/` (`index.tsx`, `about.mdx`, `rss.mdx`). Sta
 (including `.nojekyll`) live in `static/`. `blog/_template.md` is the starting point for a
 new post; `blog/authors.yml` is shared across all six plugins.
 
+**Notes are typed as book or course.** A note (`blog/notes/**`) declares a `type` in its
+frontmatter — `book` or `course` — plus `resource_title` and `resource_url` describing the
+source, and adds the matching `book`/`course` tag:
+
+```yaml
+type: book
+resource_title: 'Staff Engineer: Leadership beyond the management track by Will Larson'
+resource_url: https://staffeng.com/book
+tags: [staff-engineer, book]
+```
+
+From this, three things render automatically (all scoped to notes — nothing else has a
+`type`): an **info panel** at the top of the post ("📚 Here are my notes about the book …"),
+a **`📚 Book` / `🎓 Course` badge** next to the date + reading time (on the list and the
+post), and Docusaurus's auto-generated **`/notes/tags/book`** and **`/notes/tags/course`**
+filter pages. Support a new kind (e.g. `talk`) by adding one entry to the maps in
+`packages/components/src/docusaurus/noteResource.js` and
+`src/theme/BlogPostItem/Header/Info/index.tsx`. `src/theme/` holds the two small swizzles
+that drive this (`BlogPostItem/Content` for the panel, `BlogPostItem/Header/Info` for the
+badge).
+
 `onBrokenLinks: 'throw'` — a broken internal link fails the build, so run `pnpm build`
 locally before pushing content changes.
 
@@ -87,6 +108,9 @@ How the site uses it (`docusaurus.config.mjs`):
 - `/about` (`src/pages/about.mdx`) imports the `aboutme_*` fragments directly.
 - `CaptionDocusaurus` is imported explicitly by the content files that use it (it is not
   auto-injected).
+- `NoteResource` renders the note book/course intro panel; it's used by the
+  `src/theme/BlogPostItem/Content` swizzle (not remark-injected — that would land in the
+  truncated list excerpt and get dropped by the truncate-marker split).
 - The brand CSS comes from `@cangulo-blog/components/css/blog-styles.css` in `customCss`.
 
 Changing post structure, `about.mdx`, or the injected header/footer usually means touching

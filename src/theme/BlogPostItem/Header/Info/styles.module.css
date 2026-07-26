@@ -1,0 +1,25 @@
+.infoWithBadge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.typeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  color: var(--ifm-color-primary-darkest);
+  background-color: var(--ifm-color-primary-lightest);
+}
+
+[data-theme='dark'] .typeBadge {
+  color: var(--ifm-color-primary-lightest);
+  background-color: rgba(255, 255, 255, 0.1);
+}
