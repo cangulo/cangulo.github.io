@@ -1,0 +1,28 @@
+---
+slug: powershell
+title: PowerShell Shortcuts
+group: personal-config
+date: 2026-07-19
+authors: cangulo
+tags: [powershell, productivity, alias, config]
+---
+
+My PowerShell `$PROFILE` shortcuts. For the how-to, see [How to use the PowerShell Profile to be more productive](/blog/ps-profile-productive).
+
+<!--truncate-->
+
+## PowerShell profile
+
+```powershell
+# Variables
+
+$localRepo = $HOME + '\source\repos'
+
+# Functions
+
+function goToRepos { cd $localRepo }
+
+# Alias
+
+New-Alias -Name startTaskManagerAPI -Value $localRepo\TaskManager\startTaskManagerScript.ps1
+```
