@@ -3,10 +3,12 @@ import ShareComponent from './components/ShareComponent.js';
 
 import CaptionDocusaurus from './docusaurus/CaptionDocusaurus.js';
 import ShareDocusaurus from './docusaurus/ShareDocusaurus.js';
+import NoteResource from './docusaurus/NoteResourceDocusaurus.js';
 
 export {
   CaptionComponent,
   CaptionDocusaurus,
   ShareDocusaurus,
-  ShareComponent
+  ShareComponent,
+  NoteResource
 };

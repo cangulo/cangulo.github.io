@@ -13,6 +13,10 @@ const ROUTES = [
   { path: '/projects', expect: 'Projects' },
   { path: '/meetups', expect: 'Meetups' },
   { path: '/notes', expect: 'Notes' },
+  // Notes are marked as book/course: the intro panel on the post page and the
+  // auto-generated tag filter page both need to keep working.
+  { path: '/notes/staff-engineer', expect: 'Here are my notes about the' },
+  { path: '/notes/tags/book', expect: 'Staff Engineer' },
   { path: '/rss', expect: 'RSS' },
 ];
 
