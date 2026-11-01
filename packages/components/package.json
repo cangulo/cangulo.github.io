@@ -38,7 +38,7 @@
     "cangulo"
   ],
   "dependencies": {
-    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-from-markdown": "^2.1.0",
     "mdast-util-mdx": "^3.0.0",
     "micromark-extension-mdxjs": "^3.0.0"
   },
@@ -47,10 +47,10 @@
     "react-share": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^8.0.4",
-    "@babel/core": "^8.0.1",
+    "@babel/cli": "^8.0.6",
+    "@babel/core": "^8.0.9",
     "@babel/preset-react": "^8.0.1",
     "mdast-util-gfm-table": "^2.0.0",
-    "micromark-extension-gfm-table": "^2.1.1"
+    "micromark-extension-gfm-table": "^2.1.2"
   }
 }
